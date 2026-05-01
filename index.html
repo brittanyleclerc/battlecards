@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ottimate Competitive Battlecards</title>
+<style>
+  :root {
+    --brand-orange: #F26522;
+    --brand-dark: #1A1F2E;
+    --brand-navy: #252B3B;
+    --brand-card: #2E3549;
+    --brand-card-hover: #333D56;
+    --brand-border: #3D4560;
+    --brand-border-light: #4A5572;
+    --brand-text: #E8ECF4;
+    --brand-muted: #8892A4;
+    --brand-green: #3DD68C;
+    --brand-red: #F25252;
+    --brand-yellow: #F5C842;
+    --brand-blue: #4A9EF5;
+    --brand-purple: #9B59B6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--brand-dark);
+    color: var(--brand-text);
+    min-height: 100vh;
+  }
+
+  /* ─── HEADER ─── */
+  .header {
+    background: var(--brand-navy);
+    border-bottom: 2px solid var(--brand-orange);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+  .header-left { display: flex; align-items: center; gap: 14px; }
+  .logo-mark {
+    width: 38px; height: 38px;
+    background: var(--brand-orange);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 16px; color: white;
+  }
+  .header-title h1 { font-size: 19px; font-weight: 700; color: white; }
+  .header-title p { font-size: 12px; color: var(--brand-muted); margin-top: 1px; }
+  .header-badge {
+    background: rgba(242,101,34,0.15);
+    border: 1px solid var(--brand-orange);
+    color: var(--brand-orange);
+    font-size: 11px; font-weight: 600;
+    padding: 4px 10px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+
+  /* ─── OTTIMATE EDGE STRIP ─── */
+  .ottimate-strip {
+    background: linear-gradient(135deg, rgba(242,101,34,0.10) 0%, rgba(242,101,34,0.04) 100%);
+    border: 1px solid rgba(242,101,34,0.22);
+    border-radius: 12px;
+    margin: 22px 32px 8px;
+    padding: 14px 22px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .strip-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--brand-orange); font-weight: 700; white-space: nowrap; }
+  .strip-stats { display: flex; gap: 20px; flex-wrap: wrap; }
+  .strip-stat .val { font-size: 20px; font-weight: 800; color: var(--brand-orange); }
+  .strip-stat .lbl { font-size: 10px; color: var(--brand-muted); }
+  .ottimate-edges { display: flex; gap: 8px; flex-wrap: wrap; margin-left: auto; }
+  .edge-pill {
+    background: rgba(61,214,140,0.1); border: 1px solid rgba(61,214,140,0.3);
+    color: var(--brand-green); font-size: 11px; font-weight: 600;
+    padding: 4px 11px; border-radius: 20px;
+  }
+
+  /* ─── CONTROLS ─── */
+  .controls { padding: 14px 32px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .search-box {
+    flex: 1; min-width: 220px;
+    background: var(--brand-navy); border: 1px solid var(--brand-border);
+    border-radius: 8px; padding: 9px 15px;
+    color: var(--brand-text); font-size: 13px; outline: none;
+  }
+  .search-box:focus { border-color: var(--brand-orange); }
+  .search-box::placeholder { color: var(--brand-muted); }
+  .filter-btn {
+    background: var(--brand-navy); border: 1px solid var(--brand-border);
+    border-radius: 8px; padding: 9px 14px;
+    color: var(--brand-muted); font-size: 12px; cursor: pointer;
+    transition: all 0.15s; white-space: nowrap;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    border-color: var(--brand-orange); color: var(--brand-orange);
+    background: rgba(242,101,34,0.08);
+  }
+  .count-badge {
+    background: rgba(255,255,255,0.08); color: var(--brand-muted);
+    font-size: 11px; padding: 2px 7px; border-radius: 10px; margin-left: 4px;
+  }
+
+  /* ─── CARD GRID ─── */
+  .grid {
+    padding: 6px 32px 32px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  /* ─── COMPACT CARD ─── */
+  .card {
+    background: var(--brand-card);
+    border: 1px solid var(--brand-border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    border-color: rgba(242,101,34,0.5);
+    background: var(--brand-card-hover);
+  }
+  .card.hidden { display: none; }
+
+  .card-header {
+    padding: 16px 18px 14px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    flex: 1;
+  }
+  .card-header-left { flex: 1; }
+  .comp-name { font-size: 17px; font-weight: 700; color: white; margin-bottom: 5px; }
+  .comp-tagline { font-size: 12px; color: var(--brand-muted); line-height: 1.45; }
+
+  .threat-badge {
+    font-size: 10px; font-weight: 700;
+    padding: 4px 9px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .threat-high   { background: rgba(242,82,82,0.15);  color: var(--brand-red);    border: 1px solid rgba(242,82,82,0.3); }
+  .threat-medium { background: rgba(245,200,66,0.15); color: var(--brand-yellow); border: 1px solid rgba(245,200,66,0.3); }
+  .threat-low    { background: rgba(61,214,140,0.12); color: var(--brand-green);  border: 1px solid rgba(61,214,140,0.3); }
+
+  .card-footer {
+    padding: 10px 18px;
+    background: rgba(0,0,0,0.15);
+    border-top: 1px solid var(--brand-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+  .tag {
+    font-size: 10px; background: rgba(255,255,255,0.05);
+    border: 1px solid var(--brand-border); color: var(--brand-muted);
+    padding: 2px 8px; border-radius: 10px;
+  }
+  .view-btn {
+    background: rgba(242,101,34,0.12); border: 1px solid rgba(242,101,34,0.35);
+    color: var(--brand-orange); font-size: 12px; font-weight: 600;
+    padding: 6px 14px; border-radius: 6px; cursor: pointer;
+    transition: all 0.15s; white-space: nowrap; flex-shrink: 0;
+  }
+  .view-btn:hover { background: rgba(242,101,34,0.22); border-color: var(--brand-orange); }
+
+  /* ─── MODAL OVERLAY ─── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--brand-navy);
+    border: 1px solid var(--brand-border-light);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 780px;
+    max-height: 88vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+    animation: modalIn 0.2s ease-out;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.96) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  /* Modal Header */
+  .modal-header {
+    padding: 20px 24px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 1px solid var(--brand-border);
+    padding-bottom: 0;
+    flex-shrink: 0;
+  }
+  .modal-header-left { flex: 1; }
+  .modal-comp-name { font-size: 22px; font-weight: 800; color: white; margin-bottom: 4px; }
+  .modal-comp-tagline { font-size: 13px; color: var(--brand-muted); margin-bottom: 14px; }
+  .modal-close {
+    background: none; border: none; color: var(--brand-muted); font-size: 22px;
+    cursor: pointer; padding: 0; line-height: 1; margin-top: 2px; flex-shrink: 0;
+  }
+  .modal-close:hover { color: white; }
+
+  /* Scores strip in modal */
+  .modal-scores {
+    display: flex; gap: 0; flex-wrap: wrap;
+    margin: 0 24px 14px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--brand-border);
+    border-radius: 8px; overflow: hidden;
+  }
+  .modal-score {
+    flex: 1; text-align: center;
+    padding: 10px 8px;
+    border-right: 1px solid var(--brand-border);
+  }
+  .modal-score:last-child { border-right: none; }
+  .modal-score .s-val { font-size: 18px; font-weight: 800; }
+  .modal-score .s-lbl { font-size: 10px; color: var(--brand-muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .s-win  { color: var(--brand-green); }
+  .s-lose { color: var(--brand-red); }
+  .s-tie  { color: var(--brand-yellow); }
+  .s-na   { color: var(--brand-muted); }
+
+  /* Tabs */
+  .modal-tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 24px;
+    border-bottom: 1px solid var(--brand-border);
+    flex-shrink: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .modal-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    background: none; border: none; border-bottom: 2px solid transparent;
+    color: var(--brand-muted); font-size: 13px; font-weight: 500;
+    padding: 10px 16px; cursor: pointer; white-space: nowrap;
+    transition: all 0.15s; margin-bottom: -1px;
+  }
+  .tab-btn:hover { color: var(--brand-text); }
+  .tab-btn.active { color: var(--brand-orange); border-bottom-color: var(--brand-orange); font-weight: 600; }
+
+  /* Tab content */
+  .modal-body {
+    padding: 20px 24px;
+    overflow-y: auto;
+    flex: 1;
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Content elements */
+  .section-label {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--brand-muted);
+    margin-bottom: 10px; margin-top: 20px;
+  }
+  .section-label:first-child { margin-top: 0; }
+
+  .their-edge {
+    font-size: 13px; color: var(--brand-text);
+    background: rgba(242,82,82,0.06);
+    border-left: 3px solid var(--brand-red);
+    padding: 10px 14px; border-radius: 0 8px 8px 0;
+    margin-bottom: 8px; line-height: 1.6;
+  }
+
+  .weakness-item {
+    display: flex; align-items: flex-start; gap: 9px;
+    font-size: 13px; color: var(--brand-text);
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    line-height: 1.5;
+  }
+  .weakness-item:last-child { border-bottom: none; }
+  .wi-icon { color: var(--brand-yellow); font-size: 12px; margin-top: 2px; flex-shrink: 0; }
+
+  .win-move {
+    background: rgba(61,214,140,0.06);
+    border-left: 3px solid var(--brand-green);
+    padding: 11px 14px; border-radius: 0 8px 8px 0;
+    margin-bottom: 10px; font-size: 13px; line-height: 1.6; color: var(--brand-text);
+  }
+  .win-move strong { color: var(--brand-green); }
+
+  .killer-quote {
+    background: rgba(74,158,245,0.08);
+    border: 1px solid rgba(74,158,245,0.2);
+    border-radius: 8px; padding: 12px 16px;
+    font-size: 13px; font-style: italic;
+    color: var(--brand-blue); line-height: 1.6; margin-top: 16px;
+  }
+  .killer-quote-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px;
+    color: var(--brand-blue); font-weight: 700; font-style: normal;
+    display: block; margin-bottom: 6px;
+  }
+
+  /* Gaps tab */
+  .gap-item {
+    background: rgba(242,82,82,0.05);
+    border: 1px solid rgba(242,82,82,0.15);
+    border-radius: 8px; padding: 12px 16px;
+    margin-bottom: 10px;
+  }
+  .gap-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.6px; color: var(--brand-red); margin-bottom: 6px;
+  }
+  .gap-text { font-size: 13px; color: var(--brand-text); line-height: 1.55; }
+
+  .loss-item {
+    display: flex; align-items: flex-start; gap: 9px;
+    font-size: 13px; color: var(--brand-text);
+    padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+    line-height: 1.5;
+  }
+  .loss-item:last-child { border-bottom: none; }
+  .loss-icon { color: var(--brand-red); font-size: 12px; margin-top: 2px; flex-shrink: 0; }
+
+  .overcome-item {
+    background: rgba(74,158,245,0.06);
+    border-left: 3px solid var(--brand-blue);
+    padding: 10px 14px; border-radius: 0 8px 8px 0;
+    margin-bottom: 8px; font-size: 13px; line-height: 1.6; color: var(--brand-text);
+  }
+  .overcome-item strong { color: var(--brand-blue); }
+
+  /* Footer */
+  footer {
+    text-align: center; padding: 20px; color: var(--brand-muted);
+    font-size: 11px; border-top: 1px solid var(--brand-border);
+    margin-top: 8px;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .header, .controls, .grid { padding-left: 16px; padding-right: 16px; }
+    .ottimate-strip { margin: 14px 16px 6px; }
+    .grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .modal { max-height: 95vh; border-radius: 12px; }
+    .modal-header { padding: 16px 18px 0; }
+    .modal-body { padding: 16px 18px; }
+    .modal-tabs { padding: 0 18px; }
+    .modal-scores { margin: 0 18px 12px; }
+  }
+  @media (max-width: 400px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="logo-mark">Ot</div>
+    <div class="header-title">
+      <h1>Competitive Battlecards</h1>
+      <p>Ottimate AP Automation &mdash; Sales &amp; Partner Enablement</p>
+    </div>
+  </div>
+  <div class="header-badge">Confidential</div>
+</div>
+
+<!-- OTTIMATE EDGE STRIP -->
+<div class="ottimate-strip">
+  <div class="strip-label">Ottimate<br>Edge</div>
+  <div class="strip-stats">
+    <div class="strip-stat"><div class="val">4.8</div><div class="lbl">G2 Score</div></div>
+    <div class="strip-stat"><div class="val">9.0</div><div class="lbl">G2 Support</div></div>
+    <div class="strip-stat"><div class="val">9.2</div><div class="lbl">Ease of Admin</div></div>
+    <div class="strip-stat"><div class="val">95%</div><div class="lbl">AI Accuracy</div></div>
+  </div>
+  <div class="ottimate-edges">
+    <span class="edge-pill">SKU-Level Price Matching</span>
+    <span class="edge-pill">Otti AI Copilot</span>
+    <span class="edge-pill">Flat-Rate Pricing</span>
+    <span class="edge-pill">Vertical Specialist</span>
+    <span class="edge-pill">Unlimited Users &amp; Approvers</span>
+  </div>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <input class="search-box" id="searchBox" type="text" placeholder="&#128269;  Search competitor, feature, or keyword..." oninput="filterCards()">
+  <button class="filter-btn active" onclick="setFilter('all', this)">All <span class="count-badge">9</span></button>
+  <button class="filter-btn" onclick="setFilter('high', this)">🔴 High Threat</button>
+  <button class="filter-btn" onclick="setFilter('medium', this)">🟡 Medium</button>
+  <button class="filter-btn" onclick="setFilter('low', this)">🟢 Easier Win</button>
+</div>
+
+<!-- COMPACT CARD GRID -->
+<div class="grid" id="cardGrid">
+
+  <div class="card" data-threat="high" data-tags="middle market real estate hoa integration network" onclick="openModal('avidexchange')">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="comp-name">AvidExchange</div>
+        <div class="comp-tagline">Middle Market AP Ecosystem — 225+ integrations &amp; 1.3M supplier network</div>
+      </div>
+      <span class="threat-badge threat-high">High Threat</span>
+    </div>
+    <div class="card-footer">
+      <div class="card-tags"><span class="tag">Real Estate</span><span class="tag">HOA</span><span class="tag">Mid-Market</span></div>
+      <button class="view-btn" onclick="event.stopPropagation(); openModal('avidexchange')">View Details ›</button>
+    </div>
+  </div>
+
+  <div class="card" data-threat="high" data-tags="smb accounting firms network per transaction fees float bill" onclick="openModal('billcom')">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="comp-name">Bill.com (BILL)</div>
+        <div class="comp-tagline">SMB Financial Platform — accountant channel, 7.1M network members</div>
+      </div>
+      <span class="threat-badge threat-high">High Threat</span>
+    </div>
+    <div class="card-footer">
+      <div class="card-tags"><span class="tag">SMB</span><span class="tag">Accountant Channel</span><span class="tag">Horizontal</span></div>
+      <button class="view-btn" onclick="event.stopPropagation(); openModal('billcom')">View Details ›</button>
+    </div>
+  </div>
+
+  <div class="card" data-threat="high" data-tags="pure ap automation billy the bot erp integrations ease of setup stampli" onclick="openModal('stampli')">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="comp-name">Stampli</div>
+        <div class="comp-tagline">Pure-Play AP Automation — "built by AP experts," in-house ERP integrations</div>
+      </div>
+      <span class="threat-badge threat-high">High Threat</span>
+    </div>
+    <div class="card-footer">
+      <div class="card-tags"><span class="tag">Pure AP</span><span class="tag">In-House ERP</span><span class="tag">Horizontal</span></div>
+      <button class="view-btn" onclick="event.stopPropagation(); openModal('stampli')">View Details ›</button>
+    </div>
+  </div>
+
+  <div class="card" data-threat="medium" data-tags="spend management corporate card bill pay freemium startups ramp" onclick="openModal('ramp')">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="comp-name">Ramp</div>
+        <div class="comp-tagline">Spend Management Platform — corporate card with bundled "lite" AP</div>
+      </div>
+      <span class="threat-badge threat-medium">Medium Threat</span>
+    </div>
+    <div class="card-footer">
+      <div class="card-tags"><span class="tag">Spend Mgmt</span><span class="tag">Corporate Card</span><span class="tag">Horizontal</span></div>
+      <button class="view-btn" onclick="event.stopPropagation(); openModal('ramp')">View Details ›</button>
+    </div>
+  </div>
+
+  <div class="card" data-threat="medium" data-tags="global payments mass payouts international currencies countries netsuite tipalti" onclick="openModal('tipalti')">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="comp-name">Tipalti</div>
+        <div class="comp-tagline">Global Payments &amp; Mass Payouts — 200+ countries, 120+ currencies</div>
+      </div>
+      <span class="threat-badge threat-medium">Medium Threat</span>
+    </div>
+    <div class="card-footer">
+      <div class="card-tags"><span class="tag">Global Payments</span><span class="tag">Mid-Market</span><span class="tag">International</span></div>
+      <button class="view-btn" onclick="event.stopPropagation(); openModal('tipalti')">View Details ›</button>
+    </div>
+  </div>
+
+  <div class="card" data-threat="medium" data-tags="enterprise bsm business spend management procurement sourcing coupa" onclick="openModal('coupa')">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="comp-name">Coupa</div>
+        <div class="comp-tagline">Enterprise BSM Platform — procurement + AP + sourcing + contracts</div>
+      </div>
+      <span class="threat-badge threat-medium">Medium Threat</span>
+    </div>
+    <div class="card-footer">
+      <div class="card-tags"><span class="tag">Enterprise</span><span class="tag">Full BSM</span><span class="tag">Global 2000</span></div>
+      <button class="view-btn" onclick="event.stopPropagation(); openModal('coupa')">View Details ›</button>
+    </div>
+  </div>
+
+  <div class="card" data-threat="medium" data-tags="high-end manufacturing healthcare riley ai copilot high volume rillion" onclick="openModal('rillion')">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="comp-name">Rillion</div>
+        <div class="comp-tagline">High-End AP Automation — "Riley" AI, high-volume PO line matching</div>
+      </div>
+      <span class="threat-badge threat-medium">Medium Threat</span>
+    </div>
+    <div class="card-footer">
+      <div class="card-tags"><span class="tag">High-End AP</span><span class="tag">Manufacturing</span><span class="tag">Healthcare</span></div>
+      <button class="view-btn" onclick="event.stopPropagation(); openModal('rillion')">View Details ›</button>
+    </div>
+  </div>
+
+  <div class="card" data-threat="low" data-tags="lean financial operations proprietary ai connectors erp learning curve yooz" onclick="openModal('yooz')">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="comp-name">Yooz</div>
+        <div class="comp-tagline">"Lean Financial Operations" — 250+ connectors, AI that misreads invoices</div>
+      </div>
+      <span class="threat-badge threat-low">Easier Win</span>
+    </div>
+    <div class="card-footer">
+      <div class="card-tags"><span class="tag">Mid-Market</span><span class="tag">250+ Connectors</span><span class="tag">Horizontal</span></div>
+      <button class="view-btn" onclick="event.stopPropagation(); openModal('yooz')">View Details ›</button>
+    </div>
+  </div>
+
+  <div class="card" data-threat="low" data-tags="quadient beanworks human in the loop hitl manual verification legacy 99% accuracy" onclick="openModal('quadient')">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="comp-name">Quadient AP (Beanworks)</div>
+        <div class="comp-tagline">Legacy "Human-in-the-Loop" AP — part of Quadient's diversified suite</div>
+      </div>
+      <span class="threat-badge threat-low">Easier Win</span>
+    </div>
+    <div class="card-footer">
+      <div class="card-tags"><span class="tag">HITL Model</span><span class="tag">Mid-Enterprise</span><span class="tag">Legacy</span></div>
+      <button class="view-btn" onclick="event.stopPropagation(); openModal('quadient')">View Details ›</button>
+    </div>
+  </div>
+
+</div><!-- end grid -->
+
+<footer>
+  Ottimate Competitive Battlecards &mdash; Confidential &amp; Internal Use Only &mdash; Updated April 2026
+</footer>
+
+<!-- ═══════════════ MODAL ═══════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-comp-name" id="modalName"></div>
+        <div class="modal-comp-tagline" id="modalTagline"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-scores" id="modalScores"></div>
+    <div class="modal-tabs" id="modalTabs">
+      <button class="tab-btn active" onclick="switchTab('pitch', this)">Their Pitch</button>
+      <button class="tab-btn" onclick="switchTab('weaknesses', this)">VoC Weaknesses</button>
+      <button class="tab-btn" onclick="switchTab('winmoves', this)">Win Moves</button>
+      <button class="tab-btn" onclick="switchTab('gaps', this)">⚠ Ottimate's Gaps</button>
+    </div>
+    <div class="modal-body">
+      <div class="tab-panel active" id="tab-pitch"></div>
+      <div class="tab-panel" id="tab-weaknesses"></div>
+      <div class="tab-panel" id="tab-winmoves"></div>
+      <div class="tab-panel" id="tab-gaps"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  COMPETITOR DATA
+// ═══════════════════════════════════════════════════════
+const COMPETITORS = {
+
+  avidexchange: {
+    name: "AvidExchange",
+    tagline: "Middle Market AP Ecosystem — integration moat + payment network",
+    threat: "HIGH",
+    scores: [
+      { val: "4.8", lbl: "Ottimate G2", cls: "s-win" },
+      { val: "~4.3", lbl: "AvidXchange G2", cls: "s-lose" },
+      { val: "9.0", lbl: "Our Support G2", cls: "s-win" },
+      { val: "7.8", lbl: "Their Support G2", cls: "s-lose" },
+      { val: "9.1", lbl: "Our Meets Req.", cls: "s-win" },
+      { val: "8.4", lbl: "Their Meets Req.", cls: "s-lose" }
+    ],
+    pitch: `<div class="section-label">Their Core Claim</div>
+<div class="their-edge">20 years of ecosystem-building created a "significant competitive moat" — 225+ ERP integrations and a 1.3M-supplier AvidPay Network. They win deals on lock-in, not product quality.</div>
+<div class="section-label">How They Position Against Ottimate</div>
+<div class="their-edge">Emphasize their deep vertical integration history in Real Estate, HOA, and Media. Push "AvidPay Network" as a built-in supplier payment method that saves customers from managing vendor bank details.</div>
+<div class="their-edge">Frame their "100% digital invoice" processing as transformational for companies still using paper — enough for the majority of their target market who just need basic digitization.</div>`,
+
+    weaknesses: `<div class="section-label">Top G2/TrustRadius Complaints</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Poor customer support — #1 G2 con with 24 mentions; "slow, not great to work with when you have issues"</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Payment delays — #2 complaint (16 mentions); payments take 3–5 weeks, vendors call constantly to check status</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Vendor harassment — AvidExchange pressures suppliers to accept vCards; "has made some vendors upset"</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Human-gated processing — their "99.2% accuracy" relies on a team of human indexers who make mistakes</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Header-level rules only — cannot route invoices based on line-item GL codes</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Business model conflict — earns revenue from supplier fees on the AvidPay Network, creating a vested interest in pushing vCards over the vendor's preferred method</div>`,
+
+    winmoves: `<div class="win-move"><strong>Lead with the G2 Support gap (9.0 vs 7.8):</strong> "AvidExchange has a large network — but what does that cost your vendor relationships? Users report 3–5 week payment delays and their payment team harasses vendors. Our 9.0/10 G2 support score proves we prioritize partnership over friction. Ask for a reference from an AvidExchange customer in hospitality."</div>
+<div class="win-move"><strong>Expose the "AI" myth:</strong> "Their 99.2% accuracy isn't AI — it's humans. Their own users complain about 'indexers' making costly mistakes. Ottimate's Instant Capture AI processes invoices in seconds with 95% line-item accuracy. No human bottleneck. No delays."</div>
+<div class="win-move"><strong>Vertical depth disqualifier (Restaurants/Franchises):</strong> "Can AvidExchange perform catalog-level validation on a SKU or Split Case invoice? Ottimate can. Their integrations don't help if the AP logic isn't built for your inventory complexity."</div>
+<div class="win-move"><strong>Line-item routing play (Construction/Multi-Unit):</strong> "AvidExchange's approval rules operate at the header level. Ottimate can route a single invoice based on line-item GL codes to different project managers. Demo that live."</div>
+<div class="killer-quote"><span class="killer-quote-label">Killer Question</span>"Their integration moat took 20 years to build. But what happens when those integrations cause 3–5 week payment delays and your vendors start calling to complain? How do you put a dollar value on your vendor relationships?"</div>`,
+
+    gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
+<div class="gap-item"><div class="gap-label">International Payments</div><div class="gap-text">AvidExchange has a partnership with Wise for cross-border payments. Ottimate's international payment capabilities are more limited. If a prospect has a significant international vendor base, this is a gap to address proactively.</div></div>
+<div class="gap-item"><div class="gap-label">Integration Ecosystem Size</div><div class="gap-text">With 225+ integrations built over 20 years, AvidExchange has broader ERP coverage than Ottimate's current integration marketplace. For prospects running niche or legacy ERPs, this may be a differentiator in AvidExchange's favor.</div></div>
+<div class="gap-item"><div class="gap-label">Brand Recognition in Mid-Market</div><div class="gap-text">AvidExchange is a known, publicly traded brand in the mid-market. Ottimate (formerly Plate IQ) has strong brand equity in hospitality but may face recognition gaps in new verticals.</div></div>
+
+<div class="section-label">Top Reasons Ottimate Loses to AvidExchange</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect's ERP vendor has an existing AvidExchange referral relationship and actively steers deals their way</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect is in Real Estate or HOA — AvidExchange's strongest verticals where Ottimate has less presence</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect prioritizes "integration breadth" over invoice processing quality</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Decision is driven by IT/procurement rather than the AP or finance team</div>
+
+<div class="section-label">How to Overcome</div>
+<div class="overcome-item"><strong>Counter the ERP referral:</strong> Request a conversation with the AP team directly, not just IT. AP practitioners feel the pain of delayed payments and poor support — they are Ottimate's advocates inside the deal.</div>
+<div class="overcome-item"><strong>Re-frame integration breadth:</strong> "An integration is only as good as the data going through it. If AvidExchange's human indexers are processing your invoices incorrectly, 225 integrations are syncing bad data into your ERP."</div>`
+  },
+
+  billcom: {
+    name: "Bill.com (BILL)",
+    tagline: "SMB Financial Operations Platform — accountant channel, 7.1M network members",
+    threat: "HIGH",
+    scores: [
+      { val: "4.8", lbl: "Ottimate G2", cls: "s-win" },
+      { val: "4.5", lbl: "BILL G2", cls: "s-lose" },
+      { val: "9.0", lbl: "Our Support G2", cls: "s-win" },
+      { val: "8.0", lbl: "BILL Support G2", cls: "s-lose" },
+      { val: "9.2", lbl: "Our Ease Admin", cls: "s-win" },
+      { val: "8.8", lbl: "BILL Ease Admin", cls: "s-lose" }
+    ],
+    pitch: `<div class="section-label">Their Core Claim</div>
+<div class="their-edge">"Make it simple to connect and do business." $1.5B revenue, 8,000+ accounting firm partners, and 7.1M network members create a trusted-advisor-led sales channel that's difficult to displace.</div>
+<div class="section-label">How They Position Against Ottimate</div>
+<div class="their-edge">Bill.com aggressively markets to accountants — providing them resources and guides to "pitch BILL" to their entire client base. The accountant becomes the sales rep.</div>
+<div class="their-edge">Network effects: Once vendors and clients are connected in the BILL network, leaving means re-onboarding your entire vendor set elsewhere — a built-in stickiness argument.</div>
+<div class="their-edge">AR + AP combined: BILL covers both Accounts Payable and Accounts Receivable in one platform — something Ottimate doesn't currently offer.</div>`,
+
+    weaknesses: `<div class="section-label">Top G2/TrustRadius Complaints</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Poor customer support — most damaging complaint; "no phone number to call," took "too long to resolve," "unhelpful representatives"</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Float model = fund holding — earns revenue by holding vendor payments for days before releasing; creates cash flow risk for vendors</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Integration/sync failures — "every time I exported from Bill.com to QuickBooks we had an issue" (validated by Ottimate case study)</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Per-transaction fees — charges per ACH, per check; costs balloon as transaction volume grows</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>No line-item AP — cannot handle SKU-level coding, COGS allocation, or catalog price matching</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Horizontal only — customers in restaurants, hotels, or construction quickly outgrow BILL's generalist capabilities</div>`,
+
+    winmoves: `<div class="win-move"><strong>Target accountants directly:</strong> "We know many accountants default to Bill.com — but those managing complex clients (restaurants, hotels) waste hours on sync errors. Ottimate's QuickBooks sync works instantly. Our G2 support is rated 1.0 point higher. We make your high-value clients easier to manage, not harder." <em>(Use the 'Books To Go' case study.)</em></div>
+<div class="win-move"><strong>"Truth in Payments" — attack the float model:</strong> "Bill.com takes funds from your account the day you submit payment, then holds it for days before paying your vendor. They earn float interest on your money. Ottimate never slows down vendor payments to earn interest. Ask them: what is their payment float policy?"</div>
+<div class="win-move"><strong>Flat fee vs. death by a thousand cuts:</strong> "Bill.com charges per user AND per transaction AND extra for ACH/check. Ottimate is flat-rate — unlimited users, unlimited transactions, one predictable monthly fee. As you grow, your costs don't spike."</div>
+<div class="win-move"><strong>Line-item complexity disqualifier:</strong> "If your clients process invoices with SKU-level coding, multi-location GL allocation, or vendor catalog matching, Bill.com will fail them. It's built for simple SMB payments, not complex hospitality or construction AP."</div>
+<div class="killer-quote"><span class="killer-quote-label">Killer Question</span>"If Bill.com takes your money on day one and pays your vendor on day five — who's earning interest on the float? And how does that align with their promise to 'pay vendors 2x faster'?"</div>`,
+
+    gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
+<div class="gap-item"><div class="gap-label">No AR (Accounts Receivable)</div><div class="gap-text">Bill.com offers combined AP + AR in one platform. Ottimate is AP-only. For prospects who want a single solution for both AP and AR workflows, BILL wins by default on scope.</div></div>
+<div class="gap-item"><div class="gap-label">Accounting Firm Channel</div><div class="gap-text">Bill.com has 8,000+ accounting firm partners actively recommending it. Ottimate has fewer formal accountant-channel relationships. Deals sourced via accountants can be pre-biased toward BILL before Ottimate ever enters the conversation.</div></div>
+<div class="gap-item"><div class="gap-label">Brand Name Recognition</div><div class="gap-text">Bill.com is a household name in SMB finance. Ottimate (formerly Plate IQ) has a rebranding story to tell. In some procurement committees, brand familiarity drives early shortlisting.</div></div>
+
+<div class="section-label">Top Reasons Ottimate Loses to Bill.com</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect's accountant has a pre-existing BILL relationship and recommends it before Ottimate is evaluated</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect needs AR in addition to AP — a scope requirement Ottimate can't currently meet</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect is a simple SMB with no line-item complexity — BILL's feature set is "good enough"</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Price sensitivity — BILL's per-transaction model can appear cheaper at low invoice volumes</div>
+
+<div class="section-label">How to Overcome</div>
+<div class="overcome-item"><strong>Get to the AP team before the accountant does:</strong> When an accountant is involved, request a separate demo directly with the client's AP team. Show the line-item capture and reconciliation — features accountants rarely demo in BILL.</div>
+<div class="overcome-item"><strong>Model the TCO:</strong> Build a side-by-side cost comparison showing how BILL's per-transaction fees exceed Ottimate's flat rate at realistic invoice volumes (typically above 200 invoices/month).</div>`
+  },
+
+  stampli: {
+    name: "Stampli",
+    tagline: "Pure-Play AP Automation — \"built by AP experts,\" in-house ERP integrations",
+    threat: "HIGH",
+    scores: [
+      { val: "9.1", lbl: "Ottimate Ease of Use", cls: "s-win" },
+      { val: "9.5", lbl: "Stampli Ease of Use", cls: "s-tie" },
+      { val: "N/A", lbl: "Our Support G2", cls: "s-na" },
+      { val: "9.7", lbl: "Stampli Support G2", cls: "s-tie" },
+      { val: "9.2", lbl: "Our Ease Admin", cls: "s-win" },
+      { val: "9.5", lbl: "Stampli Ease Admin", cls: "s-tie" }
+    ],
+    pitch: `<div class="section-label">Their Core Claim</div>
+<div class="their-edge">"Highest ease of setup rating on G2 among AP providers." ERP integrations are built in-house, not outsourced. This directly attacks Ottimate's most commonly cited weakness: integration difficulty.</div>
+<div class="section-label">How They Position Against Ottimate</div>
+<div class="their-edge">"We were built by AP experts, for AP teams — not by a payments company that bolted on AP." They position Ottimate's origin as a restaurant tech company as a limitation for general finance teams.</div>
+<div class="their-edge">"Billy the Bot" is their AI differentiator — framed as an AI "employee" embedded in every approval workflow who learns your patterns over time. They contrast this with what they describe as Ottimate's more complex setup.</div>`,
+
+    weaknesses: `<div class="section-label">Top G2/TrustRadius Complaints</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>"Billy the Bot" fails on recurring invoices — "quite maddening when the wrong information gets populated" — consistent AI reliability complaints</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Missing Features — 100 G2 mentions as top con; gaps in advanced workflow functionality</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Batch processing limitation — "significant limitation" in processing invoices one-by-one; no efficient multi-invoice batch approvals</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Technical Issues and Approval Issues — flagged consistently across G2 reviews</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>No vertical depth — Stampli is horizontal; no price-catalog PO matching, no SKU-level coding for hospitality/grocery</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Automation shortcomings — despite the AI marketing, users report that the core automation still falls short on complex, recurring scenarios</div>`,
+
+    winmoves: `<div class="win-move"><strong>"Billy is a Bot. Otti is a Copilot."</strong> Frame Stampli's AI as passive backend automation vs. Ottimate's proactive intelligence. "Billy fills in fields. Otti watches for anomalies, flags overcharges, and advises your team before issues hit close. One automates; the other thinks."</div>
+<div class="win-move"><strong>Expose the batch processing gap:</strong> "Do you process invoices in batches? Stampli's users report it's 'a significant limitation' — approvals go one by one. Ottimate handles complex multi-location batch approvals natively. If you're processing 500+ invoices a week, that matters."</div>
+<div class="win-move"><strong>PO price-catalog disqualifier:</strong> "Stampli matches invoices to POs. But can it validate each line's price against your pre-negotiated price catalog to catch vendor overcharges? Ottimate can. Ask them to demo that."</div>
+<div class="win-move"><strong>Vertical depth vs. horizontal generic:</strong> "Stampli is built for any finance team. Ottimate is built for your industry. If you're in hospitality, construction, or grocery, you need an AP platform that understands your inventory complexity — not a generalist tool that'll hit its limits within 6 months."</div>
+<div class="killer-quote"><span class="killer-quote-label">Killer Question</span>"Stampli's 'Billy' is supposed to learn your recurring invoices over time. But their own G2 users say it still gets them wrong after months. If the core AI can't handle your most routine invoices, what happens with the complex ones?"</div>`,
+
+    gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
+<div class="gap-item"><div class="gap-label">Ease of Setup &amp; G2 Scores</div><div class="gap-text">Stampli's G2 ease of setup (9.4) and support (9.7) scores are objectively higher than Ottimate's published scores. In a head-to-head G2 comparison, Stampli wins on these metrics. Don't lead with G2 in a Stampli deal — lead with vertical depth and functional capability.</div></div>
+<div class="gap-item"><div class="gap-label">ERP Integration Perception</div><div class="gap-text">Stampli's "in-house, built-to-completion" ERP integration messaging directly attacks Ottimate's user-reported integration difficulties. Prospects who have heard about Ottimate's integration challenges will come to the call with this concern pre-loaded.</div></div>
+<div class="gap-item"><div class="gap-label">Customer Support Perception</div><div class="gap-text">Stampli's 9.7 G2 support score is industry-leading. Until Ottimate has comparable published scores, support comparisons should be handled with reference calls rather than score comparisons.</div></div>
+
+<div class="section-label">Top Reasons Ottimate Loses to Stampli</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect has heard about Ottimate's integration issues and Stampli's "in-house ERP" messaging resonates</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect is a horizontal, non-vertical business (e.g., professional services, SaaS) that doesn't need vertical depth</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect prioritizes ease of setup above all else — Stampli's G2 score wins the conversation</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Stampli's higher support score creates a trust advantage in a risk-averse buying committee</div>
+
+<div class="section-label">How to Overcome</div>
+<div class="overcome-item"><strong>Proactively address the integration concern:</strong> Get ahead of it in discovery — "You may have heard that our previous integration setup was more complex. We've invested heavily in this. Here's a customer who recently went live on [their ERP] in [X weeks]."</div>
+<div class="overcome-item"><strong>Make vertical depth non-negotiable:</strong> Find the one AP complexity the prospect has (complex PO matching, price catalog, split-case invoices) that Stampli can't handle. Make that the evaluation criterion.</div>`
+  },
+
+  ramp: {
+    name: "Ramp",
+    tagline: "Spend Management Platform — corporate card + bundled \"lite\" AP",
+    threat: "MEDIUM",
+    scores: [
+      { val: "4.8", lbl: "Ottimate G2", cls: "s-win" },
+      { val: "~4.8", lbl: "Ramp G2 (card)", cls: "s-tie" },
+      { val: "9.1", lbl: "Our Ease of Use", cls: "s-win" },
+      { val: "9.4", lbl: "Ramp Ease of Use", cls: "s-tie" },
+      { val: "9.2", lbl: "Our Ease Admin", cls: "s-win" },
+      { val: "9.5", lbl: "Ramp Ease Admin", cls: "s-tie" }
+    ],
+    pitch: `<div class="section-label">Their Core Claim</div>
+<div class="their-edge">All-in-one spend platform: corporate cards, invoices, and reimbursements unified in one tool. "Freemium" Bill Pay lowers the barrier to adoption. High G2 scores — but those ratings come primarily from corporate card users, not AP-heavy users.</div>
+<div class="section-label">How They Position Against Ottimate</div>
+<div class="their-edge">"Why pay for a standalone AP tool when your finance team already uses Ramp for expenses and cards? Add Bill Pay for free and consolidate your stack."</div>
+<div class="their-edge">Ramp is growing aggressively and investing in AP — they will continue to close the feature gap over time. The bundling play is increasingly effective for companies where spend management and AP reporting are viewed together.</div>`,
+
+    weaknesses: `<div class="section-label">Top G2/TrustRadius Complaints (AP-specific)</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>"Falls short when businesses need robust AP automation, advanced workflows, or P2P" — verified G2 review from AP users</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Missing Features — 100 G2 mentions; Card Issues (99 mentions); Approval Issues (87 mentions)</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Manual data re-entry — "I have to re-enter every transaction manually" due to integration failures</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>No price-catalog PO matching — can match invoices to POs but cannot validate line prices against pre-negotiated catalogs</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Backend "Toby" AI only — no user-facing proactive copilot; passive automation only</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>No vertical depth — Ramp is built for horizontal spend, not for industry-specific invoice complexity</div>`,
+
+    winmoves: `<div class="win-move"><strong>Specialist vs. Generalist framework:</strong> "Ramp is a great corporate card that bundled a 'lite' AP tool. Ottimate is the AP specialist built for the complex, high-volume invoices in your industry. You wouldn't use a general-purpose accounting tool to run your restaurant group's inventory cost analysis — the same logic applies to AP automation."</div>
+<div class="win-move"><strong>The PO price-match disqualifier:</strong> "Ramp can match a bill to a PO. But can it validate the price of each PO line item against your pre-negotiated vendor price catalog — and flag overcharges before they're paid? Ottimate can. Ask them to demo that exact scenario."</div>
+<div class="win-move"><strong>Qualify early with AP complexity:</strong> Ask in discovery: "Do you process invoices with complex line-item coding? Multi-location approval routing? Price catalog validation?" Three "yes" answers and Ramp is disqualified — they just don't know it yet.</div>
+<div class="win-move"><strong>AI contrast:</strong> "Ramp has Toby — an internal backend AI nobody talks about. Ottimate has Otti, a proactive copilot that surfaces anomalies, flags duplicate invoices, and gives your team insights before month-end close. One processes; the other advises."</div>
+<div class="killer-quote"><span class="killer-quote-label">Killer Question</span>"Ramp's overall G2 score is high — but that's driven by corporate card users. When you talk specifically to their customers who process 500+ complex invoices per week, what do they say? What's their AP-specific satisfaction score?"</div>`,
+
+    gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
+<div class="gap-item"><div class="gap-label">No Corporate Card / Expense Management</div><div class="gap-text">Ramp's core product is spend management — cards, expenses, and AP together. Ottimate is AP-only. For companies that want a unified spend platform, Ottimate requires a separate expense solution, adding integration complexity and cost.</div></div>
+<div class="gap-item"><div class="gap-label">User Experience Scores</div><div class="gap-text">Ramp's ease-of-use and ease-of-admin scores (9.4–9.5) edge out Ottimate's (9.1–9.2). For prospects who weigh UX heavily in evaluations, this can be a visible gap.</div></div>
+<div class="gap-item"><div class="gap-label">Freemium Entry Point</div><div class="gap-text">Ramp's "free" Bill Pay makes the initial switching cost appear zero. It's harder to compete with free at the top of the funnel, especially when the prospect is already using Ramp for cards.</div></div>
+
+<div class="section-label">Top Reasons Ottimate Loses to Ramp</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect already uses Ramp for corporate cards and expense management — "consolidate the stack" wins the deal</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect is a horizontal company with low invoice complexity — Ramp's "good enough" AP meets their needs</div>
+<div class="loss-item"><span class="loss-icon">✗</span>CFO is driving (not AP team) — CFOs often prefer unified spend visibility over AP depth</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Startup or VC-backed company heavily using Ramp's expense/card features — high switching cost inertia</div>
+
+<div class="section-label">How to Overcome</div>
+<div class="overcome-item"><strong>Find the AP champion:</strong> In any deal where Ramp is involved, identify the AP Manager or Controller as a separate stakeholder. They feel the pain of Ramp's AP limitations most acutely and will advocate for a specialist tool if you reach them.</div>
+<div class="overcome-item"><strong>Run a POC on invoice complexity:</strong> Pull 10 of their most complex invoices (split cases, catalog matching, multi-GL lines) and process them through both systems. The Ramp failure points become self-evident.</div>`
+  },
+
+  tipalti: {
+    name: "Tipalti",
+    tagline: "Global Payments & Mass Payouts — 200+ countries, 120+ currencies",
+    threat: "MEDIUM",
+    scores: [
+      { val: "4.8", lbl: "Ottimate G2", cls: "s-win" },
+      { val: "4.4", lbl: "Tipalti G2", cls: "s-lose" },
+      { val: "N/A", lbl: "Our TrustRadius", cls: "s-na" },
+      { val: "7.8", lbl: "Tipalti TrustRadius", cls: "s-lose" },
+      { val: "N/A", lbl: "Our Support G2", cls: "s-na" },
+      { val: "8.8", lbl: "Tipalti Support G2", cls: "s-tie" }
+    ],
+    pitch: `<div class="section-label">Their Core Claim</div>
+<div class="their-edge">If you need to pay vendors in 200+ countries across 120+ currencies with built-in tax and compliance automation, Tipalti is purpose-built. No competitor has their global payment depth — and they're a licensed payment processor, not just a software layer.</div>
+<div class="section-label">How They Position Against Ottimate</div>
+<div class="their-edge">"Ottimate is built for domestic, vertical AP. We're built for companies operating globally. When you grow internationally, you'll need to replace Ottimate anyway — why not start with the platform that scales with you?"</div>
+<div class="their-edge">They're also launching a direct AI war — "Tipalti AI Assistant" and "AI Agents" are a product response to Ottimate's Otti AI Copilot. They're catching up fast on the AI story.</div>`,
+
+    weaknesses: `<div class="section-label">Top G2/TrustRadius Complaints</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Catastrophic implementation failures — 0.5-star G2 review; "known issues" with NetSuite forcing entire approval processes to be redone from scratch</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>ERP sync errors — integrations break and require manual intervention; specifically documented NetSuite 3-way match failures</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Slow implementations — users report months-long delays getting basic functionality live</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Support score contradiction — 8.8 G2 support score vs. catastrophic real-world implementation failure stories</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>G2 overall 4.4 vs Ottimate 4.8 — a meaningful gap for enterprise software decisions</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>No price-catalog PO matching — header + line-level match, but no pre-negotiated catalog price validation</div>`,
+
+    winmoves: `<div class="win-move"><strong>"Global Payments vs. Deep Invoice Intelligence":</strong> "Tipalti can pay your vendor in 120 currencies — but Ottimate can catch that vendor overcharging you on line-item pricing. If your #1 AP pain is international payment complexity, Tipalti wins. If it's invoice accuracy, approval efficiency, and vendor pricing control, Ottimate wins. What percentage of your invoices are from international vendors?"</div>
+<div class="win-move"><strong>Lead with implementation risk:</strong> "Tipalti's NetSuite integration has 'known issues' that have forced customers to redo entire approval workflows from scratch. Ottimate onboards in weeks, not months, with automatic sync. Would you like to talk to a reference customer on your ERP?"</div>
+<div class="win-move"><strong>Use the 0.5-star G2 review proactively:</strong> Print or screenshot it. "This is a real, verified customer review. They were forced to redo their entire approval process because of a sync error. In an AP implementation, that's a 6-figure risk. How is your team mitigating that?"</div>
+<div class="win-move"><strong>AI Copilot ownership:</strong> "Tipalti just launched their AI Assistant as a response to our Otti AI Copilot. Ours has been in production and actively used by customers for years. Theirs is a v1 product. When evaluating AI, ask for a live demo — not a roadmap."</div>
+<div class="killer-quote"><span class="killer-quote-label">Killer Question</span>"What percentage of your vendor base is actually international? If it's under 20%, you're paying for global payment infrastructure to solve a domestic invoice complexity problem. Is that the right trade-off?"</div>`,
+
+    gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
+<div class="gap-item"><div class="gap-label">International Payments — A Real Gap</div><div class="gap-text">Tipalti's global payment capabilities (200+ countries, 120+ currencies, tax compliance, contractor payments) are genuinely superior to Ottimate's. This is not a perception gap — it's a real functional difference. Don't try to win on international payments; redirect to invoice intelligence.</div></div>
+<div class="gap-item"><div class="gap-label">Mass Payouts / Contractor Payments</div><div class="gap-text">For companies that pay hundreds or thousands of contractors, freelancers, or global suppliers simultaneously, Tipalti's mass payout functionality has no Ottimate equivalent. This is a category Ottimate doesn't compete in.</div></div>
+<div class="gap-item"><div class="gap-label">AI Copilot — Closing Gap</div><div class="gap-text">Tipalti's AI Assistant is new but advancing. The gap between their AI and Otti AI will narrow over time — Ottimate needs to stay demonstrably ahead through continued Copilot feature investment.</div></div>
+
+<div class="section-label">Top Reasons Ottimate Loses to Tipalti</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect has substantial international vendor base (30%+) — Tipalti's payment rails are genuinely better</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect is a marketplace or platform that pays contractors/creators globally — Tipalti's mass payout is purpose-built for this</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Company is scaling internationally and wants a platform that "grows with them"</div>
+
+<div class="section-section">How to Overcome</div>
+<div class="overcome-item"><strong>Quantify the international mix:</strong> Get the exact percentage of international invoices. If under 25%, position Ottimate as the better total AP platform and suggest Tipalti's international payments as a potential future integration if needed.</div>
+<div class="overcome-item"><strong>Use Tipalti's implementation track record as FUD:</strong> "Before you commit to a 12+ month implementation that may have 'known ERP integration issues,' would you be open to a phased approach — start with Ottimate for domestic AP today, and revisit international capabilities when you actually need them?"</div>`
+  },
+
+  coupa: {
+    name: "Coupa",
+    tagline: "Enterprise BSM Platform — procurement, sourcing, AP, contracts in one suite",
+    threat: "MEDIUM",
+    scores: [
+      { val: "4.8", lbl: "Ottimate G2", cls: "s-win" },
+      { val: "~4.2", lbl: "Coupa G2", cls: "s-lose" },
+      { val: "Vertical", lbl: "Ottimate Focus", cls: "s-win" },
+      { val: "Enterprise", lbl: "Coupa Focus", cls: "s-na" },
+      { val: "Mid-Mkt", lbl: "Ottimate Target", cls: "s-win" },
+      { val: "Global 2000", lbl: "Coupa Target", cls: "s-na" }
+    ],
+    pitch: `<div class="section-label">Their Core Claim</div>
+<div class="their-edge">Coupa is the Business Spend Management (BSM) platform for the Global 2000 — integrating sourcing, procurement, AP, expenses, and contracts into a single suite powered by Community Intelligence AI (trained on $6T+ in enterprise spend data).</div>
+<div class="section-label">How They Position Against Ottimate</div>
+<div class="their-edge">"Ottimate is a point solution for AP. Coupa is a platform for total spend visibility and control. If you're serious about managing enterprise spend, you need more than an AP tool — you need BSM."</div>
+<div class="their-edge">They focus on large enterprise procurement teams and finance leadership who want spend governance across the entire organization — AP is just one module in their broader value proposition.</div>
+<div class="their-edge">Community Intelligence: Coupa leverages anonymized spend data from thousands of enterprise customers to provide benchmarks, fraud detection, and supplier insights that no standalone AP tool can match at their scale.</div>`,
+
+    weaknesses: `<div class="section-label">Known Weaknesses &amp; Competitive Vulnerabilities</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Overkill for mid-market — built for the Global 2000; mid-market companies pay enterprise prices for features they'll never use</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Long, complex implementations — enterprise BSM implementations typically run 9–18+ months; high project risk</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>High total cost of ownership — licensing + implementation + ongoing management often requires dedicated internal resources or a SI partner</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>AP is a module, not a specialty — Coupa's AP functionality is part of a broader platform; vertical-specific invoice intelligence (SKU-level coding, price catalog matching) is not their focus</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>G2 score ~4.2 — lower than Ottimate's 4.8; enterprise complexity creates user friction</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Poor fit for hospitality, restaurant, grocery — Coupa's verticals are manufacturing, financial services, and tech; no depth in food service or multi-unit hospitality</div>`,
+
+    winmoves: `<div class="win-move"><strong>"Platform vs. Specialist" — know when each wins:</strong> "Coupa is the right choice if your procurement team is leading a full P2P transformation across sourcing, contracts, and AP. Ottimate is the right choice if your AP team needs the best invoice automation in your industry. Who's driving this decision — Procurement or AP/Finance Operations?"</div>
+<div class="win-move"><strong>Cost and implementation reality check:</strong> "A Coupa implementation runs 9–18 months and typically requires a system integrator. Ottimate onboards in weeks. If your team needs results this fiscal year, the math is clear."</div>
+<div class="win-move"><strong>Vertical depth vs. horizontal breadth:</strong> "Coupa's Community Intelligence is powerful — but it's benchmarked against enterprise manufacturing and technology spend. For restaurants, hospitality, or grocery, your invoice patterns (split cases, price catalogs, SKU-level COGS) are invisible to them. Ottimate is built around your data."</div>
+<div class="win-move"><strong>Win the AP team while Procurement evaluates Coupa:</strong> In large deals, Coupa is often being evaluated by Procurement while AP has different needs. Build a separate business case with the AP team showing Ottimate's fast time-to-value — often you can win AP's endorsement even if Coupa wins procurement.</div>
+<div class="killer-quote"><span class="killer-quote-label">Killer Question</span>"Is procurement leading this evaluation, or AP? If AP is driving — they need the best invoice automation for your industry today, not a 12-month BSM transformation project. What does 'success' look like in 90 days?"</div>`,
+
+    gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
+<div class="gap-item"><div class="gap-label">Full P2P / Procurement Scope</div><div class="gap-text">Coupa covers sourcing, supplier management, contracts, procurement, and AP. Ottimate is AP-only. For enterprises seeking a single system for all indirect spend governance, Ottimate has a fundamental scope gap that cannot be closed by positioning alone.</div></div>
+<div class="gap-item"><div class="gap-label">Enterprise Spend Analytics</div><div class="gap-text">Coupa's Community Intelligence — trained on $6T+ in enterprise spend — provides benchmarking, supplier risk signals, and anomaly detection at a scale Ottimate cannot match. For CFOs making data-driven supplier decisions, this is a real differentiator.</div></div>
+<div class="gap-item"><div class="gap-label">Enterprise Brand Credibility</div><div class="gap-text">In large enterprise procurement evaluations, Coupa's brand carries weight with the board and C-suite in a way that a vertical AP specialist does not. Ottimate should focus on winning AP stakeholders, not competing head-to-head in the enterprise procurement boardroom.</div></div>
+
+<div class="section-label">Top Reasons Ottimate Loses to Coupa</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Enterprise is doing a full P2P transformation — Coupa is on the shortlist before Ottimate is ever called</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Procurement team is the economic buyer — they want a seat at the BSM table, not a standalone AP tool</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Company needs supplier management, contracts, or sourcing modules as part of the same evaluation</div>
+<div class="loss-item"><span class="loss-icon">✗</span>C-suite / CFO preference for brand-name enterprise vendors on their tech stack</div>
+
+<div class="section-label">How to Overcome</div>
+<div class="overcome-item"><strong>Focus on the AP team, not procurement:</strong> Coupa implementations are long and complex. AP teams often need relief now. Build an AP-only business case and establish Ottimate as the operational solution while the enterprise BSM evaluation continues (you may coexist, not compete).</div>
+<div class="overcome-item"><strong>Time-to-value is your trump card:</strong> "Coupa is a 12-18 month journey. Ottimate gets your AP team live in weeks. For this fiscal year's goals — which matters more?"</div>`
+  },
+
+  rillion: {
+    name: "Rillion",
+    tagline: "High-End AP Automation — \"Riley\" AI, high-volume PO line matching",
+    threat: "MEDIUM",
+    scores: [
+      { val: "4.8", lbl: "Ottimate G2", cls: "s-win" },
+      { val: "4.2", lbl: "Rillion G2", cls: "s-lose" },
+      { val: "9.2", lbl: "Our Ease Admin", cls: "s-win" },
+      { val: "7.9", lbl: "Rillion Ease Setup", cls: "s-lose" },
+      { val: "N/A", lbl: "Our Support G2", cls: "s-na" },
+      { val: "8.3", lbl: "Rillion Support G2", cls: "s-tie" }
+    ],
+    pitch: `<div class="section-label">Their Core Claim</div>
+<div class="their-edge">Sophisticated, highly customizable AP automation for larger companies with complex needs. Capable of matching "hundreds of lines" per PO — a claim specifically aimed at high-volume manufacturing and healthcare environments.</div>
+<div class="section-label">How They Position Against Ottimate</div>
+<div class="their-edge">"Riley, your AI Assistant" is a direct product response to Ottimate's Otti AI Copilot — a head-to-head AI war for the proactive AP assistant positioning.</div>
+<div class="their-edge">Rillion's "AI Workflow" predicts and recommends approval workflows based on historical data, adapting dynamically without fixed templates — a genuinely advanced feature that competes with Ottimate's dynamic approval rules engine.</div>`,
+
+    weaknesses: `<div class="section-label">Top G2/TrustRadius Complaints</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Lowest G2 score of all analyzed competitors: 4.2 / 5 (vs Ottimate 4.8) — a full 0.6-point gap</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Confusing navigation — "I would personally rather a filter than being met with the navigation and requisition handling"</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Ease of Setup score: 7.9 / 10 — the worst in this competitive set; complex to get running</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>No price-catalog PO matching — can match high volumes of PO lines, but no evidence of pre-negotiated catalog price validation</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Riley AI is new and users find the platform complex — "confusing" usability undermines the AI narrative</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Targets different verticals — strong in manufacturing/healthcare, limited experience in hospitality/restaurant/grocery</div>`,
+
+    winmoves: `<div class="win-move"><strong>Price-catalog PO matching — the decisive differentiator:</strong> "Rillion is excellent at matching high-volume POs. But can it validate each line's price against your pre-negotiated price catalog to catch vendor overcharges? Ottimate can. That's the difference between automation and intelligence."</div>
+<div class="win-move"><strong>G2 scores tell the story:</strong> "Rillion's overall G2 score is 4.2 — the lowest of any AP solution in this category. Their ease of setup is 7.9 — also the lowest. Ottimate is 4.8 and 9.2. Your team will actually be able to use ours."</div>
+<div class="win-move"><strong>"AI vs. AI" — proven vs. new:</strong> "Both platforms have an AI Copilot. Otti AI has been deployed in production across hospitality, grocery, and construction environments. Riley AI is new — and their own users already find the platform 'confusing to navigate.' When evaluating AI assistants, ask for a live unscripted demo."</div>
+<div class="win-move"><strong>Vertical expertise play:</strong> "Rillion knows manufacturing. Ottimate knows your industry. For restaurants, hotels, and grocery chains, our AI is trained on the specific invoice patterns — split cases, SKUs, price catalog deviations — that matter to your ops team. Rillion doesn't have that depth."</div>
+<div class="killer-quote"><span class="killer-quote-label">Killer Question</span>"If Rillion has the lowest G2 score and the lowest ease-of-setup of any AP tool in this category — how much of your team's time will go into managing the system instead of running AP? And how long before your team starts working around it?"</div>`,
+
+    gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
+<div class="gap-item"><div class="gap-label">Truly High-Volume PO Matching</div><div class="gap-text">Rillion's claim to match "hundreds of lines" per PO targets enterprises with massive, line-dense purchase orders (common in manufacturing). If a prospect processes POs with 200+ line items regularly, Rillion's architecture may be purpose-built for that scale in a way Ottimate is not.</div></div>
+<div class="gap-item"><div class="gap-label">Adaptive AI Workflow Engine</div><div class="gap-text">Rillion's "AI Workflow" — which predicts and adapts approval routing without fixed templates — is a sophisticated feature that may exceed Ottimate's current rules-based dynamic approvals in some edge cases. Ottimate's product team should evaluate feature parity.</div></div>
+
+<div class="section-label">Top Reasons Ottimate Loses to Rillion</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect is in manufacturing or large healthcare — Rillion's target verticals where they have more presence than Ottimate</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect processes truly massive POs (hundreds of lines) and Rillion's high-volume matching claim resonates</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect prioritizes AI workflow adaptability and Rillion's "no templates" story is compelling</div>
+
+<div class="section-label">How to Overcome</div>
+<div class="overcome-item"><strong>Ask about their actual PO structure:</strong> Very few companies have POs with hundreds of lines. Confirm the real use case. If their typical PO is under 50 lines, Rillion's high-volume claim is irrelevant to their situation.</div>
+<div class="overcome-item"><strong>Usability is your trump card:</strong> With Rillion's 7.9 ease-of-setup score, offer a live evaluation: "Let's both set up a test workflow using your actual data — same invoices, same approval rules. See which platform your team is actually comfortable using by the end of the call."</div>`
+  },
+
+  yooz: {
+    name: "Yooz",
+    tagline: "\"Lean Financial Operations\" — 250+ connectors, AI that misreads invoices",
+    threat: "LOW",
+    scores: [
+      { val: "4.8", lbl: "Ottimate G2", cls: "s-win" },
+      { val: "4.4", lbl: "Yooz G2", cls: "s-lose" },
+      { val: "9.1", lbl: "Our Ease of Use", cls: "s-win" },
+      { val: "N/A", lbl: "Yooz Ease of Use", cls: "s-na" },
+      { val: "N/A", lbl: "Our TrustRadius", cls: "s-na" },
+      { val: "8.6", lbl: "Yooz TrustRadius", cls: "s-tie" }
+    ],
+    pitch: `<div class="section-label">Their Core Claim</div>
+<div class="their-edge">"Widest ERP integration range" — 250+ active connectors. A direct attack on Ottimate's user-reported integration weakness. Also claims "Instant AI-powered performance — no training needed."</div>
+<div class="section-label">How They Position Against Ottimate</div>
+<div class="their-edge">"We connect to 250+ ERPs — whatever your accounting system, we've already built it. No months of custom integration work." This is effective positioning against prospects who have heard Ottimate has integration friction.</div>`,
+
+    weaknesses: `<div class="section-label">Top G2/TrustRadius Complaints</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>"OCR technology often misreads invoices or struggles with vendor identification" — the core function fails in G2 reviews</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Claims "no training needed" but users report "steep learning curve" and "confusing" onboarding</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Crashes and technical issues flagged in multiple G2 reviews</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Incorrect supplier recognition — system fails to identify known vendors, creating manual cleanup</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>TrustRadius "Best Feature" is "Advanced OCR" (8.7/10) — yet G2 Achilles' heel is OCR failures; works on simple invoices, fails on complex industry-specific ones</div>`,
+
+    winmoves: `<div class="win-move"><strong>"AI vs. Reality" gap:</strong> "Yooz claims 'instant AI-powered performance — no training needed.' Their own G2 reviewers say 'steep learning curve' and 'confusing onboarding.' And the OCR 'often misreads invoices.' That's three marketing claims directly contradicted by customers. Which story do you want to bet your AP operations on?"</div>
+<div class="win-move"><strong>The OCR paradox:</strong> "Yooz's best feature on TrustRadius is 'Advanced OCR.' Their biggest G2 complaint is that the OCR misreads invoices. Those aren't contradictory — it works fine on simple, standard invoices. But your invoices aren't simple. When was the last time you received a perfectly formatted, uniform invoice from a food distributor?"</div>
+<div class="win-move"><strong>Accuracy over connectors:</strong> "250 connectors don't matter if the data going through them is wrong. Ask Yooz: what happens when the OCR misidentifies a vendor and syncs incorrect data to all 250 integrations? Ottimate's 95% line-item accuracy means you're syncing clean, verified data."</div>
+<div class="killer-quote"><span class="killer-quote-label">Killer Question</span>"If Yooz's OCR misreads your vendor's name and sends incorrect data to your ERP — how do you find it? How long does it take to fix? And what does that error cost if it makes it through approval undetected?"</div>`,
+
+    gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
+<div class="gap-item"><div class="gap-label">Integration Breadth (250+ vs Ottimate)</div><div class="gap-text">Yooz's 250+ connector claim is real. If a prospect runs a niche or regional ERP that Ottimate hasn't built, Yooz's breadth is a genuine advantage. Ottimate should continue investing in integration marketplace expansion.</div></div>
+
+<div class="section-label">Top Reasons Ottimate Loses to Yooz</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect's ERP is not in Ottimate's supported integrations but is in Yooz's 250+ connector library</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect has already heard about Ottimate's integration challenges and Yooz's messaging resonates</div>
+
+<div class="section-label">How to Overcome</div>
+<div class="overcome-item"><strong>Confirm ERP support first:</strong> Immediately verify whether Ottimate supports the prospect's ERP. If it does, Yooz's connector breadth is moot — reframe the conversation on accuracy and AI quality.</div>
+<div class="overcome-item"><strong>Reframe the "connector" story:</strong> "250 connectors is impressive — as long as the data going through them is accurate. An integration that syncs misidentified vendors and incorrect line items into your ERP creates more work than it saves. Would you rather have 250 connectors or one that works correctly every time?"</div>`
+  },
+
+  quadient: {
+    name: "Quadient AP (Beanworks)",
+    tagline: "Legacy Human-in-the-Loop AP — part of Quadient's diversified suite",
+    threat: "LOW",
+    scores: [
+      { val: "4.8", lbl: "Ottimate G2", cls: "s-win" },
+      { val: "4.5", lbl: "Quadient G2", cls: "s-lose" },
+      { val: "9.1", lbl: "Our Ease of Use", cls: "s-win" },
+      { val: "9.2", lbl: "Their Ease of Use", cls: "s-tie" },
+      { val: "N/A", lbl: "Our Support G2", cls: "s-na" },
+      { val: "8.9", lbl: "Their Support G2", cls: "s-tie" }
+    ],
+    pitch: `<div class="section-label">Their Core Claim</div>
+<div class="their-edge">"99% accuracy" — achieved through human verification, not pure AI. Positioned as the "safe" choice for AP departments that don't trust automation without human oversight. Part of Quadient's larger suite (mailing, AR, customer comms) enabling cross-sell.</div>
+<div class="section-label">How They Position Against Ottimate</div>
+<div class="their-edge">"We verify every invoice with human review — that's why our accuracy is 99%. Fully automated AI systems make mistakes no one catches until it's too late."</div>`,
+
+    weaknesses: `<div class="section-label">Top G2/TrustRadius Complaints</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>6-month implementation — sales promised "within 1 month"; reality was 6 months before payments went live</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Human verification errors — "capturing mistakes tend to happen... can be quite costly if not caught" — the very humans guaranteeing accuracy are introducing errors</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>2–3 day support response times — "support often takes 2-3 days to respond"</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Header-level PO matching only — cannot validate line items against price catalogs</div>
+<div class="weakness-item"><span class="wi-icon">⚠</span>Legacy HITL model — the "human in the loop" introduces the same bottlenecks and human errors that AP automation was supposed to eliminate</div>`,
+
+    winmoves: `<div class="win-move"><strong>Attack the "human verification" model directly:</strong> "Quadient's 99% accuracy isn't AI — it's humans. And their own users say those humans make mistakes that are 'quite costly if not caught.' Why introduce a human bottleneck that creates the same errors AP automation was supposed to prevent?"</div>
+<div class="win-move"><strong>Implementation timeline weapon:</strong> "Ask their reference customers: how long did implementation really take? Customers report they were promised 1 month — it took 6 months before the first payment went live. What's 5 months of delayed AP automation worth to your business?"</div>
+<div class="win-move"><strong>"Pure AI vs. Legacy" positioning:</strong> "Quadient is a mailing and customer communications company that added AP as a product line. Ottimate is an AI-first AP specialist. Which company woke up this morning thinking about how to make your invoice processing better?"</div>
+<div class="win-move"><strong>Support comparison:</strong> "Quadient support takes 2–3 days to respond. During an AP crisis — a vendor threatening to cut service, a reconciliation error at close — that's unacceptable. Ottimate's support is available by phone, Zoom, and email."</div>
+<div class="killer-quote"><span class="killer-quote-label">Killer Question</span>"Quadient's '99% accuracy' sounds great — until you realize their own users say human errors are 'quite costly.' On 1,000 invoices a month, a 1% error rate is 10 mistakes your team has to find and fix. Is that the automation you were promised?"</div>`,
+
+    gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
+<div class="gap-item"><div class="gap-label">Limited Significant Gaps vs. Quadient</div><div class="gap-text">Quadient AP is a legacy, declining competitor. Ottimate should win most head-to-head evaluations on product quality, AI capability, and implementation speed. The primary risk is not losing to Quadient, but losing visibility in deals where Quadient is shortlisted before Ottimate enters the evaluation.</div></div>
+
+<div class="section-label">Top Reasons Ottimate Loses to Quadient</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Prospect is already a Quadient customer (mailing/AR) and uses bundle pricing to expand to AP</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Risk-averse AP team prefers the "human oversight" model and is skeptical of pure-AI accuracy claims</div>
+<div class="loss-item"><span class="loss-icon">✗</span>Ottimate never enters the evaluation — Quadient's cross-sell motion locks the deal before competitive evaluation begins</div>
+
+<div class="section-label">How to Overcome</div>
+<div class="overcome-item"><strong>Counter the "human safety net" objection:</strong> "I understand the appeal of human verification. But Quadient's users report that their human team makes costly mistakes too — and those take 2–3 days to get support on. Our AI catches issues instantly and flags them for your review, rather than replacing your judgment."</div>
+<div class="overcome-item"><strong>Expose the bundle trap:</strong> "If you're evaluating Quadient AP because you already use Quadient mailing — that's a convenience argument, not a capability argument. Would you make the same decision for your ERP?"</div>`
+  }
+};
+
+// ═══════════════════════════════════════════════════════
+//  MODAL LOGIC
+// ═══════════════════════════════════════════════════════
+function openModal(id) {
+  const c = COMPETITORS[id];
+  if (!c) return;
+
+  document.getElementById('modalName').textContent = c.name;
+  document.getElementById('modalTagline').textContent = c.tagline;
+
+  // Scores
+  const scoresEl = document.getElementById('modalScores');
+  scoresEl.innerHTML = c.scores.map(s =>
+    `<div class="modal-score"><div class="s-val ${s.cls}">${s.val}</div><div class="s-lbl">${s.lbl}</div></div>`
+  ).join('');
+
+  // Tab content
+  document.getElementById('tab-pitch').innerHTML = c.pitch;
+  document.getElementById('tab-weaknesses').innerHTML = c.weaknesses;
+  document.getElementById('tab-winmoves').innerHTML = c.winmoves;
+  document.getElementById('tab-gaps').innerHTML = c.gaps;
+
+  // Reset to first tab
+  switchTab('pitch', document.querySelector('.tab-btn'));
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+function switchTab(tabId, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  if (btn) btn.classList.add('active');
+  else {
+    const allBtns = document.querySelectorAll('.tab-btn');
+    const map = { pitch: 0, weaknesses: 1, winmoves: 2, gaps: 3 };
+    if (map[tabId] !== undefined && allBtns[map[tabId]]) {
+      allBtns[map[tabId]].classList.add('active');
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+//  FILTER / SEARCH
+// ═══════════════════════════════════════════════════════
+function setFilter(threat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.card').forEach(card => {
+    if (threat === 'all' || card.dataset.threat === threat) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+function filterCards() {
+  const q = document.getElementById('searchBox').value.toLowerCase();
+  document.querySelectorAll('.card').forEach(card => {
+    const text = (card.innerText + ' ' + (card.dataset.tags || '')).toLowerCase();
+    card.classList.toggle('hidden', q.length > 0 && !text.includes(q));
+  });
+}
+
+// Keyboard: ESC closes modal
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
