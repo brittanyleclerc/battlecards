@@ -358,6 +358,46 @@
   }
   .overcome-item strong { color: var(--brand-blue); }
 
+  /* Intel tab */
+  .price-item {
+    background: rgba(242,101,34,0.06);
+    border-left: 3px solid var(--brand-orange);
+    padding: 10px 14px; border-radius: 0 8px 8px 0;
+    margin-bottom: 8px; font-size: 13px; line-height: 1.6; color: var(--brand-text);
+  }
+  .price-item strong { color: var(--brand-orange); }
+
+  .stat-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+  .stat-chip {
+    background: var(--brand-navy);
+    border: 1px solid var(--brand-border);
+    border-radius: 8px; padding: 8px 12px; min-width: 120px; flex: 1 1 140px;
+  }
+  .stat-chip .sc-val { font-size: 15px; font-weight: 800; color: var(--brand-purple); line-height: 1.2; }
+  .stat-chip .sc-lbl { font-size: 11px; color: var(--brand-muted); margin-top: 3px; line-height: 1.4; }
+
+  .case-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--brand-border);
+    border-radius: 8px; padding: 12px 16px; margin-bottom: 10px;
+  }
+  .case-name {
+    font-size: 12px; font-weight: 700; color: var(--brand-text); margin-bottom: 5px;
+  }
+  .case-name span { color: var(--brand-muted); font-weight: 500; }
+  .case-text { font-size: 13px; color: var(--brand-text); line-height: 1.55; }
+  .case-text em { color: var(--brand-green); font-style: normal; font-weight: 600; }
+
+  .feature-item {
+    display: flex; align-items: flex-start; gap: 9px;
+    font-size: 13px; color: var(--brand-text);
+    padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+    line-height: 1.5;
+  }
+  .feature-item:last-child { border-bottom: none; }
+  .fi-icon { color: var(--brand-blue); font-size: 12px; margin-top: 2px; flex-shrink: 0; }
+  .feature-item strong { color: var(--brand-text); }
+
   /* Footer */
   footer {
     text-align: center; padding: 20px; color: var(--brand-muted);
@@ -416,7 +456,7 @@
 <!-- CONTROLS -->
 <div class="controls">
   <input class="search-box" id="searchBox" type="text" placeholder="&#128269;  Search competitor, feature, or keyword..." oninput="filterCards()">
-  <button class="filter-btn active" onclick="setFilter('all', this)">All <span class="count-badge">9</span></button>
+  <button class="filter-btn active" onclick="setFilter('all', this)">All <span class="count-badge">15</span></button>
   <button class="filter-btn" onclick="setFilter('high', this)">🔴 High Threat</button>
   <button class="filter-btn" onclick="setFilter('medium', this)">🟡 Medium</button>
   <button class="filter-btn" onclick="setFilter('low', this)">🟢 Easier Win</button>
@@ -551,10 +591,95 @@
     </div>
   </div>
 
+  <div class="card" data-threat="high" data-tags="restaurant multi unit r365 all in one accounting inventory 48 hour edi restaurant365" onclick="openModal('r365')">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="comp-name">Restaurant365</div>
+        <div class="comp-tagline">All-in-One Restaurant Platform &mdash; accounting + inventory + workforce</div>
+      </div>
+      <span class="threat-badge threat-high">High Threat</span>
+    </div>
+    <div class="card-footer">
+      <div class="card-tags"><span class="tag">Restaurants</span><span class="tag">All-in-One</span><span class="tag">Multi-Unit</span></div>
+      <button class="view-btn" onclick="event.stopPropagation(); openModal('r365')">View Details ›</button>
+    </div>
+  </div>
+
+  <div class="card" data-threat="high" data-tags="factura multi entity multi location ocr restaurants hotels property management cstores" onclick="openModal('factura')">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="comp-name">Factura.ai</div>
+        <div class="comp-tagline">Multi-Entity AP &mdash; "30-second" OCR capture, closest look-alike to Ottimate</div>
+      </div>
+      <span class="threat-badge threat-high">High Threat</span>
+    </div>
+    <div class="card-footer">
+      <div class="card-tags"><span class="tag">Restaurants</span><span class="tag">Multi-Location</span><span class="tag">Look-Alike</span></div>
+      <button class="view-btn" onclick="event.stopPropagation(); openModal('factura')">View Details ›</button>
+    </div>
+  </div>
+
+  <div class="card" data-threat="medium" data-tags="marginedge restaurant human transcribers recipe costing bill pay rebates 24 48 hours" onclick="openModal('marginedge')">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="comp-name">MarginEdge</div>
+        <div class="comp-tagline">Restaurant Back-Office &mdash; human transcribers, pockets 100% of vCard rebates</div>
+      </div>
+      <span class="threat-badge threat-medium">Medium Threat</span>
+    </div>
+    <div class="card-footer">
+      <div class="card-tags"><span class="tag">Restaurants</span><span class="tag">Recipe Costing</span><span class="tag">Flat $300/loc</span></div>
+      <button class="view-btn" onclick="event.stopPropagation(); openModal('marginedge')">View Details ›</button>
+    </div>
+  </div>
+
+  <div class="card" data-threat="medium" data-tags="mineraltree sage intacct embedded totalap inspyrus silverpay virtual card sync latency" onclick="openModal('mineraltree')">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="comp-name">MineralTree</div>
+        <div class="comp-tagline">Sage Intacct's Embedded Payments Partner &mdash; TotalAP + Inspyrus</div>
+      </div>
+      <span class="threat-badge threat-medium">Medium Threat</span>
+    </div>
+    <div class="card-footer">
+      <div class="card-tags"><span class="tag">Sage Intacct</span><span class="tag">Payments-Led</span><span class="tag">Healthcare</span></div>
+      <button class="view-btn" onclick="event.stopPropagation(); openModal('mineraltree')">View Details ›</button>
+    </div>
+  </div>
+
+  <div class="card" data-threat="low" data-tags="xtrachef toast pos restaurant invoice recipe costing buyers edge no payments freemium" onclick="openModal('xtrachef')">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="comp-name">xtraCHEF by Toast</div>
+        <div class="comp-tagline">Toast Bundle &mdash; invoice digitizing + recipe costing, no payment execution</div>
+      </div>
+      <span class="threat-badge threat-low">Easier Win</span>
+    </div>
+    <div class="card-footer">
+      <div class="card-tags"><span class="tag">Toast POS</span><span class="tag">Costing Tool</span><span class="tag">No Payments</span></div>
+      <button class="view-btn" onclick="event.stopPropagation(); openModal('xtrachef')">View Details ›</button>
+    </div>
+  </div>
+
+  <div class="card" data-threat="low" data-tags="beanworks clubs private club golf country club offshore data entry quadient check fees" onclick="openModal('beanworks')">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="comp-name">Beanworks for Clubs</div>
+        <div class="comp-tagline">Private Club AP &mdash; offshore human keying behind the "automation"</div>
+      </div>
+      <span class="threat-badge threat-low">Easier Win</span>
+    </div>
+    <div class="card-footer">
+      <div class="card-tags"><span class="tag">Private Clubs</span><span class="tag">HITL Model</span><span class="tag">Check Fees</span></div>
+      <button class="view-btn" onclick="event.stopPropagation(); openModal('beanworks')">View Details ›</button>
+    </div>
+  </div>
+
 </div><!-- end grid -->
 
 <footer>
-  Ottimate Competitive Battlecards &mdash; Confidential &amp; Internal Use Only &mdash; Updated April 2026
+  Ottimate Competitive Battlecards &mdash; Confidential &amp; Internal Use Only &mdash; Updated September 2026<br>
+  Sources: Competitor Battle Cards (July 2026) &amp; Competitor Capabilities (6/12/26)
 </footer>
 
 <!-- ═══════════════ MODAL ═══════════════ -->
@@ -573,12 +698,14 @@
       <button class="tab-btn" onclick="switchTab('weaknesses', this)">VoC Weaknesses</button>
       <button class="tab-btn" onclick="switchTab('winmoves', this)">Win Moves</button>
       <button class="tab-btn" onclick="switchTab('gaps', this)">⚠ Ottimate's Gaps</button>
+      <button class="tab-btn" onclick="switchTab('intel', this)">Intel</button>
     </div>
     <div class="modal-body">
       <div class="tab-panel active" id="tab-pitch"></div>
       <div class="tab-panel" id="tab-weaknesses"></div>
       <div class="tab-panel" id="tab-winmoves"></div>
       <div class="tab-panel" id="tab-gaps"></div>
+      <div class="tab-panel" id="tab-intel"></div>
     </div>
   </div>
 </div>
@@ -602,24 +729,40 @@ const COMPETITORS = {
       { val: "8.4", lbl: "Their Meets Req.", cls: "s-lose" }
     ],
     pitch: `<div class="section-label">Their Core Claim</div>
-<div class="their-edge">20 years of ecosystem-building created a "significant competitive moat" — 225+ ERP integrations and a 1.3M-supplier AvidPay Network. They win deals on lock-in, not product quality.</div>
+<div class="their-edge">An AP platform for mid-market organizations across Real Estate, Construction, Healthcare, Media, K-12, Nonprofit, Automotive, Community Association Management, Financial Services, Hospitality, Higher Ed, Government and Professional Services &mdash; combining automated PO matching, AI invoice capture and a dedicated supplier payment network.</div>
 <div class="section-label">How They Position Against Ottimate</div>
-<div class="their-edge">Emphasize their deep vertical integration history in Real Estate, HOA, and Media. Push "AvidPay Network" as a built-in supplier payment method that saves customers from managing vendor bank details.</div>
-<div class="their-edge">Frame their "100% digital invoice" processing as transformational for companies still using paper — enough for the majority of their target market who just need basic digitization.</div>`,
+<div class="their-edge"><strong>The integration moat.</strong> 240+ pre-built integrations and named partnerships with NetSuite, Yardi, Acumatica, MRI, Rent Manager, Sage, Blackbaud, Entrata, RealPage, Vantaca and CINC. The pitch is coverage, not capability.</div>
+<div class="their-edge"><strong>The AvidPay Network.</strong> 1.5M+ suppliers paid over five years, positioned as a built-in payment method so customers never have to manage vendor bank details themselves.</div>
+<div class="their-edge"><strong>"Backed by experts."</strong> They lean on human review teams as a quality guarantee, and sell "AP as a Service" &mdash; invoice and payment automation embedded inside a partner's own platform.</div>
+<div class="section-label">Objection You Will Hear</div>
+<div class="their-edge">"AvidXchange has over 240+ integrations and pre-built partnerships with our exact ERP."<br><br><strong>Response:</strong> While AvidXchange connects to many systems, users rate their ease of administration and integration reliability well below industry averages. Ottimate syncs in real time and handles complex multi-entity dimension allocations and line-item splits without breaking your invoice workflows.</div>`,
 
-    weaknesses: `<div class="section-label">Top G2/TrustRadius Complaints</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Poor customer support — #1 G2 con with 24 mentions; "slow, not great to work with when you have issues"</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Payment delays — #2 complaint (16 mentions); payments take 3–5 weeks, vendors call constantly to check status</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Vendor harassment — AvidExchange pressures suppliers to accept vCards; "has made some vendors upset"</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Human-gated processing — their "99.2% accuracy" relies on a team of human indexers who make mistakes</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Header-level rules only — cannot route invoices based on line-item GL codes</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Business model conflict — earns revenue from supplier fees on the AvidPay Network, creating a vested interest in pushing vCards over the vendor's preferred method</div>`,
+    weaknesses: `<div class="section-label">G2 Scores vs. Industry Average</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Quality of Support: 79%</strong> &mdash; industry average is 91%. A 12-point deficit.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Ease of Setup: 81%</strong> &mdash; vs. 87% average.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Ease of Administration: 83%</strong> &mdash; vs. 90% average.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Ease of Doing Business With: 85%</strong> &mdash; vs. 93% average.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Overall Satisfaction: 33</strong> in G2's AP automation comparison &mdash; top performers scored 97&ndash;98.</div>
 
-    winmoves: `<div class="win-move"><strong>Lead with the G2 Support gap (9.0 vs 7.8):</strong> "AvidExchange has a large network — but what does that cost your vendor relationships? Users report 3–5 week payment delays and their payment team harasses vendors. Our 9.0/10 G2 support score proves we prioritize partnership over friction. Ask for a reference from an AvidExchange customer in hospitality."</div>
-<div class="win-move"><strong>Expose the "AI" myth:</strong> "Their 99.2% accuracy isn't AI — it's humans. Their own users complain about 'indexers' making costly mistakes. Ottimate's Instant Capture AI processes invoices in seconds with 95% line-item accuracy. No human bottleneck. No delays."</div>
-<div class="win-move"><strong>Vertical depth disqualifier (Restaurants/Franchises):</strong> "Can AvidExchange perform catalog-level validation on a SKU or Split Case invoice? Ottimate can. Their integrations don't help if the AP logic isn't built for your inventory complexity."</div>
-<div class="win-move"><strong>Line-item routing play (Construction/Multi-Unit):</strong> "AvidExchange's approval rules operate at the header level. Ottimate can route a single invoice based on line-item GL codes to different project managers. Demo that live."</div>
-<div class="killer-quote"><span class="killer-quote-label">Killer Question</span>"Their integration moat took 20 years to build. But what happens when those integrations cause 3–5 week payment delays and your vendors start calling to complain? How do you put a dollar value on your vendor relationships?"</div>`,
+<div class="section-label">Voice of the Customer</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Rigid / clunky workflows</strong> &mdash; standardized templates make it hard to customize routing rules or adjust approvals for unique corporate setups.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Joshua Fries, Director of Finance, Sugar Mill Country Club:</strong> the shortfall with Avid is being forced to manually duplicate data across two separate systems.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Warren Lee, GM, Lakewood National Golf Club:</strong> poor integrations forced staff to navigate multiple systems just to verify payment status and view basic invoice details.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Monica Thompson, AP Supervisor, CRH Healthcare:</strong> called Avid's customer service "horrible" &mdash; they don't answer phones and hold callers up to 30 minutes.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Aarya Poudyal, Training, Rehabilitation &amp; Development Institute:</strong> direct contact doesn't reply, and Avid itself must add new departments or locations &mdash; which is slow.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Vendor management friction</strong> &mdash; non-intuitive portals for onboarding suppliers and checking live invoice status.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Limited international payments</strong> and documented challenges integrating with some ERP systems.</div>`,
+
+    winmoves: `<div class="section-label">Ottimate's Three Differentiators</div>
+<div class="win-move"><strong>Deep industry-specific AI flexibility:</strong> Ottimate handles highly complex multi-line coding and flexible approval workflows tailored to intricate industry requirements. AvidXchange leans on rigid, standardized templates &mdash; which is exactly why users end up stuck with clunky workflows and an unintuitive vendor management setup.</div>
+<div class="win-move"><strong>Superior operational efficiency and support:</strong> Ottimate delivers nimble administrative control and responsive customer success. AvidXchange bottlenecks finance teams with notoriously slow support, frustrating ERP integration challenges and a below-average account setup experience &mdash; all quantified in their G2 scores.</div>
+<div class="win-move"><strong>Enhanced multi-entity capability:</strong> Ottimate provides automated invoice ingestion, flexible routing, complex split-coding allocation and configurable approvals with central oversight. AvidXchange lacks automated dimensional entity-routing and robust split-coding logic, so multi-site operators are forced into tedious location-by-location manual invoice sorting.</div>
+
+<div class="section-label">Questions to Spark Interest</div>
+<div class="overcome-item">"How much manual effort does your team still spend adjusting line-item coding or chasing approvals outside of your current AP workflow?"</div>
+<div class="overcome-item">"When an integration error or payment delay happens, how long does it typically take your support team to resolve it?"</div>
+
+<div class="killer-quote"><span class="killer-quote-label">Landmine Question for AvidXchange</span>"If we receive a single vendor invoice &mdash; a utility bill, say &mdash; that needs to be split and allocated across multiple entities, departments or locations, each with their own local tax rates, how much of that multi-entity allocation does AvidXchange natively automate at the line-item level? Or will we have to manually key it into our accounting software?"</div>`,
 
     gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
 <div class="gap-item"><div class="gap-label">International Payments</div><div class="gap-text">AvidExchange has a partnership with Wise for cross-border payments. Ottimate's international payment capabilities are more limited. If a prospect has a significant international vendor base, this is a gap to address proactively.</div></div>
@@ -634,7 +777,32 @@ const COMPETITORS = {
 
 <div class="section-label">How to Overcome</div>
 <div class="overcome-item"><strong>Counter the ERP referral:</strong> Request a conversation with the AP team directly, not just IT. AP practitioners feel the pain of delayed payments and poor support — they are Ottimate's advocates inside the deal.</div>
-<div class="overcome-item"><strong>Re-frame integration breadth:</strong> "An integration is only as good as the data going through it. If AvidExchange's human indexers are processing your invoices incorrectly, 225 integrations are syncing bad data into your ERP."</div>`
+<div class="overcome-item"><strong>Re-frame integration breadth:</strong> "An integration is only as good as the data going through it. If AvidExchange's human indexers are processing your invoices incorrectly, 225 integrations are syncing bad data into your ERP."</div>`,
+
+    intel: `<div class="section-label">Pricing Structure</div>
+<div class="price-item"><strong>Custom, quote-based &mdash; no public tiers.</strong> Cost varies by invoice volume, payment workflow, selected modules, implementation scope and integration needs.</div>
+<div class="price-item"><strong>Plans:</strong> Basic &middot; Professional &middot; Enterprise</div>
+
+<div class="section-label">Their Benchmark Claims</div>
+<div class="stat-row">
+  <div class="stat-chip"><div class="sc-val">1.5M+</div><div class="sc-lbl">Suppliers paid via AvidPay (5 yrs)</div></div>
+  <div class="stat-chip"><div class="sc-val">79.6M</div><div class="sc-lbl">Transactions processed in 2025</div></div>
+  <div class="stat-chip"><div class="sc-val">8,000+</div><div class="sc-lbl">Customers on the network</div></div>
+  <div class="stat-chip"><div class="sc-val">240</div><div class="sc-lbl">Published integrations</div></div>
+</div>
+
+<div class="section-label">Their Case Studies (know these before the call)</div>
+<div class="case-item"><div class="case-name">Peak &mdash; Property Management <span>&middot; AppFolio</span></div><div class="case-text">Automated up to 1,600 monthly invoices. <em>75% time reduction</em> (40 hrs/week to 10), <em>$79,000 annual savings</em>, and a 50% drop in overdue vendor bills.</div></div>
+<div class="case-item"><div class="case-name">Carolina Asthma &amp; Allergy Center &mdash; Healthcare <span>&middot; CYMA</span></div><div class="case-text">Centralized ~800 monthly invoices across 16 offices. <em>12x faster payments</em> and eliminated check fraud risk.</div></div>
+<div class="case-item"><div class="case-name">Westport &mdash; Construction <span>&middot; Acumatica</span></div><div class="case-text">Mobile purchase-to-pay across job sites. <em>50% faster approvals</em> and <em>2 hours saved per person per day</em>.</div></div>
+
+<div class="section-label">Product Modules</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Purchase Automation</strong> &mdash; automated PO creation, electronic receipt/PO search, 2-way and 3-way matching.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Invoice Automation</strong> &mdash; AI/ML extraction and routing with visual approval indicators, backed by human review teams.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Payment Automation</strong> &mdash; digitized B2B payments with sync back to the accounting system.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>AP as a Service</strong> &mdash; invoice and payment automation embedded inside a partner's own platform.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Spend Management (FastPay)</strong> &mdash; unlimited virtual cards and flexible payment terms.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Supplier Hub</strong> &mdash; self-service vendor portal, Straight Through Processing, Invoice Status Inquiry.</div>`
   },
 
   billcom: {
@@ -650,25 +818,38 @@ const COMPETITORS = {
       { val: "8.8", lbl: "BILL Ease Admin", cls: "s-lose" }
     ],
     pitch: `<div class="section-label">Their Core Claim</div>
-<div class="their-edge">"Make it simple to connect and do business." $1.5B revenue, 8,000+ accounting firm partners, and 7.1M network members create a trusted-advisor-led sales channel that's difficult to displace.</div>
+<div class="their-edge">"Your AI-powered financial operations platform." A cloud platform built primarily for SMBs to create and pay bills, send invoices, manage expenses, control budgets and access credit &mdash; all in one place. Brand recognition and network footprint are the moat.</div>
 <div class="section-label">How They Position Against Ottimate</div>
-<div class="their-edge">Bill.com aggressively markets to accountants — providing them resources and guides to "pitch BILL" to their entire client base. The accountant becomes the sales rep.</div>
-<div class="their-edge">Network effects: Once vendors and clients are connected in the BILL network, leaving means re-onboarding your entire vendor set elsewhere — a built-in stickiness argument.</div>
-<div class="their-edge">AR + AP combined: BILL covers both Accounts Payable and Accounts Receivable in one platform — something Ottimate doesn't currently offer.</div>`,
+<div class="their-edge"><strong>Scale as proof.</strong> 8.3M network members, $345B in annual payment volume (roughly 1% of US GDP), 4M+ verified vendors. The argument is that everyone already uses BILL.</div>
+<div class="their-edge"><strong>AI agents.</strong> An Invoice Coding Agent that codes multi-line bills from historical behavior (claiming 99% field accuracy and 20% less manual entry), a W-9 Agent that chases vendor tax forms, and a Transaction Agent for card swipes.</div>
+<div class="their-edge"><strong>Breadth.</strong> AP + AR + Spend &amp; Expense + Procurement in a single subscription &mdash; plus a BILL Cash Account paying 3% APY. Ottimate is AP-only.</div>
+<div class="section-label">Objection You Will Hear</div>
+<div class="their-edge">"BILL keeps our processes fast and helps us pay vendors easily."<br><br><strong>Response:</strong> BILL achieved mass-market scale at the expense of mid-market support and platform stability. High-growth organizations migrate to Ottimate because of buggy ERP integrations, rigid approval limits, and support response times that can take weeks to resolve critical payment issues.</div>`,
 
-    weaknesses: `<div class="section-label">Top G2/TrustRadius Complaints</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Poor customer support — most damaging complaint; "no phone number to call," took "too long to resolve," "unhelpful representatives"</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Float model = fund holding — earns revenue by holding vendor payments for days before releasing; creates cash flow risk for vendors</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Integration/sync failures — "every time I exported from Bill.com to QuickBooks we had an issue" (validated by Ottimate case study)</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Per-transaction fees — charges per ACH, per check; costs balloon as transaction volume grows</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>No line-item AP — cannot handle SKU-level coding, COGS allocation, or catalog price matching</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Horizontal only — customers in restaurants, hotels, or construction quickly outgrow BILL's generalist capabilities</div>`,
+    weaknesses: `<div class="section-label">Voice of the Customer</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Slow customer support</strong> &mdash; users report waiting weeks to resolve issues, for both payors and payees.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Payment delays and float interest</strong> &mdash; BILL holds submitted payments for several days to earn float before remitting to the vendor. Their business model relies on slowing your payments down.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Buggy integrations</strong> &mdash; the QuickBooks sync is described by former customers as flawed and very buggy; setup into robust ERPs like NetSuite is highly difficult.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Rigid approval workflows</strong> &mdash; limited to two levels of approval, which cannot accommodate complex organizational structures.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Per-transaction fees</strong> &mdash; $0.59 ACH, $1.99 per check, 2.9% pay-by-card, layered on top of per-user subscription. Costs compound with volume.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>No true line-item processing</strong> &mdash; cannot reliably parse dozens or hundreds of lines from a broadline distributor and map each to the right GL account.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Three-way match and prepayment difficulties</strong> &mdash; users report trouble processing 3-way match transactions and inventory prepayments.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Fragmented multi-entity scaling</strong> &mdash; multi-entity architecture is gated behind the Enterprise tier.</div>`,
 
-    winmoves: `<div class="win-move"><strong>Target accountants directly:</strong> "We know many accountants default to Bill.com — but those managing complex clients (restaurants, hotels) waste hours on sync errors. Ottimate's QuickBooks sync works instantly. Our G2 support is rated 1.0 point higher. We make your high-value clients easier to manage, not harder." <em>(Use the 'Books To Go' case study.)</em></div>
-<div class="win-move"><strong>"Truth in Payments" — attack the float model:</strong> "Bill.com takes funds from your account the day you submit payment, then holds it for days before paying your vendor. They earn float interest on your money. Ottimate never slows down vendor payments to earn interest. Ask them: what is their payment float policy?"</div>
-<div class="win-move"><strong>Flat fee vs. death by a thousand cuts:</strong> "Bill.com charges per user AND per transaction AND extra for ACH/check. Ottimate is flat-rate — unlimited users, unlimited transactions, one predictable monthly fee. As you grow, your costs don't spike."</div>
-<div class="win-move"><strong>Line-item complexity disqualifier:</strong> "If your clients process invoices with SKU-level coding, multi-location GL allocation, or vendor catalog matching, Bill.com will fail them. It's built for simple SMB payments, not complex hospitality or construction AP."</div>
-<div class="killer-quote"><span class="killer-quote-label">Killer Question</span>"If Bill.com takes your money on day one and pays your vendor on day five — who's earning interest on the float? And how does that align with their promise to 'pay vendors 2x faster'?"</div>`,
+    winmoves: `<div class="section-label">Ottimate's Three Differentiators</div>
+<div class="win-move"><strong>True multi-line AI intelligence:</strong> Ottimate's proprietary deep learning models excel at highly granular line-item extraction with dimensional coding allocation. BILL cannot handle detailed line-item processing or reliably map GL codes with accuracy, forcing finance teams into repetitive manual entry and constant correction of transcription errors.</div>
+<div class="win-move"><strong>Deeply customizable approval workflows:</strong> Ottimate builds approvals around the real complexity of a mid-market organization. BILL restricts growing organizations to basic approval levels, forcing teams into a one-size-fits-all process that stalls approvals.</div>
+<div class="win-move"><strong>Superior customer support:</strong> Ottimate provides responsive, high-touch care with a dedicated account manager. BILL's support ecosystem regularly leaves both users and vendors stranded, taking upwards of two weeks to resolve urgent payment and system issues.</div>
+
+<div class="section-label">Two More Plays</div>
+<div class="win-move"><strong>"Truth in Payments" &mdash; attack the float:</strong> BILL debits your account on submission then holds the funds for days before paying the vendor, earning interest on your money. Ask them directly: what is your payment float policy? Ottimate never slows vendor payments to earn interest.</div>
+<div class="win-move"><strong>Flat rate vs. death by a thousand cuts:</strong> BILL charges $49&ndash;$89 per user per month AND per transaction AND extra for ACH and checks. Model the real cost at their actual invoice volume &mdash; the crossover usually lands around 200 invoices/month.</div>
+
+<div class="section-label">Questions to Spark Interest</div>
+<div class="overcome-item">"How much time does your team spend manually coding line items and routing bills for approval?"</div>
+<div class="overcome-item">"How do you currently prevent employees from overspending budgets on corporate cards?"</div>
+
+<div class="killer-quote"><span class="killer-quote-label">Landmine Question for BILL</span>"When we receive a complex invoice with dozens or hundreds of lines &mdash; from a broadline distributor, for example &mdash; that needs to be split across multiple GL expense codes, does BILL automatically capture, parse and code each individual line item to the correct general ledger account? Or does our team have to sit there and manually key in those splits?"</div>`,
 
     gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
 <div class="gap-item"><div class="gap-label">No AR (Accounts Receivable)</div><div class="gap-text">Bill.com offers combined AP + AR in one platform. Ottimate is AP-only. For prospects who want a single solution for both AP and AR workflows, BILL wins by default on scope.</div></div>
@@ -683,7 +864,32 @@ const COMPETITORS = {
 
 <div class="section-label">How to Overcome</div>
 <div class="overcome-item"><strong>Get to the AP team before the accountant does:</strong> When an accountant is involved, request a separate demo directly with the client's AP team. Show the line-item capture and reconciliation — features accountants rarely demo in BILL.</div>
-<div class="overcome-item"><strong>Model the TCO:</strong> Build a side-by-side cost comparison showing how BILL's per-transaction fees exceed Ottimate's flat rate at realistic invoice volumes (typically above 200 invoices/month).</div>`
+<div class="overcome-item"><strong>Model the TCO:</strong> Build a side-by-side cost comparison showing how BILL's per-transaction fees exceed Ottimate's flat rate at realistic invoice volumes (typically above 200 invoices/month).</div>`,
+
+    intel: `<div class="section-label">Pricing &amp; Tier Packaging</div>
+<div class="price-item"><strong>BILL Essentials &mdash; $49 / user / month.</strong> Centralized inbox, standard approval routing across 6 user roles, 4M+ vendor network, W-9 Agent. Accounting sync is <em>manual CSV export only</em>.</div>
+<div class="price-item"><strong>BILL Team &mdash; $65 / user / month.</strong> Adds automated 2-way sync (QuickBooks Online/Pro/Premier, Xero only), AI multi-line bill coding, custom user roles and workflows.</div>
+<div class="price-item"><strong>BILL Corporate &mdash; $89 / user / month.</strong> Adds unlimited document storage, discounted approver-only seats, and free unlimited purchase requesters with PO lifecycle and 2-way matching.</div>
+<div class="price-item"><strong>BILL Enterprise &mdash; custom.</strong> Only here do you get mid-market ERP 2-way sync (NetSuite, Sage Intacct, Dynamics, QuickBooks Enterprise), full 2- and 3-way matching, SSO, Dual Control, multi-entity architecture, API access and priority support.</div>
+<div class="price-item"><strong>Transaction fees on top:</strong> ACH/ePayment $0.59 &middot; Check $1.99 &middot; Pay by Card 2.9% of transaction.</div>
+
+<div class="section-label">Their Benchmark Claims</div>
+<div class="stat-row">
+  <div class="stat-chip"><div class="sc-val">8.3M</div><div class="sc-lbl">Network members</div></div>
+  <div class="stat-chip"><div class="sc-val">$345B</div><div class="sc-lbl">Annual payment volume</div></div>
+  <div class="stat-chip"><div class="sc-val">$10,630</div><div class="sc-lbl">Avg monthly savings (Spend &amp; Expense)</div></div>
+  <div class="stat-chip"><div class="sc-val">12 hrs</div><div class="sc-lbl">Avg monthly time savings</div></div>
+  <div class="stat-chip"><div class="sc-val">94%</div><div class="sc-lbl">Would recommend to a friend</div></div>
+  <div class="stat-chip"><div class="sc-val">4M+</div><div class="sc-lbl">Verified vendors</div></div>
+</div>
+
+<div class="section-label">Relevant Customers (hospitality &amp; healthcare)</div>
+<div class="case-item"><div class="case-name">Ignite Medical Resorts &mdash; Healthcare <span>&middot; Sage Intacct</span></div><div class="case-text">BILL Accounts Payable + BILL Spend &amp; Expense.</div></div>
+<div class="case-item"><div class="case-name">Zion Ponderosa Resort &mdash; Hospitality</div><div class="case-text">BILL Spend &amp; Expense only.</div></div>
+<div class="case-item"><div class="case-name">O&amp;M Restaurant Group &mdash; Hospitality <span>&middot; QuickBooks</span></div><div class="case-text">BILL Accounts Payable.</div></div>
+
+<div class="section-label">Notable Integration Detail</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span>Restaurant365, Yardi Breeze, Blackbaud, PointClickCare and FundEZ connect only via <strong>custom file integration using pre-built export templates</strong> &mdash; not a live 2-way sync. Worth naming if the prospect runs one of these.</div>`
   },
 
   stampli: {
@@ -699,24 +905,35 @@ const COMPETITORS = {
       { val: "9.5", lbl: "Stampli Ease Admin", cls: "s-tie" }
     ],
     pitch: `<div class="section-label">Their Core Claim</div>
-<div class="their-edge">"Highest ease of setup rating on G2 among AP providers." ERP integrations are built in-house, not outsourced. This directly attacks Ottimate's most commonly cited weakness: integration difficulty.</div>
+<div class="their-edge">"Stress-free finance." An end-to-end Procure-to-Pay platform where the invoice itself is the workspace &mdash; every conversation, document and approval lives on it. Embedded AI handles coding, PO matching and approver prediction; Trays route work by department, region or vendor.</div>
 <div class="section-label">How They Position Against Ottimate</div>
-<div class="their-edge">"We were built by AP experts, for AP teams — not by a payments company that bolted on AP." They position Ottimate's origin as a restaurant tech company as a limitation for general finance teams.</div>
-<div class="their-edge">"Billy the Bot" is their AI differentiator — framed as an AI "employee" embedded in every approval workflow who learns your patterns over time. They contrast this with what they describe as Ottimate's more complex setup.</div>`,
+<div class="their-edge"><strong>Invoice-centric collaboration.</strong> No hunting through emails or side chats for context, plus an unchangeable audit trail on every action &mdash; positioned as effortless audit prep.</div>
+<div class="their-edge"><strong>No ERP rework.</strong> Pre-built API (cloud-to-cloud) and Bridge (cloud-to-on-premises) integrations across roughly 45 ERPs including Sage, Microsoft, SAP, Oracle, QuickBooks, Acumatica and Dealertrack.</div>
+<div class="their-edge"><strong>Breadth of modules.</strong> Procurement with budget validation before commitment, Vendor Management with compliance gating that freezes payments on expired W-9s or insurance, Direct Pay with 1-to-1 ERP reconciliation, and Stampli Card (AP Cards + Expense Cards).</div>
+<div class="section-label">Objection You Will Hear</div>
+<div class="their-edge">"We like Stampli's invoice workspace because all vendor and team chats stay attached to the invoice."<br><br><strong>Response:</strong> Centralized communication is essential, but chatting on top of an incorrectly extracted invoice doesn't save time. Ottimate gives you contextual collaboration <em>and</em> captures line-item SKU data and pack sizes at 98% accuracy &mdash; preventing the errors that cause the back-and-forth in the first place.</div>`,
 
-    weaknesses: `<div class="section-label">Top G2/TrustRadius Complaints</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>"Billy the Bot" fails on recurring invoices — "quite maddening when the wrong information gets populated" — consistent AI reliability complaints</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Missing Features — 100 G2 mentions as top con; gaps in advanced workflow functionality</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Batch processing limitation — "significant limitation" in processing invoices one-by-one; no efficient multi-invoice batch approvals</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Technical Issues and Approval Issues — flagged consistently across G2 reviews</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>No vertical depth — Stampli is horizontal; no price-catalog PO matching, no SKU-level coding for hospitality/grocery</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Automation shortcomings — despite the AI marketing, users report that the core automation still falls short on complex, recurring scenarios</div>`,
+    weaknesses: `<div class="section-label">Voice of the Customer</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Invoice capture friction &mdash; 127 specific mentions</strong> of "invoice issues" requiring mandatory manual edits. The AI demands heavy manual correction; it particularly struggles to scan line items from photographs of invoices.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Nickel-and-diming:</strong> custom approval workflows cost an extra <strong>$250/month and require a CSM to build them</strong> &mdash; not self-serve. Extra users are <strong>$25/month</strong>. Splitting an invoice consumes extra "invoice credits."</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>No bulk actions</strong> &mdash; no batch edits for vendor names or invoice dates, and no mass approvals. Users click through invoices one at a time.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Weak multi-entity and allocation support</strong> &mdash; a documented dealbreaker for businesses with multiple clinics or branches. Multi-entity sectioning by location is relegated to the reporting section rather than the operational dashboard.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Technical glitches and a thin mobile app</strong> &mdash; instability in invoice processing and notifications; mobile is suitable for quick approvals only.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Data retained only 7 years</strong> &mdash; versus indefinite archiving elsewhere.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Hidden costs beyond subscription:</strong> invoice overage fees, ERP connector fees, Stampli Pay transaction fees, and implementation/training/support that can add roughly 10% to the quoted price.</div>`,
 
-    winmoves: `<div class="win-move"><strong>"Billy is a Bot. Otti is a Copilot."</strong> Frame Stampli's AI as passive backend automation vs. Ottimate's proactive intelligence. "Billy fills in fields. Otti watches for anomalies, flags overcharges, and advises your team before issues hit close. One automates; the other thinks."</div>
-<div class="win-move"><strong>Expose the batch processing gap:</strong> "Do you process invoices in batches? Stampli's users report it's 'a significant limitation' — approvals go one by one. Ottimate handles complex multi-location batch approvals natively. If you're processing 500+ invoices a week, that matters."</div>
-<div class="win-move"><strong>PO price-catalog disqualifier:</strong> "Stampli matches invoices to POs. But can it validate each line's price against your pre-negotiated price catalog to catch vendor overcharges? Ottimate can. Ask them to demo that."</div>
-<div class="win-move"><strong>Vertical depth vs. horizontal generic:</strong> "Stampli is built for any finance team. Ottimate is built for your industry. If you're in hospitality, construction, or grocery, you need an AP platform that understands your inventory complexity — not a generalist tool that'll hit its limits within 6 months."</div>
-<div class="killer-quote"><span class="killer-quote-label">Killer Question</span>"Stampli's 'Billy' is supposed to learn your recurring invoices over time. But their own G2 users say it still gets them wrong after months. If the core AI can't handle your most routine invoices, what happens with the complex ones?"</div>`,
+    winmoves: `<div class="section-label">Ottimate's Three Differentiators</div>
+<div class="win-move"><strong>Deep line-item ingestion vs. superficial OCR correction:</strong> Ottimate uses vertical-specific deep learning to extract line items, SKU detail and pack sizes at 98% accuracy, auto-coding split lines and catching unit-price hikes. Stampli's OCR frequently fails on multi-page distributor bills and photographed line items, forcing mandatory manual edits.</div>
+<div class="win-move"><strong>Multi-entity operational intelligence vs. surface-level reporting:</strong> Ottimate lets field managers and department heads allocate complex split-bills directly on the primary dashboard with no seat restrictions. Stampli buries multi-entity views in reporting.</div>
+<div class="win-move"><strong>Transparent all-inclusive value vs. modular fees:</strong> Ottimate includes unlimited seats, self-serve custom approval rules and an active vCard rebate program. Stampli charges $250/mo for workflow edits, $25/mo per user, invoice split credits and ERP connector add-ons.</div>
+
+<div class="section-label">Questions to Spark Interest</div>
+<div class="overcome-item">"How often does your team manually fix line items or split codes that Stampli's AI failed to capture on distributor invoices?"</div>
+<div class="overcome-item">"Are you currently paying extra monthly fees for additional user seats, custom approval workflow edits, or invoice split credits?"</div>
+<div class="overcome-item">"When you need to approve or edit invoices in bulk across multiple locations, how much time does clicking through them one-by-one cost your team?"</div>
+<div class="overcome-item">"Does your current setup track individual SKU unit-price increases from suppliers, or only whether the overall invoice total looks reasonable?"</div>
+
+<div class="killer-quote"><span class="killer-quote-label">Landmine Question for Stampli</span>"When our organizational approval rules change, can our accounting team instantly edit and customize our approval workflows ourselves &mdash; or are we locked out, forced to pay an extra fee and wait on a Customer Success Manager to build them for us?"</div>`,
 
     gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
 <div class="gap-item"><div class="gap-label">Ease of Setup &amp; G2 Scores</div><div class="gap-text">Stampli's G2 ease of setup (9.4) and support (9.7) scores are objectively higher than Ottimate's published scores. In a head-to-head G2 comparison, Stampli wins on these metrics. Don't lead with G2 in a Stampli deal — lead with vertical depth and functional capability.</div></div>
@@ -731,7 +948,31 @@ const COMPETITORS = {
 
 <div class="section-label">How to Overcome</div>
 <div class="overcome-item"><strong>Proactively address the integration concern:</strong> Get ahead of it in discovery — "You may have heard that our previous integration setup was more complex. We've invested heavily in this. Here's a customer who recently went live on [their ERP] in [X weeks]."</div>
-<div class="overcome-item"><strong>Make vertical depth non-negotiable:</strong> Find the one AP complexity the prospect has (complex PO matching, price catalog, split-case invoices) that Stampli can't handle. Make that the evaluation criterion.</div>`
+<div class="overcome-item"><strong>Make vertical depth non-negotiable:</strong> Find the one AP complexity the prospect has (complex PO matching, price catalog, split-case invoices) that Stampli can't handle. Make that the evaluation criterion.</div>`,
+
+    intel: `<div class="section-label">Pricing &amp; Tier Packaging</div>
+<div class="price-item"><strong>Custom subscription, two tiers.</strong> <em>Standard</em> for small-to-mid AP teams and <em>Enterprise</em> for large organizations with multi-entity setups &mdash; priced on invoice volume, user count and modules selected (AP, payments, vendor management, cards).</div>
+<div class="price-item"><strong>Known add-on costs:</strong> custom approval workflows $250/mo (CSM-built) &middot; extra users $25/mo &middot; invoice split credits &middot; ERP connector fees &middot; invoice overage fees &middot; Stampli Pay transaction fees &middot; implementation and training roughly +10% of quote.</div>
+
+<div class="section-label">Their Benchmark Claims</div>
+<div class="stat-row">
+  <div class="stat-chip"><div class="sc-val">1,800+</div><div class="sc-lbl">Unique customers</div></div>
+  <div class="stat-chip"><div class="sc-val">2,800+</div><div class="sc-lbl">Entities across customer base</div></div>
+  <div class="stat-chip"><div class="sc-val">400k+</div><div class="sc-lbl">Invoices processed per week</div></div>
+  <div class="stat-chip"><div class="sc-val">$390B+</div><div class="sc-lbl">Cumulative spend processed</div></div>
+  <div class="stat-chip"><div class="sc-val">157,000</div><div class="sc-lbl">P2P users &amp; approvers</div></div>
+</div>
+
+<div class="section-label">Their Case Studies (both are hospitality &mdash; know them cold)</div>
+<div class="case-item"><div class="case-name">Wenspok Companies &mdash; Wendy's franchisee, 67 restaurants <span>&middot; Sage Intacct</span></div><div class="case-text">Stampli AP + Stampli Cards. <em>75% reduction in invoice processing time</em>, 87% faster approvals, 73% faster credit card close.</div></div>
+<div class="case-item"><div class="case-name">Goat Hospitality Group &mdash; nightclubs, hotels, restaurants <span>&middot; QuickBooks Online</span></div><div class="case-text">Stampli AP + Cards. Automated <em>95% of invoice coding</em>, real-time spend controls, ~$40,000 saved annually by avoiding a hire.</div></div>
+
+<div class="section-label">Module Map</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Procurement</strong> &mdash; custom intake forms, AI-guided request creation, budget validation before commitment, requests converting to ERP POs / Stampli POs / cards / tickets.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Accounts Payable</strong> &mdash; omni-channel capture, Trays routing, AI coding suggestions, line-level 2- and 3-way matching, unchangeable audit trail.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Vendor Management</strong> &mdash; self-service portal for W-9s, banking and insurance; auto-freezes invoices or payments when compliance records expire.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Direct Pay</strong> &mdash; ACH, check, virtual card and international in one framework with pre-payment ERP validation and 1-to-1 reconciliation.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Stampli Card</strong> &mdash; AP Cards issued from approved requests with pre-coded GLs, plus Expense Cards with reload requests.</div>`
   },
 
   ramp: {
@@ -747,24 +988,34 @@ const COMPETITORS = {
       { val: "9.5", lbl: "Ramp Ease Admin", cls: "s-tie" }
     ],
     pitch: `<div class="section-label">Their Core Claim</div>
-<div class="their-edge">All-in-one spend platform: corporate cards, invoices, and reimbursements unified in one tool. "Freemium" Bill Pay lowers the barrier to adoption. High G2 scores — but those ratings come primarily from corporate card users, not AP-heavy users.</div>
+<div class="their-edge">"Time is money. Save both." A unified financial operations platform consolidating corporate cards, expenses, procurement, travel, banking and basic bill payments. The AI auto-codes spend, surfaces what needs review, and syncs to the ERP in real time &mdash; "close your books 3x faster."</div>
 <div class="section-label">How They Position Against Ottimate</div>
-<div class="their-edge">"Why pay for a standalone AP tool when your finance team already uses Ramp for expenses and cards? Add Bill Pay for free and consolidate your stack."</div>
-<div class="their-edge">Ramp is growing aggressively and investing in AP — they will continue to close the feature gap over time. The bundling play is increasingly effective for companies where spend management and AP reporting are viewed together.</div>`,
+<div class="their-edge"><strong>Consolidation.</strong> "Why pay for a standalone AP tool when your finance team already uses Ramp for cards and expenses? Add Bill Pay for free."</div>
+<div class="their-edge"><strong>Freemium.</strong> The Free plan is $0/mo with unlimited users and cards, receipt scanning, basic approval workflows and 1.5% cash back. Plus is $15/user/mo. Enterprise adds multi-entity, custom ERP integrations and a dedicated account manager.</div>
+<div class="their-edge"><strong>The honest read:</strong> Ramp's architecture is horizontal and optimized for card swipes and standard receipts. For high-volume invoice-based spend it lacks the specialized AI for deep line-item coding, multi-way PO matching and granular cost validation.</div>`,
 
-    weaknesses: `<div class="section-label">Top G2/TrustRadius Complaints (AP-specific)</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>"Falls short when businesses need robust AP automation, advanced workflows, or P2P" — verified G2 review from AP users</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Missing Features — 100 G2 mentions; Card Issues (99 mentions); Approval Issues (87 mentions)</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Manual data re-entry — "I have to re-enter every transaction manually" due to integration failures</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>No price-catalog PO matching — can match invoices to POs but cannot validate line prices against pre-negotiated catalogs</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Backend "Toby" AI only — no user-facing proactive copilot; passive automation only</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>No vertical depth — Ramp is built for horizontal spend, not for industry-specific invoice complexity</div>`,
+    weaknesses: `<div class="section-label">Where Ramp Breaks Down on AP</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Header-level extraction only</strong> &mdash; for non-card vendor invoices Ramp typically pulls vendor, date and total. It cannot interpret messy multi-page supplier documents, split-code individual items, or run pack-size logic for COGS.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Approval logic built around card limits</strong> &mdash; bill approval routing is standardized and cannot handle the decentralized branch and multi-location hierarchies typical of mid-market operations.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Spend controls, not margin controls</strong> &mdash; excellent at stopping employees overspending on a card; incapable of identifying vendor overcharges, flagging unit price hikes, or running cost-trend analysis across high-frequency distributor invoices.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Drowning in manual entry</strong> &mdash; the documented pain point among Ramp AP users is typing line items by hand on multi-page vendor bills.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Workflow friction across locations</strong> &mdash; splitting one vendor invoice across locations, GL codes or department heads requires heavy manual intervention.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Multi-entity is gated to Enterprise</strong> &mdash; along with custom ERP integrations and advanced workflows.</div>`,
 
-    winmoves: `<div class="win-move"><strong>Specialist vs. Generalist framework:</strong> "Ramp is a great corporate card that bundled a 'lite' AP tool. Ottimate is the AP specialist built for the complex, high-volume invoices in your industry. You wouldn't use a general-purpose accounting tool to run your restaurant group's inventory cost analysis — the same logic applies to AP automation."</div>
-<div class="win-move"><strong>The PO price-match disqualifier:</strong> "Ramp can match a bill to a PO. But can it validate the price of each PO line item against your pre-negotiated vendor price catalog — and flag overcharges before they're paid? Ottimate can. Ask them to demo that exact scenario."</div>
-<div class="win-move"><strong>Qualify early with AP complexity:</strong> Ask in discovery: "Do you process invoices with complex line-item coding? Multi-location approval routing? Price catalog validation?" Three "yes" answers and Ramp is disqualified — they just don't know it yet.</div>
-<div class="win-move"><strong>AI contrast:</strong> "Ramp has Toby — an internal backend AI nobody talks about. Ottimate has Otti, a proactive copilot that surfaces anomalies, flags duplicate invoices, and gives your team insights before month-end close. One processes; the other advises."</div>
-<div class="killer-quote"><span class="killer-quote-label">Killer Question</span>"Ramp's overall G2 score is high — but that's driven by corporate card users. When you talk specifically to their customers who process 500+ complex invoices per week, what do they say? What's their AP-specific satisfaction score?"</div>`,
+    winmoves: `<div class="section-label">Ottimate's Three Differentiators</div>
+<div class="win-move"><strong>Deep line-item, SKU-level ingestion vs. aggregate header extraction:</strong> Ottimate's deep learning AI captures descriptions, unit prices, quantities and pack sizes at 98% accuracy &mdash; enabling automatic line-level GL coding, multi-way PO matching and item-level price tracking over time. Ramp is optimized for card swipes and receipts.</div>
+<div class="win-move"><strong>Dynamic approval workflows vs. basic spending rules:</strong> Ottimate routes invoices on line-item attributes &mdash; GL code, location, vendor, conditional dollar thresholds &mdash; with parallel routing, automatic escalation, proxy delegation and in-platform contextual chat.</div>
+<div class="win-move"><strong>Forensic margin control vs. card limits:</strong> The Otti AI Copilot plus Catalog Match and hot-list price trackers catch price discrepancies between invoice, PO and supplier catalog before money leaves the account.</div>
+
+<div class="section-label">Objections &amp; Responses</div>
+<div class="win-move"><strong>"We want all corporate spend in one system."</strong> &mdash; "Card spend is a small fraction of your total outlay. The majority of your operational COGS flows through unstructured, multi-page vendor invoices Ramp isn't built to parse. Keep Ramp for employee card spend and sit Ottimate on top of your accounting system as the AP intelligence layer."</div>
+<div class="win-move"><strong>"Ramp's bill pay is free."</strong> &mdash; "It's free because it's a loss-leader for card volume. Free becomes expensive when your finance team spends hours typing line items and chasing approvals. Ottimate eliminates over 90% of manual AP labor, and our dedicated vendor enrollment team shifts your suppliers to virtual cards, earning you cash-back rebates. Clutch Coffee earned over $5,000 in cashback in six months &mdash; rebate revenue frequently covers the entire software cost."</div>
+
+<div class="section-label">Questions to Spark Interest</div>
+<div class="overcome-item">"How is your accounting team currently tracking unit-price inflation or line-item discrepancies across multi-page vendor invoices before approving payment?"</div>
+<div class="overcome-item">"When a single vendor invoice needs to be split across different locations, GL codes or department heads, how much manual intervention does your current bill pay tool require?"</div>
+
+<div class="killer-quote"><span class="killer-quote-label">Landmine Question for Ramp</span>"When we upload a complex multi-page invoice from a broadline distributor with dozens of line items, does Ramp automatically extract, verify and code every single line item to its correct GL account &mdash; or does it primarily capture the header total and leave our team to manually split and code the individual lines?"</div>`,
 
     gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
 <div class="gap-item"><div class="gap-label">No Corporate Card / Expense Management</div><div class="gap-text">Ramp's core product is spend management — cards, expenses, and AP together. Ottimate is AP-only. For companies that want a unified spend platform, Ottimate requires a separate expense solution, adding integration complexity and cost.</div></div>
@@ -779,7 +1030,21 @@ const COMPETITORS = {
 
 <div class="section-label">How to Overcome</div>
 <div class="overcome-item"><strong>Find the AP champion:</strong> In any deal where Ramp is involved, identify the AP Manager or Controller as a separate stakeholder. They feel the pain of Ramp's AP limitations most acutely and will advocate for a specialist tool if you reach them.</div>
-<div class="overcome-item"><strong>Run a POC on invoice complexity:</strong> Pull 10 of their most complex invoices (split cases, catalog matching, multi-GL lines) and process them through both systems. The Ramp failure points become self-evident.</div>`
+<div class="overcome-item"><strong>Run a POC on invoice complexity:</strong> Pull 10 of their most complex invoices (split cases, catalog matching, multi-GL lines) and process them through both systems. The Ramp failure points become self-evident.</div>`,
+
+    intel: `<div class="section-label">Pricing &amp; Tier Packaging</div>
+<div class="price-item"><strong>Free &mdash; $0/mo.</strong> Unlimited users and cards, real-time expense tracking, major accounting integrations, receipt scanning, basic approval workflows, 1.5% cash back, no annual fees.</div>
+<div class="price-item"><strong>Plus &mdash; $15/user/mo + platform fee</strong> (20% off annual). Advanced approval rules and routing, custom integrations, advanced policy controls, priority support.</div>
+<div class="price-item"><strong>Enterprise &mdash; custom.</strong> Multi-entity support, locally denominated cards, custom ERP integrations (NetSuite, Sage Intacct, Dynamics), advanced workflows, dedicated account manager.</div>
+
+<div class="section-label">Their Hospitality &amp; Healthcare Case Studies</div>
+<div class="case-item"><div class="case-name">Evans Hotels &mdash; Hospitality <span>&middot; 3 San Diego properties, 1,200+ employees</span></div><div class="case-text">Cards, Expense Management, Mobile, Multi-Entity, Reimbursements. <em>4 hours saved per month</em> on card reconciliation plus real-time executive spend visibility. Note the scope: reconciliation and receipts, not invoice processing.</div></div>
+<div class="case-item"><div class="case-name">Adrift Hospitality &mdash; 6 boutique hotels, restaurants, a distillery</div><div class="case-text">Cards, AP, Multi-Entity, Accounting Automations. <em>Month-end close 5&ndash;10 days faster</em>, 8&ndash;10 hours/month off reconciliation. Their starting point was 10 cardholders and petty cash &mdash; a low bar.</div></div>
+<div class="case-item"><div class="case-name">Rarebreed Veterinary Partners &mdash; 120+ practices, 11 states</div><div class="case-text">Scaled from 7 locations / $2.4M to 120+ / $300M+. Reimbursement turnaround cut from 2.5 weeks to 3 days. Pain point solved was <em>insufficient credit limits</em>, not AP complexity.</div></div>
+
+<div class="section-label">Integration Footprint</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Accounting:</strong> NetSuite, Sage Intacct, QuickBooks (Online/Desktop), Dynamics BC and F&amp;O, Xero, Workday, Acumatica, Oracle Fusion, Trimble Spectrum/Vista, Zoho, Rillet.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Depth is in HR/payroll and banking</strong> &mdash; 45+ HRIS connectors and 85+ bank connections. Tellingly, the integration library is built for card and expense workflows, not vendor invoice ingestion.</div>`
   },
 
   tipalti: {
@@ -795,24 +1060,36 @@ const COMPETITORS = {
       { val: "8.8", lbl: "Tipalti Support G2", cls: "s-tie" }
     ],
     pitch: `<div class="section-label">Their Core Claim</div>
-<div class="their-edge">If you need to pay vendors in 200+ countries across 120+ currencies with built-in tax and compliance automation, Tipalti is purpose-built. No competitor has their global payment depth — and they're a licensed payment processor, not just a software layer.</div>
+<div class="their-edge">"One solution for all your finance operations." An AI-powered global finance automation platform unifying AP, mass payouts, procurement, expenses and treasury &mdash; executing payments across 200+ countries in 120+ currencies via 50+ payment methods, with a KPMG-approved tax engine (W-9, W-8, VAT, SIN, BN, DAC7).</div>
 <div class="section-label">How They Position Against Ottimate</div>
-<div class="their-edge">"Ottimate is built for domestic, vertical AP. We're built for companies operating globally. When you grow internationally, you'll need to replace Ottimate anyway — why not start with the platform that scales with you?"</div>
-<div class="their-edge">They're also launching a direct AI war — "Tipalti AI Assistant" and "AI Agents" are a product response to Ottimate's Otti AI Copilot. They're catching up fast on the AI story.</div>`,
+<div class="their-edge"><strong>Global scale.</strong> "When you grow internationally you'll need to replace Ottimate anyway &mdash; why not start with the platform that scales with you?"</div>
+<div class="their-edge"><strong>Their proof points:</strong> up to 80% reduction in time managing AP workflows, up to 50% faster book close, and redirecting 50% of AP team time to strategic work.</div>
+<div class="their-edge"><strong>AI catch-up.</strong> The Tipalti AI Assistant and AI Agents are a direct product response to Otti AI Copilot &mdash; automating capture, coding, approval and payment.</div>
+<div class="section-label">Objection You Will Hear</div>
+<div class="their-edge">"Tipalti has an end-to-end procurement process with built-in tax compliance and supplier onboarding."<br><br><strong>Response:</strong> Their own users report the platform is highly complex to set up, suffers payment processing delays, and has a UI that wasn't built with accountants in mind. Ottimate removes that friction with an intuitive platform that automates 90% of manual work and gives finance teams approval workflows they will actually enjoy using.</div>`,
 
-    weaknesses: `<div class="section-label">Top G2/TrustRadius Complaints</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Catastrophic implementation failures — 0.5-star G2 review; "known issues" with NetSuite forcing entire approval processes to be redone from scratch</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>ERP sync errors — integrations break and require manual intervention; specifically documented NetSuite 3-way match failures</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Slow implementations — users report months-long delays getting basic functionality live</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Support score contradiction — 8.8 G2 support score vs. catastrophic real-world implementation failure stories</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>G2 overall 4.4 vs Ottimate 4.8 — a meaningful gap for enterprise software decisions</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>No price-catalog PO matching — header + line-level match, but no pre-negotiated catalog price validation</div>`,
+    weaknesses: `<div class="section-label">Voice of the Customer</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Not built for accountants</strong> &mdash; users explicitly state the platform "doesn't seem to have been created with accountants in mind." The UI leaves much to be desired.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Reporting and analytics deficiencies</strong> &mdash; a distinct lack of deep reporting features, limiting strategic visibility.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>High complexity and cost</strong> &mdash; navigation and initial setup are notoriously complex for new users; pricing can be prohibitive for mid-sized businesses.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Payment delays</strong> &mdash; despite being a payment-first platform, users actively report payment processing delays.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>G2 overall satisfaction score of 58</strong> &mdash; a meagre result indicating broad struggles with customer happiness relative to AP automation peers.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Premium for infrastructure you may not use</strong> &mdash; the platform is optimized for adtech, gig economy, marketplaces and creator payouts, not domestic cost control.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Payment routing over invoice intelligence</strong> &mdash; the core strength is payment execution and tax form compliance, not granular item-level capture or anomaly detection.</div>`,
 
-    winmoves: `<div class="win-move"><strong>"Global Payments vs. Deep Invoice Intelligence":</strong> "Tipalti can pay your vendor in 120 currencies — but Ottimate can catch that vendor overcharging you on line-item pricing. If your #1 AP pain is international payment complexity, Tipalti wins. If it's invoice accuracy, approval efficiency, and vendor pricing control, Ottimate wins. What percentage of your invoices are from international vendors?"</div>
-<div class="win-move"><strong>Lead with implementation risk:</strong> "Tipalti's NetSuite integration has 'known issues' that have forced customers to redo entire approval workflows from scratch. Ottimate onboards in weeks, not months, with automatic sync. Would you like to talk to a reference customer on your ERP?"</div>
-<div class="win-move"><strong>Use the 0.5-star G2 review proactively:</strong> Print or screenshot it. "This is a real, verified customer review. They were forced to redo their entire approval process because of a sync error. In an AP implementation, that's a 6-figure risk. How is your team mitigating that?"</div>
-<div class="win-move"><strong>AI Copilot ownership:</strong> "Tipalti just launched their AI Assistant as a response to our Otti AI Copilot. Ours has been in production and actively used by customers for years. Theirs is a v1 product. When evaluating AI, ask for a live demo — not a roadmap."</div>
-<div class="killer-quote"><span class="killer-quote-label">Killer Question</span>"What percentage of your vendor base is actually international? If it's under 20%, you're paying for global payment infrastructure to solve a domestic invoice complexity problem. Is that the right trade-off?"</div>`,
+    winmoves: `<div class="section-label">Ottimate's Three Differentiators</div>
+<div class="win-move"><strong>Line-item data capture vs. payment routing:</strong> Ottimate's AI captures complex header, footer and line-item detail at 98% accuracy. Tipalti's platform is designed around executing high-volume multi-currency payouts, not catching granular cost discrepancies or spend anomalies.</div>
+<div class="win-move"><strong>Setup complexity and time-to-value:</strong> Ottimate onboards clients in weeks. Tipalti users consistently complain that setup and navigation are complex for new users, creating a steep learning curve and delayed ROI.</div>
+<div class="win-move"><strong>Reporting and analytical depth:</strong> The Otti AI Copilot and real-time dashboards let finance teams analyze spending patterns, spot price fluctuations and surface fraud risk. Tipalti users specifically cite a lack of comprehensive reporting as a major weakness.</div>
+
+<div class="section-label">Objections &amp; Responses</div>
+<div class="win-move"><strong>"Tipalti handles global payments in 120 currencies and 200+ countries."</strong> &mdash; "Tipalti is a powerhouse for cross-border mass payouts. But if the vast majority of your vendor spend is domestic, you're paying a premium for international infrastructure you barely use. Ottimate maximizes profitability on domestic spend with 98% accurate line-item capture that catches overcharges and prevents fraud."</div>
+
+<div class="section-label">Questions to Spark Interest</div>
+<div class="overcome-item">"Since your operations are primarily domestic, do you feel you're paying a premium for complex global payment infrastructure while sacrificing the line-item data capture needed to spot cost discrepancies?"</div>
+<div class="overcome-item">"How much time is your finance team losing to a UI that wasn't designed for accountants &mdash; and are you finding your reporting lacks the depth you need?"</div>
+
+<div class="killer-quote"><span class="killer-quote-label">Landmine Question for Tipalti</span>"If we receive a single invoice that needs to be allocated line-by-line across multiple subsidiaries or properties, does Tipalti natively automate those multi-entity allocations &mdash; or will our team have to manually code those splits?"</div>`,
 
     gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
 <div class="gap-item"><div class="gap-label">International Payments — A Real Gap</div><div class="gap-text">Tipalti's global payment capabilities (200+ countries, 120+ currencies, tax compliance, contractor payments) are genuinely superior to Ottimate's. This is not a perception gap — it's a real functional difference. Don't try to win on international payments; redirect to invoice intelligence.</div></div>
@@ -824,9 +1101,34 @@ const COMPETITORS = {
 <div class="loss-item"><span class="loss-icon">✗</span>Prospect is a marketplace or platform that pays contractors/creators globally — Tipalti's mass payout is purpose-built for this</div>
 <div class="loss-item"><span class="loss-icon">✗</span>Company is scaling internationally and wants a platform that "grows with them"</div>
 
-<div class="section-section">How to Overcome</div>
+<div class="section-label">How to Overcome</div>
 <div class="overcome-item"><strong>Quantify the international mix:</strong> Get the exact percentage of international invoices. If under 25%, position Ottimate as the better total AP platform and suggest Tipalti's international payments as a potential future integration if needed.</div>
-<div class="overcome-item"><strong>Use Tipalti's implementation track record as FUD:</strong> "Before you commit to a 12+ month implementation that may have 'known ERP integration issues,' would you be open to a phased approach — start with Ottimate for domestic AP today, and revisit international capabilities when you actually need them?"</div>`
+<div class="overcome-item"><strong>Use Tipalti's implementation track record as FUD:</strong> "Before you commit to a 12+ month implementation that may have 'known ERP integration issues,' would you be open to a phased approach — start with Ottimate for domestic AP today, and revisit international capabilities when you actually need them?"</div>`,
+
+    intel: `<div class="section-label">Pricing &amp; Tier Packaging</div>
+<div class="price-item"><strong>Tipalti Accounts Payable &mdash; from $99/month.</strong> Includes unlimited users, self-service supplier portal and core automation. <em>Additional fees:</em> transaction pricing per invoice and per payment, plus separate licensing for Procurement, Expenses and Treasury.</div>
+<div class="price-item"><strong>Tipalti Mass Payments &mdash; from $249/month.</strong> Includes unlimited users, payee portal and core automation. <em>Additional fees:</em> transaction pricing for payments.</div>
+
+<div class="section-label">Their Benchmark Claims</div>
+<div class="stat-row">
+  <div class="stat-chip"><div class="sc-val">$90B+</div><div class="sc-lbl">In payments annually</div></div>
+  <div class="stat-chip"><div class="sc-val">1,000+</div><div class="sc-lbl">Employees</div></div>
+  <div class="stat-chip"><div class="sc-val">$750M</div><div class="sc-lbl">Total funding to date</div></div>
+  <div class="stat-chip"><div class="sc-val">80%</div><div class="sc-lbl">Claimed AP workflow time reduction</div></div>
+  <div class="stat-chip"><div class="sc-val">58</div><div class="sc-lbl">G2 overall satisfaction score</div></div>
+</div>
+
+<div class="section-label">Their Case Studies</div>
+<div class="case-item"><div class="case-name">Sensei &mdash; wellness, agriculture &amp; hospitality <span>&middot; NetSuite</span></div><div class="case-text">Tipalti AP. <em>40 hours saved per month</em> and avoided an additional finance hire.</div></div>
+<div class="case-item"><div class="case-name">Brooklinen &mdash; e-commerce / retail <span>&middot; QuickBooks Online</span></div><div class="case-text">Tipalti AP. Eliminated <em>one week per month</em> of manual AP work and ensured 100% W-9 tax compliance while scaling without added headcount.</div></div>
+
+<div class="section-label">Product Modules</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Accounts Payable</strong> &mdash; supplier onboarding, invoice processing, PO matching, reconciliation.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Mass Payments</strong> &mdash; creator, adtech, marketplace and gig-economy payouts with a branded payee portal and built-in tax compliance.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Procurement</strong> &mdash; intake management, rules-based approvals via Slack or email, automated PO and Goods Received Note tracking.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Expenses &amp; Cards</strong> &mdash; Visa/Mastercard/AmEx/Tipalti Card, global reimbursements in 200+ countries.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Treasury</strong> &mdash; real-time cash visibility, automated 13-week cash-flow forecasting, AI anomaly flagging.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>ERPs:</strong> NetSuite, Sage, Dynamics 365, QuickBooks, Acumatica, Xero, SAP Business One, SAP S/4HANA.</div>`
   },
 
   coupa: {
@@ -875,7 +1177,16 @@ const COMPETITORS = {
 
 <div class="section-label">How to Overcome</div>
 <div class="overcome-item"><strong>Focus on the AP team, not procurement:</strong> Coupa implementations are long and complex. AP teams often need relief now. Build an AP-only business case and establish Ottimate as the operational solution while the enterprise BSM evaluation continues (you may coexist, not compete).</div>
-<div class="overcome-item"><strong>Time-to-value is your trump card:</strong> "Coupa is a 12-18 month journey. Ottimate gets your AP team live in weeks. For this fiscal year's goals — which matters more?"</div>`
+<div class="overcome-item"><strong>Time-to-value is your trump card:</strong> "Coupa is a 12-18 month journey. Ottimate gets your AP team live in weeks. For this fiscal year's goals — which matters more?"</div>`,
+
+    intel: `<div class="section-label">Not Covered by the July 2026 Battle Cards</div>
+<div class="gap-item"><div class="gap-label">Source Note</div><div class="gap-text">Coupa does not appear in either the Competitor Battle Cards deck (July 2026) or the Competitor Capabilities doc (6/12/26). The Pitch, Weaknesses, Win Moves and Gaps tabs reflect earlier internal research and have not been refreshed against those sources.</div></div>
+
+<div class="section-label">What We Know on Pricing</div>
+<div class="price-item"><strong>Enterprise BSM licensing</strong> &mdash; quote-based, typically bundled across sourcing, procurement, AP, expenses and contracts. Total cost of ownership includes implementation (commonly 9&ndash;18 months) and frequently a systems integrator.</div>
+
+<div class="section-label">Action</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span>If you are working a live Coupa deal, log the pricing, benchmark stats and case studies you encounter so this card can be brought up to the same standard as the sourced competitors.</div>`
   },
 
   rillion: {
@@ -921,7 +1232,16 @@ const COMPETITORS = {
 
 <div class="section-label">How to Overcome</div>
 <div class="overcome-item"><strong>Ask about their actual PO structure:</strong> Very few companies have POs with hundreds of lines. Confirm the real use case. If their typical PO is under 50 lines, Rillion's high-volume claim is irrelevant to their situation.</div>
-<div class="overcome-item"><strong>Usability is your trump card:</strong> With Rillion's 7.9 ease-of-setup score, offer a live evaluation: "Let's both set up a test workflow using your actual data — same invoices, same approval rules. See which platform your team is actually comfortable using by the end of the call."</div>`
+<div class="overcome-item"><strong>Usability is your trump card:</strong> With Rillion's 7.9 ease-of-setup score, offer a live evaluation: "Let's both set up a test workflow using your actual data — same invoices, same approval rules. See which platform your team is actually comfortable using by the end of the call."</div>`,
+
+    intel: `<div class="section-label">Not Covered by the July 2026 Battle Cards</div>
+<div class="gap-item"><div class="gap-label">Source Note</div><div class="gap-text">Rillion does not appear in either the Competitor Battle Cards deck (July 2026) or the Competitor Capabilities doc (6/12/26). The other four tabs reflect earlier internal research and have not been refreshed against those sources.</div></div>
+
+<div class="section-label">What We Know on Pricing</div>
+<div class="price-item"><strong>Quote-based</strong> &mdash; positioned for larger companies with complex, high-volume PO matching needs in manufacturing and healthcare. No published tiers.</div>
+
+<div class="section-label">Action</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span>If you are working a live Rillion deal, log pricing, benchmark stats and case studies so this card can be brought up to the same standard as the sourced competitors.</div>`
   },
 
   yooz: {
@@ -962,7 +1282,16 @@ const COMPETITORS = {
 
 <div class="section-label">How to Overcome</div>
 <div class="overcome-item"><strong>Confirm ERP support first:</strong> Immediately verify whether Ottimate supports the prospect's ERP. If it does, Yooz's connector breadth is moot — reframe the conversation on accuracy and AI quality.</div>
-<div class="overcome-item"><strong>Reframe the "connector" story:</strong> "250 connectors is impressive — as long as the data going through them is accurate. An integration that syncs misidentified vendors and incorrect line items into your ERP creates more work than it saves. Would you rather have 250 connectors or one that works correctly every time?"</div>`
+<div class="overcome-item"><strong>Reframe the "connector" story:</strong> "250 connectors is impressive — as long as the data going through them is accurate. An integration that syncs misidentified vendors and incorrect line items into your ERP creates more work than it saves. Would you rather have 250 connectors or one that works correctly every time?"</div>`,
+
+    intel: `<div class="section-label">Not Covered by the July 2026 Battle Cards</div>
+<div class="gap-item"><div class="gap-label">Source Note</div><div class="gap-text">Yooz does not appear in either the Competitor Battle Cards deck (July 2026) or the Competitor Capabilities doc (6/12/26). The other four tabs reflect earlier internal research and have not been refreshed against those sources.</div></div>
+
+<div class="section-label">What We Know on Pricing</div>
+<div class="price-item"><strong>Quote-based, volume-tiered</strong> &mdash; marketed on breadth of connectors (250+) rather than a published price list.</div>
+
+<div class="section-label">Action</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span>If you are working a live Yooz deal, log pricing, benchmark stats and case studies so this card can be brought up to the same standard as the sourced competitors.</div>`
   },
 
   quadient: {
@@ -978,22 +1307,35 @@ const COMPETITORS = {
       { val: "8.9", lbl: "Their Support G2", cls: "s-tie" }
     ],
     pitch: `<div class="section-label">Their Core Claim</div>
-<div class="their-edge">"99% accuracy" — achieved through human verification, not pure AI. Positioned as the "safe" choice for AP departments that don't trust automation without human oversight. Part of Quadient's larger suite (mailing, AR, customer comms) enabling cross-sell.</div>
+<div class="their-edge">An AI-driven automation provider simplifying critical business communications across finance, customer messaging, mail and delivery &mdash; connecting AP, AR, invoice delivery and cash visibility into "one connected experience." AP automation is powered by the acquired Beanworks engine.</div>
 <div class="section-label">How They Position Against Ottimate</div>
-<div class="their-edge">"We verify every invoice with human review — that's why our accuracy is 99%. Fully automated AI systems make mistakes no one catches until it's too late."</div>`,
+<div class="their-edge"><strong>Suite consolidation.</strong> Customer Communications Management, AP, AR, invoice delivery, a Cash Dashboard, mail and shipping automation, and multifamily package lockers &mdash; sold as one vendor relationship.</div>
+<div class="their-edge"><strong>Their AP proof points:</strong> 5x average ROI, 50% less time processing invoices, 56% faster approvals, 99% invoice capture accuracy, under 6 hours to automate AP, $31B+ spend processed.</div>
+<div class="their-edge"><strong>The honest read:</strong> Quadient is a generalist. It is not purpose-built for industry profitability, and it breaks down when high-volume, multi-location businesses try to scale on it.</div>
+<div class="section-label">Objection You Will Hear</div>
+<div class="their-edge">"Quadient handles our invoices, approvals and payments fine right now."<br><br><strong>Response:</strong> Quadient might work for a basic setup, but as a high-volume business its rigid workflows limit granular control over approval routing &mdash; and its limited payment options mean you are actively missing early payment discounts and virtual card rebates.</div>`,
 
-    weaknesses: `<div class="section-label">Top G2/TrustRadius Complaints</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>6-month implementation — sales promised "within 1 month"; reality was 6 months before payments went live</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Human verification errors — "capturing mistakes tend to happen... can be quite costly if not caught" — the very humans guaranteeing accuracy are introducing errors</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>2–3 day support response times — "support often takes 2-3 days to respond"</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Header-level PO matching only — cannot validate line items against price catalogs</div>
-<div class="weakness-item"><span class="wi-icon">⚠</span>Legacy HITL model — the "human in the loop" introduces the same bottlenecks and human errors that AP automation was supposed to eliminate</div>`,
+    weaknesses: `<div class="section-label">Voice of the Customer</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>High manual review</strong> &mdash; basic machine learning fails to reach optimal accuracy, requiring constant human intervention.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Data inaccuracies</strong> &mdash; the system routinely errors out on messy invoices, inconsistent formats, unfamiliar abbreviations and complex line items.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Rigid approvals</strong> &mdash; workflows lack customization and cannot route invoices based on specific line-item rules, limiting internal controls.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Lost profitability</strong> &mdash; fewer flexible payment options mean missed early payment discounts and no meaningful cash back.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Scaling issues</strong> &mdash; not purpose-built for industry profitability; breaks down with high-volume, multi-location businesses.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Deployment complexity</strong> &mdash; cloud vs. on-premise licensing, module-based pricing, transaction volume fees, and premium support sold separately.</div>`,
 
-    winmoves: `<div class="win-move"><strong>Attack the "human verification" model directly:</strong> "Quadient's 99% accuracy isn't AI — it's humans. And their own users say those humans make mistakes that are 'quite costly if not caught.' Why introduce a human bottleneck that creates the same errors AP automation was supposed to prevent?"</div>
-<div class="win-move"><strong>Implementation timeline weapon:</strong> "Ask their reference customers: how long did implementation really take? Customers report they were promised 1 month — it took 6 months before the first payment went live. What's 5 months of delayed AP automation worth to your business?"</div>
-<div class="win-move"><strong>"Pure AI vs. Legacy" positioning:</strong> "Quadient is a mailing and customer communications company that added AP as a product line. Ottimate is an AI-first AP specialist. Which company woke up this morning thinking about how to make your invoice processing better?"</div>
-<div class="win-move"><strong>Support comparison:</strong> "Quadient support takes 2–3 days to respond. During an AP crisis — a vendor threatening to cut service, a reconciliation error at close — that's unacceptable. Ottimate's support is available by phone, Zoom, and email."</div>
-<div class="killer-quote"><span class="killer-quote-label">Killer Question</span>"Quadient's '99% accuracy' sounds great — until you realize their own users say human errors are 'quite costly.' On 1,000 invoices a month, a 1% error rate is 10 mistakes your team has to find and fix. Is that the automation you were promised?"</div>`,
+    winmoves: `<div class="section-label">Ottimate's Three Differentiators</div>
+<div class="win-move"><strong>Dynamic invoice routing vs. rigid structural limits:</strong> Ottimate lets finance leaders design highly customizable approval workflows that route on client-specific rules regardless of business complexity. Quadient offers one-size-fits-all workflows that prevent teams from optimizing approval structures.</div>
+<div class="win-move"><strong>Built for profitability vs. flawed general applicability:</strong> Ottimate scales across high-volume, multi-entity portfolios and turns AP into a profit-generating engine through flexible payment options and rebates. Quadient is a generalist that breaks down as multi-location businesses grow.</div>
+<div class="win-move"><strong>Deep AP-specific intelligence vs. generic capture:</strong> Ottimate is backed by over a decade of domain training and delivers up to 99% automation accuracy on messy vendor documents. Quadient's limited machine learning cannot match it, so finance teams manually intervene to fix errors.</div>
+
+<div class="section-label">Objections &amp; Responses</div>
+<div class="win-move"><strong>"Quadient's machine learning already captures our invoice data."</strong> &mdash; "Their system frequently struggles with inconsistent formats, unfamiliar abbreviations and complex line items, forcing your team into manual review. Ottimate's AI has been trained for over a decade specifically for AP, delivering up to 99% automation and extracting line-level data that matches to your GL automatically."</div>
+
+<div class="section-label">Questions to Spark Interest</div>
+<div class="overcome-item">"How much time is your team wasting on manual review and data correction because your system struggles to capture complex line items and messy vendor invoices?"</div>
+<div class="overcome-item">"Are you settling for rigid approval workflows that limit internal controls &mdash; and missing thousands of dollars in cash back because your payment options aren't flexible enough?"</div>
+
+<div class="killer-quote"><span class="killer-quote-label">Landmine Question for Quadient</span>"If we need a single invoice dynamically split and routed to completely different locations or department heads based on specific line-item GL codes, can we easily customize those routing rules ourselves &mdash; or are we restricted by rigid approval templates?"</div>`,
 
     gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
 <div class="gap-item"><div class="gap-label">Limited Significant Gaps vs. Quadient</div><div class="gap-text">Quadient AP is a legacy, declining competitor. Ottimate should win most head-to-head evaluations on product quality, AI capability, and implementation speed. The primary risk is not losing to Quadient, but losing visibility in deals where Quadient is shortlisted before Ottimate enters the evaluation.</div></div>
@@ -1005,7 +1347,519 @@ const COMPETITORS = {
 
 <div class="section-label">How to Overcome</div>
 <div class="overcome-item"><strong>Counter the "human safety net" objection:</strong> "I understand the appeal of human verification. But Quadient's users report that their human team makes costly mistakes too — and those take 2–3 days to get support on. Our AI catches issues instantly and flags them for your review, rather than replacing your judgment."</div>
-<div class="overcome-item"><strong>Expose the bundle trap:</strong> "If you're evaluating Quadient AP because you already use Quadient mailing — that's a convenience argument, not a capability argument. Would you make the same decision for your ERP?"</div>`
+<div class="overcome-item"><strong>Expose the bundle trap:</strong> "If you're evaluating Quadient AP because you already use Quadient mailing — that's a convenience argument, not a capability argument. Would you make the same decision for your ERP?"</div>`,
+
+    intel: `<div class="section-label">Pricing &amp; Tier Packaging</div>
+<div class="price-item"><strong>No public price list.</strong> Varies significantly by deployment model (cloud vs. on-premise), modules selected, transaction volume and implementation scope.</div>
+<div class="price-item"><strong>Module-based pricing</strong> across Customer Communication Management, AP automation (Beanworks), AR automation and mail management solutions.</div>
+<div class="price-item"><strong>Quadient AP</strong> is typically priced per invoice processed annually with tiered volume pricing; some deployments add a platform fee plus per-transaction charges. Cloud is subscription; on-premise is a perpetual license plus annual maintenance. Premium support costs extra.</div>
+
+<div class="section-label">Their Benchmark Claims</div>
+<div class="stat-row">
+  <div class="stat-chip"><div class="sc-val">5x</div><div class="sc-lbl">Average ROI (AP automation)</div></div>
+  <div class="stat-chip"><div class="sc-val">50%</div><div class="sc-lbl">Less time processing invoices</div></div>
+  <div class="stat-chip"><div class="sc-val">56%</div><div class="sc-lbl">Faster approvals</div></div>
+  <div class="stat-chip"><div class="sc-val">99%</div><div class="sc-lbl">Claimed capture accuracy</div></div>
+  <div class="stat-chip"><div class="sc-val">78%</div><div class="sc-lbl">Reduction in processing time</div></div>
+  <div class="stat-chip"><div class="sc-val">$31B+</div><div class="sc-lbl">Spend processed</div></div>
+</div>
+
+<div class="section-label">Their Case Studies &mdash; note what they are actually about</div>
+<div class="case-item"><div class="case-name">Sharecare Health Data Services &mdash; Healthcare</div><div class="case-text">Impress software, DS-600 folder inserters and AIMS tracking for <em>physical mailroom and shipping</em>, achieving closed-loop document verification for HIPAA compliance. This is a mail case study, not an AP one.</div></div>
+<div class="case-item"><div class="case-name">Major North American pharmacy chain &mdash; Healthcare</div><div class="case-text">Replaced paper-based workflows with a low-code digital customer experience platform for consultations and flu shot registration. Again &mdash; customer communications, not accounts payable.</div></div>
+<div class="case-item"><div class="case-name">Coaching note</div><div class="case-text">Quadient's flagship references are mail and CCM deployments. If a prospect is buying AP, ask them for an AP-specific reference in their vertical.</div></div>
+
+<div class="section-label">Suite Modules</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span>Customer Communications Management (CCM) &middot; AP automation (Beanworks) &middot; AR automation &middot; Invoice delivery &middot; Cash Dashboard</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span>Mail &amp; shipping automation &mdash; postage meters, folder inserters, digital printers, parcel tracking, mailroom furniture, ink and supplies</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span>Smart lockers &mdash; multifamily package lockers</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Industries:</strong> Finance, Healthcare, Retail, Public Sector, Print Service Providers, Education, Insurance, Utilities. Note the absence of restaurants, hotels and grocery.</div>`
+  },
+
+  r365: {
+    name: "Restaurant365",
+    tagline: "All-in-One Restaurant Platform — accounting, inventory, workforce, payroll",
+    threat: "HIGH",
+    scores: [
+      { val: "<5 min", lbl: "Ottimate Extraction", cls: "s-win" },
+      { val: "48 hrs", lbl: "R365 Non-EDI", cls: "s-lose" },
+      { val: "Auto", lbl: "Our Stmt Recon", cls: "s-win" },
+      { val: "Manual", lbl: "Their Stmt Recon", cls: "s-lose" },
+      { val: "CSM", lbl: "Our Support Model", cls: "s-win" },
+      { val: "Ticket", lbl: "Their Support Model", cls: "s-lose" }
+    ],
+    pitch: `<div class="section-label">Their Core Claim</div>
+<div class="their-edge">An all-in-one, cloud-based platform built specifically for restaurants — back-office accounting, store operations, inventory, and workforce scheduling in a single system. By integrating directly with POS, vendor networks and banks, it connects daily store-level activity to real-time financial reporting and GL control.</div>
+<div class="section-label">How They Position Against Ottimate</div>
+<div class="their-edge"><strong>One system, one vendor.</strong> AP is a module inside accounting, which sits next to inventory, recipes, scheduling, payroll and R365 AI dashboards. The pitch is that you stop stitching tools together.</div>
+<div class="their-edge"><strong>Their proof points:</strong> 50% less time on accounting, 5% lower food costs, $100K reduced labor costs via a 15% reduction in forecasting errors.</div>
+<div class="their-edge"><strong>R365 AI.</strong> Natural-language prompts generate dashboards, visualizations and what-if scenarios; AI-driven purchase orders and labor schedules built from POS demand data.</div>
+<div class="section-label">Where Their Story Is Weakest</div>
+<div class="their-edge">R365's AP tools are not built for complex, large-scale operators. The accounting suite is broad; the AP engine underneath it is not deep.</div>`,
+
+    weaknesses: `<div class="section-label">Voice of the Customer</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>48-hour processing latency</strong> — non-EDI invoices stall in a processing queue for up to two days before reaching approving managers. During peak periods this creates severe invoice queues and approval delays.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Invisible EDI invoices</strong> — EDI feeds in R365 arrive with no attached document image, making it impossible for managers to visually inspect line items, notes or delivery slips.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Manual payment execution</strong> — requires exporting payment files and uploading them to bank portals, or paying for third-party software such as Precipio.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Manual statement audits</strong> — staff must match vendor monthly statements against invoices by hand, creating month-end closing delays and risking unrecorded bills that lead to vendor credit holds.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Ticketed support bottlenecks</strong> — no dedicated account manager; urgent processing or GL coding issues go into a help desk queue.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Rigid approval rules</strong> — limited approval structure options make complex or multi-level approval hierarchies difficult to accommodate.</div>`,
+
+    winmoves: `<div class="section-label">Ottimate's Four Differentiators</div>
+<div class="win-move"><strong>Best-in-class AI ingestion vs. 48-hour delays:</strong> Ottimate extracts header and line-item detail in under 5 minutes with no bottlenecks or manual intervention. R365's AP module can take up to 48 hours on non-EDI invoices.</div>
+<div class="win-move"><strong>Native automated statement reconciliation vs. manual month-end audits:</strong> Ottimate ingests vendor statements and matches them line-by-line against paid and pending invoices to instantly highlight missing bills. R365 forces accounting staff to do this by hand every month.</div>
+<div class="win-move"><strong>Advanced approval workflows vs. rigid structures:</strong> Ottimate supports multi-tiered routing rules by dollar amount, location and department without disruption. R365's limited approval functionality risks gaps and errors when mapping enterprise approval flows.</div>
+<div class="win-move"><strong>Dedicated CSM vs. ticketed help desk:</strong> Ottimate assigns a Customer Success Manager to oversee AP operations. R365 routes users through an impersonal ticketing system, slowing resolution when invoice or payment errors are urgent.</div>
+
+<div class="section-label">Two More Plays</div>
+<div class="win-move"><strong>Payments and cash-back:</strong> R365 requires manual uploads to bank websites or third-party workarounds to execute payments. Ottimate's VendorPay integrates directly — ACH, check or virtual card — with cash-back rebates on vCard transactions.</div>
+<div class="win-move"><strong>EDI image capture:</strong> Ottimate generates and attaches a full document image for every EDI invoice, so managers can inspect line items, notes and physical receipts. R365 leaves them blind on EDI feeds.</div>
+
+<div class="section-label">Questions to Spark Interest</div>
+<div class="overcome-item">"When your vendors submit monthly account statements, is your team still manually matching them line-by-line against open invoices in R365 — or do you have an automated tool catching missing bills instantly?"</div>
+<div class="overcome-item">"How are your managers currently verifying invoice images on your EDI vendor feeds — and would it help if your AP platform generated viewable images automatically while earning you a 0.5% cash-back rebate on virtual card payments?"</div>
+
+<div class="killer-quote"><span class="killer-quote-label">Landmine Question for R365</span>"If we process non-EDI invoices or receive EDI vendor feeds, can R365 guarantee sub-5-minute AI extraction, generate viewable invoice images for all EDI feeds, and automatically reconcile monthly vendor statements without manual work — or will we need third-party add-ons and up to 48-hour processing windows?"</div>`,
+
+    gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
+<div class="gap-item"><div class="gap-label">Scope — R365 Is a Full Restaurant ERP</div><div class="gap-text">R365 covers restaurant accounting and the general ledger, fixed assets, budgeting and forecasting, financial reporting, bank reconciliation, inventory, recipes, prep, purchasing and receiving, commissary, scheduling, time and attendance, tip automation, HR and payroll. Ottimate is AP-only. Where a prospect genuinely wants one vendor for the whole back office, this is a real scope gap that positioning alone cannot close.</div></div>
+<div class="gap-item"><div class="gap-label">POS-Native Operational Data</div><div class="gap-text">R365 pulls POS sales nightly to drive theoretical-vs-actual variance, daily P&amp;L, prime cost and menu engineering. Ottimate does not own that operational data layer, so COGS analytics live in a separate tool.</div></div>
+<div class="gap-item"><div class="gap-label">Third-Party Delivery Dispute Recovery</div><div class="gap-text">R365 automates dispute filing across Grubhub, DoorDash and UberEats to reclaim lost delivery fees — claiming recovery of up to 80% of disputed revenue. Ottimate has no equivalent.</div></div>
+
+<div class="section-label">Top Reasons Ottimate Loses to R365</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>Prospect is consolidating the entire restaurant back office and wants a single vendor for accounting, inventory and labor</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>R365 is already the accounting system of record — replacing AP means integrating rather than displacing</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>Operator prioritizes food-cost and labor analytics over AP throughput and payment monetization</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>Smaller single-concept operators for whom 48-hour processing is genuinely acceptable</div>
+
+<div class="section-label">How to Overcome</div>
+<div class="overcome-item"><strong>Coexist, don't displace:</strong> In most R365 accounts the winning motion is Ottimate as the AP layer feeding R365, not a rip-and-replace. Lead with the 48-hour queue, EDI image gap and manual statement reconciliation — three operational pains R365 will not fix.</div>
+<div class="overcome-item"><strong>Find the AP owner:</strong> R365 deals are usually driven by the Controller or Director of Ops. The person who feels the 48-hour queue and month-end statement audit is the AP Manager. Get to them separately.</div>`,
+
+    intel: `<div class="section-label">Pricing &amp; Tier Packaging</div>
+<div class="price-item"><strong>Custom pricing</strong> based on number of locations and modules selected — Accounting, Inventory &amp; Purchasing, Workforce Management, Payroll &amp; HR.</div>
+<div class="price-item"><strong>Plans:</strong> Core &middot; Essential &middot; Professional &middot; Enterprise</div>
+
+<div class="section-label">Their Benchmark Claims</div>
+<div class="stat-row">
+  <div class="stat-chip"><div class="sc-val">50%</div><div class="sc-lbl">Less time on accounting</div></div>
+  <div class="stat-chip"><div class="sc-val">5%</div><div class="sc-lbl">Lower food costs</div></div>
+  <div class="stat-chip"><div class="sc-val">$100K</div><div class="sc-lbl">Reduced labor costs</div></div>
+  <div class="stat-chip"><div class="sc-val">15%</div><div class="sc-lbl">Fewer forecasting errors (R365 AI)</div></div>
+  <div class="stat-chip"><div class="sc-val">2%</div><div class="sc-lbl">Net profit increase claim</div></div>
+</div>
+
+<div class="section-label">Their Case Studies</div>
+<div class="case-item"><div class="case-name">Georgia Foods — Bojangles franchisee, 46 locations <span>&middot; from QuickBooks and Sage</span></div><div class="case-text">Centralized multi-entity AP, intercompany transfers and daily reporting after expansion created 70-hour workweeks. <em>$70K&ndash;$140K saved annually</em> by avoiding additional back-office hires.</div></div>
+<div class="case-item"><div class="case-name">Villa Restaurant Group — 20+ brands, 400 locations</div><div class="case-text">Replaced disconnected legacy systems across 140 locations. <em>Halved inventory processing times</em>, lowered food and labor costs 1&ndash;2% year over year, reduced employee turnover.</div></div>
+<div class="case-item"><div class="case-name">Nova Restaurant Group — 7+ fine dining locations</div><div class="case-text">Centralized accounting and operational analytics. Weekly audit time cut <em>from 12 hours to one</em>, and <em>$850,000 more in bottom-line profit</em> over two years.</div></div>
+
+<div class="section-label">Module Map</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Accounting:</strong> AP automation, banking and reconciliation, fixed assets, budgeting and forecasting, financial reporting, bookkeeping, third-party dispute resolution.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Inventory &amp; Purchasing:</strong> theoretical-vs-actual variance, recipe and prep management, AI purchase orders with EDI receiving, commissary operations, AI dashboards.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Workforce:</strong> AI scheduling and sales forecasting, time and attendance, task management, logbook and chat, tip automation, employee training.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>HR &amp; Payroll:</strong> applicant tracking, paperless onboarding with I-9/W-4 and WOTC, integrated payroll synced to the GL.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Segments:</strong> QSR, casual dining, fast casual, fine dining, coffee shops, pizza — plus franchise brands, multi-location groups and accounting firms.</div>`
+  },
+
+  factura: {
+    name: "Factura.ai",
+    tagline: "Multi-Entity, Multi-Location AP — the closest look-alike to Ottimate",
+    threat: "HIGH",
+    scores: [
+      { val: "98%", lbl: "Ottimate Line Acc.", cls: "s-win" },
+      { val: "OCR", lbl: "Factura Capture", cls: "s-lose" },
+      { val: "Yes", lbl: "Our Price Anomaly AI", cls: "s-win" },
+      { val: "No", lbl: "Their Price Anomaly AI", cls: "s-lose" },
+      { val: "90%+", lbl: "Their Touchless Claim", cls: "s-tie" },
+      { val: "$1.3B", lbl: "Their Annual Volume", cls: "s-na" }
+    ],
+    pitch: `<div class="section-label">Their Core Claim</div>
+<div class="their-edge">"Designed with multi-entity and multi-location business AP in mind." Restaurants, accounting firms, property management and hotels. One email address ingests all invoices, approvals route straight to the location, invoices split easily across locations, and data posts to the right entity.</div>
+<div class="section-label">How They Position Against Ottimate</div>
+<div class="their-edge"><strong>"Not your grandma's OCR."</strong> They claim invoice information and coding in <em>under 30 seconds</em>, over 90% of invoices coded without human touch, and line-item handling with GL codes remembered by description.</div>
+<div class="their-edge"><strong>"Approval Bliss."</strong> Centralized approver inbox, built-in notes between AP and approvers, full status transparency, escalation reports.</div>
+<div class="their-edge"><strong>Go live in days.</strong> White-glove onboarding with no IT resource needed; their team handles the accounting integration. Plus lifetime digital archiving, smart duplicate catch, and Factura.ai Pay for ACH, check and virtual card.</div>
+<div class="section-label">Why This Card Matters</div>
+<div class="their-edge">Factura.ai targets the same verticals, the same multi-location complexity and the same buyer as Ottimate. Expect head-to-head evaluations where the differentiation must be technical, not positional.</div>`,
+
+    weaknesses: `<div class="section-label">Voice of the Customer</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>OCR limitations</strong> — fast, but basic. It struggles with inconsistent invoice formats, unfamiliar vendor abbreviations and complex line-item detail, producing data errors and missed details.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Hidden manual labor</strong> — because the AI models are less advanced, automation plateaus and the software requires significantly more human review than specialized, AP-trained AI.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Vulnerability to fraud and vendor error</strong> — relies on standard security and rigid approval policies. There is no real-time AI protection flagging cost discrepancies and exceptions before import and payment.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>No specialized AP models or unified payment rails</strong> — users navigate a disjointed payment workflow requiring continuous administrative intervention.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Speed marketed over accuracy</strong> — "under 30 seconds" is the headline claim, but speed doesn't matter if the data is wrong.</div>`,
+
+    winmoves: `<div class="section-label">Ottimate's Three Differentiators</div>
+<div class="win-move"><strong>Advanced AI vs. OCR with a light AI layer:</strong> Ottimate's specialized AI handles any receipt of goods and continuously learns from user behavior, delivering truly touchless line-item extraction without extensive manual review. Factura's basic OCR is fast but produces frequent errors that finance teams must correct by hand.</div>
+<div class="win-move"><strong>Proactive fraud and exception detection:</strong> Ottimate flags cost discrepancies, duplicate invoices and price anomalies in real time — before export to the ERP and before vendor payment. Factura relies on rigid approval policy structures and lacks real-time AI safeguards, leaving organizations exposed to vendor overcharges and mistakes.</div>
+<div class="win-move"><strong>Capture-to-payment continuity:</strong> Ottimate bridges invoice capture with optimized payment execution — ACH, check and virtual card with cash-back rewards — backed by deep multi-entity routing. Factura lacks specialized AP models, multi-entity routing depth and unified payment rails.</div>
+
+<div class="section-label">Objections &amp; Responses</div>
+<div class="win-move"><strong>"Factura.ai uses advanced AI and processes invoices in under 30 seconds."</strong> &mdash; "Speed doesn't matter if the data is wrong. Factura's basic OCR frequently misreads complex line items and inconsistent vendor formats, so your team spends the time it saved reviewing and correcting. Ottimate focuses on touchless accuracy — coded right the first time, without human intervention."</div>
+
+<div class="section-label">Questions to Spark Interest</div>
+<div class="overcome-item">"How much time does your team spend manually correcting invoices that Factura.ai misreads or flags as errors?"</div>
+<div class="overcome-item">"If a vendor quietly raises the price on a specific line item, how does your current AP process alert you to that discrepancy before the payment is approved?"</div>
+
+<div class="killer-quote"><span class="killer-quote-label">Landmine Question for Factura.ai</span>"When we receive a complex invoice with dozens of line items using unfamiliar vendor abbreviations or inconsistent formatting, how does Factura.ai automate splitting and allocating individual lines to different GL codes — or will our team have to manually correct and map those lines ourselves?"</div>`,
+
+    gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
+<div class="gap-item"><div class="gap-label">Same Playbook, Simpler Story</div><div class="gap-text">Factura.ai sells the same multi-entity, multi-location AP story to the same verticals. Their pitch is simpler — one email inbox, 30-second coding, go live in days, white-glove integration handled for you. In a fast evaluation, simplicity can beat depth.</div></div>
+<div class="gap-item"><div class="gap-label">Flat Per-Location Pricing</div><div class="gap-text">Two plans, both a flat monthly fee per location. For a prospect comparing predictability, that is an easy number to underwrite. Be ready to show TCO including rebate revenue rather than competing on list price.</div></div>
+<div class="gap-item"><div class="gap-label">Restaurant365 and NetSuite Reference Depth</div><div class="gap-text">Their published case studies are large multi-brand QSR franchisees running Restaurant365 and NetSuite. In franchise deals they will have a directly comparable reference.</div></div>
+
+<div class="section-label">Top Reasons Ottimate Loses to Factura.ai</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>Prospect is buying on speed-to-value and price predictability rather than data accuracy</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>Multi-brand QSR franchisee where Factura has a near-identical named reference</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>Evaluation never gets technical enough to expose the OCR accuracy gap</div>
+
+<div class="section-label">How to Overcome</div>
+<div class="overcome-item"><strong>Make it a bake-off:</strong> Run their ten messiest invoices — handwritten notes, unfamiliar abbreviations, multi-page distributor bills — through both. The OCR gap is only visible on real documents, so put real documents in front of them.</div>
+<div class="overcome-item"><strong>Lead with price-anomaly detection:</strong> Factura has smart duplicate catch but no real-time price-variance AI. Ask them to demo catching a quiet unit-price increase before payment. They cannot.</div>`,
+
+    intel: `<div class="section-label">Pricing &amp; Tier Packaging</div>
+<div class="price-item"><strong>Two plans, both a flat monthly fee per location:</strong> <em>Standard</em> and <em>Vendor Payments Only</em>.</div>
+<div class="price-item"><strong>Their ROI framing:</strong> "90% cost reduction" — anchored on the IOFM benchmark of $12.90 average cost per invoice, plus eliminated duplicate invoices and vendor late fees. They also claim employees become 12x more productive.</div>
+
+<div class="section-label">Their Benchmark Claims</div>
+<div class="stat-row">
+  <div class="stat-chip"><div class="sc-val">&lt;1 min</div><div class="sc-lbl">To code an invoice</div></div>
+  <div class="stat-chip"><div class="sc-val">90%+</div><div class="sc-lbl">Invoices coded without human touch</div></div>
+  <div class="stat-chip"><div class="sc-val">$1.3B</div><div class="sc-lbl">Invoice value processed annually</div></div>
+</div>
+
+<div class="section-label">Their Case Studies</div>
+<div class="case-item"><div class="case-name">QSR Group Inc.</div><div class="case-text"><em>90% less AP administrative work</em>; approval turnaround from eight days to one. Scaled <em>33 to 73 locations</em> on the same two AP staff — over <em>$200,000 in labor savings</em>.</div></div>
+<div class="case-item"><div class="case-name">Raymer Business Service <span>&middot; Restaurant365</span></div><div class="case-text">Line-by-line capture plus a non-standard 13-period fiscal calendar. <em>40 hours saved weekly</em>, scaling to support 200+ Carl's Jr. locations across franchisees.</div></div>
+<div class="case-item"><div class="case-name">Redberry <span>&middot; NetSuite</span></div><div class="case-text">Multi-brand workflows across <em>213 Burger King, Taco Bell and Jersey Mike's locations</em>. 60+ hours saved weekly and roughly <em>$180,000 in annual savings</em> with three AP coordinators.</div></div>
+
+<div class="section-label">Feature &amp; Ecosystem Map</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Core:</strong> capture/code/send, customized approvals by vendor, location, department, dollar amount or legal entity, ERP sync, audit controls, lifetime archive search.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Factura.ai Pay:</strong> ACH, checks and virtual cards with a custom payment approval process and cash back on invoice spend.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Integrations:</strong> Sage Intacct, Workday, NetSuite, Restaurant365, Dynamics 365, QuickBooks, HIA, Entrata, Acumatica, PAR, COGS-Well, Gravity Software.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Verticals:</strong> restaurants, accounting firms, property management, hotels — plus c-stores, cannabis, grocery and retail in their "industry agnostic" messaging.</div>`
+  },
+
+  marginedge: {
+    name: "MarginEdge",
+    tagline: "Restaurant Back-Office — human transcribers, keeps 100% of vCard rebates",
+    threat: "MEDIUM",
+    scores: [
+      { val: "<12 hrs", lbl: "Ottimate Turnaround", cls: "s-win" },
+      { val: "24–48 hrs", lbl: "Their Stated Claim", cls: "s-lose" },
+      { val: "Shared", lbl: "Our vCard Rebates", cls: "s-win" },
+      { val: "0%", lbl: "Their Rebate Share", cls: "s-lose" },
+      { val: "Days", lbl: "Our Onboarding", cls: "s-win" },
+      { val: "6 wks", lbl: "Their Onboarding", cls: "s-lose" }
+    ],
+    pitch: `<div class="section-label">Their Core Claim</div>
+<div class="their-edge">"As restaurant people ourselves, we know what restaurants need." An all-in-one restaurant management platform that connects POS and accounting, digitizes invoices via photo, email, upload or EDI, and delivers a daily controllable P&amp;L. Bill pay is included and unlimited at no extra cost.</div>
+<div class="section-label">How They Position Against Ottimate</div>
+<div class="their-edge"><strong>All-in-one convenience.</strong> Invoice processing, inventory, recipe costing, menu engineering, kitchen displays, order management, price alerts and bill pay in one subscription — 50+ POS integrations.</div>
+<div class="their-edge"><strong>Humans as a feature.</strong> They market "a powerful combo of tech and actual humans with actual restaurant experience," and claim to capture even hand-scribbled and spilled-on invoices.</div>
+<div class="their-edge"><strong>Flat pricing.</strong> $300&ndash;$330 per location per month, all-inclusive, "no hidden fees" — plus Tom, their AI operations copilot, and an AI Connector for ChatGPT and Claude.</div>
+<div class="section-label">Where Their Story Is Weakest</div>
+<div class="their-edge">Their own marketing admits invoice coding takes 24&ndash;48 hours and relies on human transcribers. That is the whole case against them.</div>`,
+
+    weaknesses: `<div class="section-label">Voice of the Customer</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Notoriously slow onboarding</strong> — a painful six-week manual process, because the system cannot pull directly from an existing Chart of Accounts. Users configure brand-new account codes from scratch.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Glacial turnaround</strong> — the marketed window is 24&ndash;48 hours, but reliance on manual human review means actual verification frequently drags to two or three days.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>The tied recipe-and-GL nightmare</strong> — GL coding is strictly tied to recipe ingredients, so every menu or ingredient change turns into a tedious back-office accounting exercise.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Rigid approval policies</strong> — only standard approval rules, with no complex AND/OR routing conditions, limiting internal control.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Pocketed rebates</strong> — MarginEdge runs a virtual card program but keeps 100% of the cash-back rebates generated by your vendor spend. Most customers do not know it exists.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Narrow scalability</strong> — restaurant-only architecture. It is a non-starter for groups that also operate hotels, country clubs, grocery, retail or healthcare entities.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Extraction fragility</strong> — the engine struggles with inconsistent formats, messy handwriting and custom line-item fields, forcing constant manual edits by accountants.</div>`,
+
+    winmoves: `<div class="section-label">Ottimate's Four Differentiators</div>
+<div class="win-move"><strong>AI and automation maturity:</strong> Ottimate uses AP-specific AI models trained for over a decade, delivering up to 99% automation with automated Trust Scores and smart GL suggestions. MarginEdge lacks true machine learning and relies on manual human transcribers, which bottlenecks processing and plateaus automation.</div>
+<div class="win-move"><strong>Onboarding speed:</strong> Ottimate pulls the existing Chart of Accounts directly from the accounting system. MarginEdge requires a six-week onboarding process that forces users to manually configure brand-new account codes.</div>
+<div class="win-move"><strong>Approval workflow customization:</strong> Ottimate builds rules with complex AND/OR logic on granular line-item criteria. MarginEdge offers only rigid standard approval policies.</div>
+<div class="win-move"><strong>Data quality and invoice handling:</strong> Ottimate extracts granular line-item data and auto-maps complex vendor invoices to the correct GL. MarginEdge's engine struggles with inconsistent formats and custom fields.</div>
+
+<div class="section-label">Objections &amp; Responses</div>
+<div class="win-move"><strong>"It's built for restaurants and handles AP and inventory in one place."</strong> &mdash; "All-in-one sounds convenient, but MarginEdge forces a massive manual setup configuring ingredients recipe-by-recipe, and ties your financial GL coding to those recipes — so every recipe change becomes an accounting project. Pair Ottimate with a specialist inventory tool like COGS-Well and you get touchless AP plus hands-free receiving without compromising financial controls."</div>
+<div class="win-move"><strong>"MarginEdge already handles our bill pay."</strong> &mdash; "Their manual transcription takes two to three days, causing reconciliation and payment delays. Ottimate delivers verified invoices in under 12 hours. And on payments — did you know MarginEdge has a virtual card program but keeps 100% of the cash-back rebates? Ottimate shares those rebates with you to offset your software cost."</div>
+
+<div class="section-label">Questions to Spark Interest</div>
+<div class="overcome-item">"Is your accounting team wasting hours manually updating GL codes because your AP system ties coding strictly to recipe ingredients, making every menu update a back-office nightmare?"</div>
+<div class="overcome-item">"Are you aware that MarginEdge pockets 100% of the virtual card and digital payment rebates from your vendors, whereas Ottimate shares those cash-back rewards to help offset your software cost?"</div>
+
+<div class="killer-quote"><span class="killer-quote-label">Landmine Question for MarginEdge</span>"What percentage of the virtual card and digital payment cash-back rebates generated by our vendor spend do you share back with us — and where can we track those accumulated earnings in our dashboard?"</div>`,
+
+    gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
+<div class="gap-item"><div class="gap-label">Scope — Full Restaurant Back Office</div><div class="gap-text">MarginEdge bundles inventory, recipe costing, menu engineering, kitchen recipe displays, order guides, theoretical-vs-actual usage, daily controllable P&amp;L, price alerts, and Freepour liquor inventory. Ottimate is AP-only. For an independent or small group buying one tool, that breadth is genuinely attractive.</div></div>
+<div class="gap-item"><div class="gap-label">Flat, All-Inclusive Pricing</div><div class="gap-text">$300&ndash;$330 per location per month with unlimited invoice uploads and unlimited bill pay included, no per-transaction fees. It is a very easy number for an operator to say yes to.</div></div>
+<div class="gap-item"><div class="gap-label">POS Breadth and Accountant Channel</div><div class="gap-text">50&ndash;60+ POS integrations and a strong following among restaurant-specialist accounting firms, who bring MarginEdge into their whole client base. Two of their three published case studies are CPA firms serving 30 restaurant clients each.</div></div>
+
+<div class="section-label">Top Reasons Ottimate Loses to MarginEdge</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>Single-concept or small restaurant group buying one tool for inventory, recipes and AP together</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>The prospect's outsourced accounting firm has standardized on MarginEdge across its client base</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>Price-led decision where the all-inclusive per-location fee wins before rebate economics are modeled</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>Operator genuinely values daily controllable P&amp;L and menu engineering over AP throughput</div>
+
+<div class="section-label">How to Overcome</div>
+<div class="overcome-item"><strong>Model the rebate:</strong> Their fee is real, but so is the rebate revenue they keep. Build the side-by-side showing Ottimate plus shared vCard rebates against MarginEdge's flat fee plus pocketed rebates. On meaningful vendor spend the gap closes fast.</div>
+<div class="overcome-item"><strong>Qualify on portfolio breadth:</strong> If the group operates anything beyond restaurants — hotels, clubs, retail, healthcare — MarginEdge is architecturally disqualified. Establish that early.</div>
+<div class="overcome-item"><strong>Attack the recipe-GL coupling:</strong> Ask what happens to their books the next time they change a menu item. It is the pain they live with and rarely name.</div>`,
+
+    intel: `<div class="section-label">Pricing &amp; Tier Packaging</div>
+<div class="price-item"><strong>Single all-inclusive model: $300&ndash;$330 per location per month.</strong> Includes all core features, unlimited invoice management, unlimited bill pay, and no hidden fees. Optional add-ons for POS integrations such as Toast.</div>
+<div class="price-item"><strong>Custom pricing for large groups</strong>, quoted on complexity and size.</div>
+<div class="price-item"><strong>Included:</strong> unlimited invoice uploads and payments, real-time cost tracking and daily P&amp;L, inventory and recipe management, 60+ POS and multiple accounting integrations, mobile invoice submission.</div>
+
+<div class="section-label">Their Case Studies — note two of three are CPA firms</div>
+<div class="case-item"><div class="case-name">Bookkeeping Solutions &amp; Consulting — accounting firm, 30 restaurant clients <span>&middot; QuickBooks</span></div><div class="case-text">Replaced a full day of assistant data entry with nightly syncs. Financial reports delivered by the <em>5th to 15th</em> of the month. Price Movers alerts notify chefs of cost increases.</div></div>
+<div class="case-item"><div class="case-name">The Fork CPAs — accounting firm, 30 restaurant clients <span>&middot; QuickBooks</span></div><div class="case-text">Automated line-item capture and statement reconciliation, saving <em>3 hours per client weekly</em> and freeing the firm to sell advisory work.</div></div>
+<div class="case-item"><div class="case-name">Burger 21 — fast-casual franchisor, 16 locations <span>&middot; Revel POS + QuickBooks</span></div><div class="case-text">Standardized product-level invoice mapping and merged plate costing with kitchen displays. <em>2% food cost reduction</em> and faster month-end closes across 14 accounting systems.</div></div>
+
+<div class="section-label">Feature Map</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Invoice processing</strong> — photo, email, upload or EDI; line-item capture in 24&ndash;48 hours; SKU relationships across vendors; coding by your rules.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Bill pay</strong> — an internal team writes checks on customers' behalf covering checks, envelopes and stamps; electronic payments run through ComData. Statement reconciliation is unlocked by using their Bill Pay.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Cost management</strong> — daily controllable P&amp;L, prime costs, category budgets, Price Movers and alerts, theoretical vs. actual usage.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Inventory &amp; ordering</strong> — Freepour liquor scale integration (20 bottles/minute), auto-updating count sheets, order guides, commissary transfers.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>AI</strong> — "Tom" the operations copilot, an AI Connector exposing MarginEdge data to ChatGPT and Claude, custom sales forecasting, and an AI recipe uploader.</div>`
+  },
+
+  mineraltree: {
+    name: "MineralTree",
+    tagline: "Sage Intacct's Embedded Payments Partner — TotalAP, Vendor Payments, Inspyrus",
+    threat: "MEDIUM",
+    scores: [
+      { val: "99%", lbl: "Ottimate Automation", cls: "s-win" },
+      { val: "Header", lbl: "Their Capture Depth", cls: "s-lose" },
+      { val: "Real-time", lbl: "Our ERP Sync", cls: "s-win" },
+      { val: "Sync Lag", lbl: "Their Sage Sync", cls: "s-lose" },
+      { val: "Dedicated", lbl: "Our Vendor Enroll", cls: "s-win" },
+      { val: "Secondary", lbl: "Their Vendor Enroll", cls: "s-lose" }
+    ],
+    pitch: `<div class="section-label">Their Core Claim</div>
+<div class="their-edge">"Pay your vendors in one click — entirely inside Sage Intacct." Built in partnership with Sage, Vendor Payments powered by MineralTree is positioned as the <em>embedded</em> payments automation solution for Sage Intacct. Once invoices are approved, click Pay — virtual card, ACH or check, without leaving the ERP.</div>
+<div class="section-label">Three Platforms, One Pitch</div>
+<div class="their-edge"><strong>Sage Vendor Payments</strong> — the embedded payments layer for Sage Intacct.<br><strong>TotalAP</strong> — a mid-market platform in three shapes: invoice-to-pay, payments-only, or invoice capture.<br><strong>Inspyrus</strong> — enterprise AP and payment automation used in 130+ countries for high-volume, multi-ERP shared service centers with global e-invoicing compliance.</div>
+<div class="section-label">How They Position Against Ottimate</div>
+<div class="their-edge">Visibility, control and impact: real-time spend insight across entities and ERPs, standardized approvals with role-based permissions and audit trails, and rebates that "turn AP into a financial advantage." They also offer Payment Optimization Services to analyze your payment mix by method, vendor, cost and risk.</div>`,
+
+    weaknesses: `<div class="section-label">Voice of the Customer</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Data input errors and poor extraction</strong> — struggles with complex line-item detail, unfamiliar abbreviations and inconsistent invoice formats, hurting GL accuracy.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>High manual effort</strong> — the absence of advanced, AP-specific AI means basic automation requires significantly more manual correction from the finance team.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Rigid approvals</strong> — inflexible workflows fail to enforce client-specific line-item rules, limiting internal controls.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Trouble with allocations</strong> — <em>Access Health Louisiana eliminated MineralTree from consideration</em> for lacking robust multi-entity allocation, which they deemed a must-have. When pressed on complex allocations, MineralTree reps hesitated and needed to "check with the backend."</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Sync latency and "Pending Operations" errors</strong> — the Sage Intacct integration is a bidirectional sync, not true embedding. Payments do not immediately reflect in the GL, creating month-end reconciliation headaches.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Support blame loop</strong> — users get caught between bifurcated support teams when something breaks.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Passive vendor enrollment</strong> — the rebate program exists, but enrollment effort is secondary to the software, limiting actual cash back received.</div>`,
+
+    winmoves: `<div class="section-label">Ottimate's Three Differentiators</div>
+<div class="win-move"><strong>AI capability and data integrity:</strong> Ottimate's AP-specific models, trained for over a decade, deliver up to 99% automation and map line-item detail to the correct account dimensions. MineralTree lacks these capabilities and produces data input errors that hurt GL accuracy and demand heavy manual intervention.</div>
+<div class="win-move"><strong>Customizable approval routing:</strong> Ottimate routes instantly on client-specific line-item rules no matter how complex the business structure. MineralTree's approval workflows are inflexible and less customizable, failing to enforce unique compliance needs.</div>
+<div class="win-move"><strong>Dedicated vendor enrollment for cash back:</strong> Both offer vCard rebates, but Ottimate's dedicated enrollment team proactively calls suppliers to convert them to digital payments, achieving materially higher acceptance rates. MineralTree's enrollment is secondary and perceived as passive.</div>
+
+<div class="section-label">Objections &amp; Responses</div>
+<div class="win-move"><strong>"We use Sage Intacct and MineralTree is their embedded native partner."</strong> &mdash; "While it's marketed as embedded, it functions as a bidirectional sync. Users experience 'Pending Operations' errors and sync latency where payments don't reflect in the GL, creating reconciliation headaches at month-end and a blame loop between support teams. Ottimate provides a mature, stable API connection that pushes completed transactions to Sage cleanly — plus the deep line-item extraction MineralTree lacks."</div>
+<div class="win-move"><strong>"MineralTree already offers virtual card rebates."</strong> &mdash; "True, but their vendor enrollment effort is secondary to the software. Ottimate treats AP like a profit center — a dedicated team actively calls your suppliers to convert them to virtual cards. With our vendor network we routinely achieve much higher vCard acceptance rates than generic processors, meaning significantly more cash back to offset your software cost."</div>
+
+<div class="section-label">Questions to Spark Interest</div>
+<div class="overcome-item">"How much time is your team wasting on manual data entry and error correction because your system struggles to capture complex line-item detail and inconsistent invoice formats?"</div>
+<div class="overcome-item">"Are you experiencing sync lag between your payment module and your general ledger that creates reconciliation headaches at month-end — and are your approval workflows too inflexible for your routing rules?"</div>
+
+<div class="killer-quote"><span class="killer-quote-label">Landmine Question for MineralTree</span>"If we have a single invoice that needs to be split and allocated across multiple locations, clinics or departments, does your platform natively automate those complex allocations — or will our team have to manually code those splits?"</div>`,
+
+    gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
+<div class="gap-item"><div class="gap-label">The Sage Partnership Itself</div><div class="gap-text">MineralTree is Sage's named partner and sells from inside the Sage Intacct experience. In Sage-led deals they arrive pre-endorsed, and "native" carries weight with a risk-averse buying committee even when the reality is a bidirectional sync.</div></div>
+<div class="gap-item"><div class="gap-label">Global Enterprise Reach via Inspyrus</div><div class="gap-text">Inspyrus serves shared service centers in 130+ countries with global e-invoicing compliance and integrations to Oracle EBS, JD Edwards, Oracle Cloud ERP, PeopleSoft, SAP and Infor. For a multi-ERP global enterprise, Ottimate has no equivalent.</div></div>
+<div class="gap-item"><div class="gap-label">Payment Optimization Consulting</div><div class="gap-text">Their Payment Optimization Services productize an analysis of payment mix by method, vendor, cost and risk. It is a credible CFO-level conversation starter that Ottimate should be ready to match with its own rebate modeling.</div></div>
+
+<div class="section-label">Top Reasons Ottimate Loses to MineralTree</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>Sage Intacct is the ERP and the Sage account team is steering the deal</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>Prospect wants payments automation only, with invoice capture already handled elsewhere</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>Global enterprise with multiple ERPs and shared service centers — Inspyrus territory</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>"Native to our ERP" is treated as a procurement requirement rather than a technical claim to be tested</div>
+
+<div class="section-label">How to Overcome</div>
+<div class="overcome-item"><strong>Test the word "embedded":</strong> Ask them to show a payment posting to the GL in real time during the demo, and to explain what a "Pending Operations" error is. The sync latency is the crack in the native story.</div>
+<div class="overcome-item"><strong>Use Access Health Louisiana:</strong> A named prospect eliminated MineralTree specifically over multi-entity allocation. If your prospect has clinics, branches or entities, make allocation the evaluation criterion.</div>
+<div class="overcome-item"><strong>Compete on realized rebate, not rebate rate:</strong> Ask what percentage of their vendor spend actually converted to virtual card. Acceptance rate, not the advertised rate, is where the money is.</div>`,
+
+    intel: `<div class="section-label">Pricing &amp; Tier Packaging</div>
+<div class="price-item"><strong>Custom, quote-based — no public tier list.</strong> Cost drivers: invoices processed per month, feature set (TotalAP, Vendor Payments, multi-entity support, advanced integrations) and implementation complexity.</div>
+<div class="price-item"><strong>Plans:</strong> <em>TotalAP</em> (invoice capture, OCR, approval workflows, ERP integrations) and <em>Vendor Payments</em> (ACH, virtual cards, checks, payment execution).</div>
+<div class="price-item"><strong>Hidden and additional costs:</strong> onboarding and implementation &middot; data migration and training &middot; invoice overage fees &middot; premium support and advanced integrations &middot; auto-renewal that may contain increases.</div>
+
+<div class="section-label">Their Benchmark Claims</div>
+<div class="stat-row">
+  <div class="stat-chip"><div class="sc-val">20 hrs</div><div class="sc-lbl">Saved monthly — Baltimore Ravens</div></div>
+  <div class="stat-chip"><div class="sc-val">50%</div><div class="sc-lbl">Faster processing — EO Products</div></div>
+  <div class="stat-chip"><div class="sc-val">70%</div><div class="sc-lbl">Less AP time — Ladera Winery</div></div>
+  <div class="stat-chip"><div class="sc-val">83%</div><div class="sc-lbl">Faster approvals — Health Programs</div></div>
+</div>
+
+<div class="section-label">Their Case Studies</div>
+<div class="case-item"><div class="case-name">Quickfire Restaurants — Texas hospitality group, 3 entities <span>&middot; QuickBooks via Right Networks</span></div><div class="case-text">90+ invoices weekly. TotalAP cut weekly payment processing from 2+ hours to <em>30&ndash;60 minutes</em>. The platform paid for itself purely on saved checks, envelopes and postage.</div></div>
+<div class="case-item"><div class="case-name">Affinity Dental Management — DSO, 32 locations <span>&middot; QuickBooks</span></div><div class="case-text">1,000 invoices/month after acquisitions, up to 12-page dental supply invoices. Reduced daily AP to ~10 minutes of scanning plus an hour of posting. <em>30% of AP spend shifted to SilverPay virtual cards</em>, with rebates fully offsetting the software cost.</div></div>
+
+<div class="section-label">Products &amp; Ecosystem</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>TotalAP</strong> — invoice-to-pay, payments-only, or invoice-capture-only configurations for mid-market.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Vendor Payments</strong> — the Sage Intacct embedded payments experience.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Inspyrus</strong> — enterprise AP for 130+ countries, multi-ERP shared service centers, global e-invoicing compliance.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Features:</strong> Virtual Card (SilverPay) and Payment Optimization Services.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Integrations:</strong> Sage Intacct, Sage 50, NetSuite, QuickBooks, Microsoft Dynamics, Oracle EBS, Oracle ERP Cloud, JD Edwards EnterpriseOne, Acumatica.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Industries:</strong> Healthcare, Non-Profits, Food &amp; Beverage, Education, Retail.</div>`
+  },
+
+  xtrachef: {
+    name: "xtraCHEF by Toast",
+    tagline: "Toast Back-Office Bundle — invoice digitizing and recipe costing, no payments",
+    threat: "LOW",
+    scores: [
+      { val: "99.5%", lbl: "Our Header Acc.", cls: "s-win" },
+      { val: "95%", lbl: "Our Line-Item Acc.", cls: "s-win" },
+      { val: "Native", lbl: "Our Payment Exec.", cls: "s-win" },
+      { val: "None", lbl: "Their Payment Exec.", cls: "s-lose" },
+      { val: "Auto", lbl: "Our Stmt Recon", cls: "s-win" },
+      { val: "Manual", lbl: "Their Stmt Recon", cls: "s-lose" }
+    ],
+    pitch: `<div class="section-label">Their Core Claim</div>
+<div class="their-edge">Restaurant back-office software for invoice automation, recipe costing, inventory management and cost reporting — built for US restaurants and hospitality groups tracking ingredient costs and margins. Inside the Toast suite it complements Toast POS and Toast Payroll by adding cost and profitability visibility across menu items, suppliers and locations.</div>
+<div class="section-label">How They Position Against Ottimate</div>
+<div class="their-edge"><strong>Bundle simplicity.</strong> "You already use Toast POS, so keeping xtraCHEF bundled makes the back office simpler."</div>
+<div class="their-edge"><strong>Freemium entry.</strong> An "On the House" free tier including AI invoice processing, line-item recognition, email/EDI ingestion, automated GL coding and vendor management. Paid plans start at $149/month.</div>
+<div class="their-edge"><strong>Rebates powered by Buyers Edge</strong> — cash back on purchases from rebatable manufacturers, which is a purchasing rebate, not a payment rebate.</div>
+<div class="section-label">Where Their Story Is Weakest</div>
+<div class="their-edge">xtraCHEF is a digitizing and costing tool. It does not execute vendor payments — the single most expensive part of AP is left entirely untouched.</div>`,
+
+    weaknesses: `<div class="section-label">Voice of the Customer</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Incomplete payables lifecycle</strong> — xtraCHEF does not process or execute vendor payments natively, forcing finance teams to do the work twice in their bank portal or accounting software.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Processing delays and maintenance outages</strong> — scanning latency, misread invoices on new vendors, and scheduled platform downtime that lands during time-sensitive weekend closes.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Manual statement reconciliation</strong> — no automated monthly vendor statement reconciliation, leaving teams exposed to unrecorded invoices and statement mismatches.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Toast gravity</strong> — non-Toast POS integrations are limited, which is a problem for growing groups running hybrid software stacks.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Weak multi-condition approvals</strong> — struggles with rules that combine dollar threshold, location and specific GL account simultaneously, and with multi-entity allocation.</div>`,
+
+    winmoves: `<div class="section-label">Ottimate's Three Differentiators</div>
+<div class="win-move"><strong>Full-cycle payment automation and cash-back rebates:</strong> Ottimate automates capture through payment execution with built-in virtual card, ACH and check, unlocking cash-back rebates. xtraCHEF functions primarily as an invoice digitizing and costing tool, leaving teams to schedule, pay and reconcile outside the system.</div>
+<div class="win-move"><strong>Enterprise-grade reliability:</strong> Ottimate processes multi-page, handwritten and complex vendor invoices at up to 99.5% header accuracy and 95% line-item accuracy. xtraCHEF users report scanning latency, misreads on new vendors, and maintenance downtime during weekend closes.</div>
+<div class="win-move"><strong>Automated statement reconciliation:</strong> Ottimate ingests vendor statements and reconciles them against open and paid invoices in real time, catching missing bills and preventing double payments. xtraCHEF has no native statement auditing.</div>
+
+<div class="section-label">Objections &amp; Responses</div>
+<div class="win-move"><strong>"We already use Toast POS, so bundling xtraCHEF is simpler."</strong> &mdash; "Bundling gives you basic invoice ingestion, but leaves the most expensive part of AP untouched: executing vendor payments. Ottimate integrates directly into your accounting software <em>and</em> Toast, adding full payment automation with VendorPay — automated payment runs plus virtual card rebates."</div>
+<div class="win-move"><strong>"xtraCHEF has a free plan, so switching increases our software spend."</strong> &mdash; "The free and entry tiers cover basic scanning and GL coding, without deep multi-unit reporting, advanced workflows or payment execution. Ottimate isn't an expense, it's a financial driver — eliminating manual payment processing, catching line-item overcharges, and returning cash-back rebates on virtual card payments."</div>
+
+<div class="section-label">Questions to Spark Interest</div>
+<div class="overcome-item">"Once xtraCHEF scans your invoices, how much time is your accounting team still spending manually making payments in your bank portal or cutting checks?"</div>
+<div class="overcome-item">"If you expand your group or adopt a non-Toast system, how confident are you that xtraCHEF can scale your AP across multiple POS platforms without losing data?"</div>
+
+<div class="killer-quote"><span class="killer-quote-label">Landmine Question for xtraCHEF</span>"When our kitchen staff swaps a vendor, changes a menu item or updates an ingredient, does that disrupt our accounting? Will our finance team have to manually edit individual recipe settings to adjust GL mapping — or is our financial GL coding completely separate from the back-of-house recipe database?"</div>`,
+
+    gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
+<div class="gap-item"><div class="gap-label">The Toast Bundle</div><div class="gap-text">For an operator already running Toast POS and Toast Payroll, xtraCHEF is one more checkbox with one vendor, one contract and one support line. That convenience argument is real even though it is not a capability argument.</div></div>
+<div class="gap-item"><div class="gap-label">Free Tier</div><div class="gap-text">"On the House" costs nothing and includes AI invoice processing, line-item recognition, email/EDI ingestion, automated GL coding and vendor management. It is hard to displace free at the top of the funnel.</div></div>
+<div class="gap-item"><div class="gap-label">Recipe Costing, Inventory and Buyers Edge Rebates</div><div class="gap-text">Recipe costing, inventory optimization, menu-item profitability and purchasing rebates through Buyers Edge sit outside Ottimate's scope. Where an operator's priority is food cost rather than AP, xtraCHEF answers a different question.</div></div>
+
+<div class="section-label">Top Reasons Ottimate Loses to xtraCHEF</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>Toast-standardized operator consolidating on a single vendor</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>Small group where the free tier genuinely covers the need</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>The buyer is a chef or ops leader focused on food cost, not a controller focused on AP throughput</div>
+
+<div class="section-label">How to Overcome</div>
+<div class="overcome-item"><strong>Follow the payment:</strong> The fastest disqualifier is asking how vendor payments actually get executed today. xtraCHEF stops at coding. Quantify the hours and the forgone rebate revenue.</div>
+<div class="overcome-item"><strong>Coexist with Toast:</strong> Ottimate integrates with Toast, so this is not an either/or. Position Ottimate as the AP and payments layer while xtraCHEF or Toast retains costing.</div>`,
+
+    intel: `<div class="section-label">Pricing &amp; Tier Packaging</div>
+<div class="price-item"><strong>Freemium, from $149/month</strong> for paid tiers, with custom pricing for larger teams.</div>
+<div class="price-item"><strong>On the House (Free)</strong> — AI invoice processing, line-item recognition, email/EDI integration, automated GL coding, vendor management, basic food cost tracking.</div>
+<div class="price-item"><strong>Starter</strong> — everything in Free plus multi-location support, advanced analytics, budget tracking, recipe costing and custom reports.</div>
+<div class="price-item"><strong>Custom</strong> — enterprise needs, tailored quote.</div>
+
+<div class="section-label">Their Case Studies</div>
+<div class="case-item"><div class="case-name">Metz Culinary Management — 250+ locations <span>&middot; CTUIT + Microsoft Dynamics Great Plains</span></div><div class="case-text">Rolled out across all locations for F&amp;B invoices and corporate AP for non-F&amp;B. Managers snap photos on mobile; data routes into both CTUIT and the corporate GL. Outcome framed as <em>more manager time in front of guests</em>.</div></div>
+<div class="case-item"><div class="case-name">Choice Market — hybrid convenience store and fresh-food market, Denver</div><div class="case-text">Line-item extraction across thousands of SKUs from hundreds of vendors, with the Close Watch feature alerting on price threshold breaches. Held a broadline distributor to contracted pricing, saving <em>over 10% gross margin</em> on a priority product and <em>3x ROI in a single month</em>. Note: invoices itemize within 24 hours.</div></div>
+
+<div class="section-label">Feature Map</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span>Invoice capture and intelligent processing (OCR + AI) &middot; AP automation with approval workflows, PO management and vendor tracking</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span>Recipe costing and food cost management &middot; inventory management and optimization &middot; real-time analytics on cost, margin and vendor performance</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span>Procurement — product, vendor and purchase order management &middot; Rebates powered by Buyers Edge</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Integrations:</strong> QuickBooks Online, Xero, Microsoft Dynamics GP, Jonas Construction Software, Toast POS</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Audience:</strong> restaurants, caterers, dining management companies, and bookkeepers/CPAs</div>`
+  },
+
+  beanworks: {
+    name: "Beanworks for Clubs",
+    tagline: "Private Club AP — offshore human keying behind the automation",
+    threat: "LOW",
+    scores: [
+      { val: "AI", lbl: "Ottimate Capture", cls: "s-win" },
+      { val: "Human", lbl: "Beanworks Capture", cls: "s-lose" },
+      { val: "$0", lbl: "Our Check Fees", cls: "s-win" },
+      { val: "~$1.50", lbl: "Their Check Fees", cls: "s-lose" },
+      { val: "Line-Item", lbl: "Our Dup Detection", cls: "s-win" },
+      { val: "Header", lbl: "Their Dup Detection", cls: "s-lose" }
+    ],
+    pitch: `<div class="section-label">Their Core Claim</div>
+<div class="their-edge">A cloud-based AP automation solution for private clubs — streamlined, paperless, easy to implement, flexible and user-friendly, on a simple subscription with no long-term contract. Claims include cutting invoice processing costs by up to $13/invoice and approving invoices up to 9x faster.</div>
+<div class="section-label">How Their Process Actually Works</div>
+<div class="their-edge">Vendors email invoices to a club address. <strong>Those invoices are then forwarded, reviewed and keyed in by Beanworks data entry staff</strong> — that is what starts the workflow. Only afterwards do club AP staff see them in an online inbox for GL coding. Approved invoices generate a text file uploaded into the club's AP solution to create draft invoices; payment runs happen there or through a virtual card solution, and a file comes back with payment info.</div>
+<div class="section-label">Why This Matters</div>
+<div class="their-edge">The "automation" has a human queue in the middle of it. Every claim about speed, accuracy and privacy has to be evaluated against that fact. Beanworks is now branded Quadient AP Automation.</div>`,
+
+    weaknesses: `<div class="section-label">Voice of the Customer</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Data entry processing delays</strong> — invoices do not appear immediately in AP inboxes because human data-entry staff must review and key them first. During peak seasonal surges this becomes a multi-hour or overnight bottleneck.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Transaction and payment surcharges</strong> — per-transaction check fees of roughly $1.50 per run plus third-party payment processing costs, quietly accumulating.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>No item-level price visibility</strong> — controllers and chefs cannot easily see whether a vendor raised the unit price on specific food items, liquor or turf care supplies over time. Duplicate checking is header-level only.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Inflexible workflow and document attachment</strong> — rigid approval rules with no complex AND/OR logic, and no ability to attach backup documents directly to payment records.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Handwriting and format failures</strong> — human keying and legacy OCR struggle with handwritten delivery slips, receiving sheets and non-standard vendor invoices common in daily club operations.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Manual statement reconciliation</strong> — staff conduct manual audits and statement checks at month-end and year-end.</div>
+<div class="weakness-item"><span class="wi-icon">&#9888;</span><strong>Third-party human reviewers</strong> — offshore data entry raises privacy and compliance questions about who is reading club invoices.</div>`,
+
+    winmoves: `<div class="section-label">Ottimate's Four Differentiators</div>
+<div class="win-move"><strong>Proprietary AI line-item digitization vs. offshore human data entry:</strong> Ottimate's mature models, trained on millions of line-item entries, capture header data at 99.5% accuracy and line-item detail at 95% in seconds — recognizing line-item GL mappings, handwriting and complex multi-item invoices. Beanworks relies on human staff keying invoices after they are emailed, introducing latency, error and privacy exposure.</div>
+<div class="win-move"><strong>Transparent payments vs. hidden transaction fees:</strong> Ottimate's integrated VendorPay pays suppliers by ACH, check or virtual card inside the platform with no per-check charges, and unlocks cash-back rebates. Beanworks charges per check run or payment file, outsources payments to third parties, and limits document attachment on payment records.</div>
+<div class="win-move"><strong>Line-item price variance and fraud detection:</strong> Ottimate's Invoice Trust Score and line-item analytics flag price increases, duplicate lines, rate changes and unapproved items before an invoice reaches approval. Beanworks only checks duplicates at the header level, leaving clubs exposed to creeping prices across F&amp;B and facility maintenance.</div>
+<div class="win-move"><strong>Native automated statement reconciliation:</strong> Ottimate ingests and reconciles vendor statements against open and paid invoices automatically. Beanworks forces staff into manual audits at month-end and year-end.</div>
+
+<div class="section-label">Objections &amp; Responses</div>
+<div class="win-move"><strong>"Beanworks handles our basic invoice approval routing fine."</strong> &mdash; "It does a fine job with high-level routing. But how much time do your managers still spend verifying line-item detail across F&amp;B, Golf and Maintenance? Because Beanworks uses human data-entry staff behind the scenes, invoices sit in a queue before hitting your inbox and line-item price spikes go unnoticed. Ottimate codes to the line item instantly at 95%+ accuracy and flags vendor price increases automatically."</div>
+<div class="win-move"><strong>"Beanworks gives us unlimited users and predictable cost per invoice."</strong> &mdash; "Ottimate also offers unlimited seats, and we eliminate the hidden transaction fees Beanworks charges for payment runs and check printing. Better still, our VendorPay virtual card program earns cashback on payments you're already making — many club clients generate enough rebate revenue to fully offset the cost of Ottimate."</div>
+
+<div class="section-label">Questions to Spark Interest</div>
+<div class="overcome-item">"When your F&amp;B or Agronomy managers approve invoices in Beanworks, how are you tracking whether a vendor quietly raised unit prices on specific line items since last month?"</div>
+<div class="overcome-item">"Are you paying per-transaction or check fees for your payment runs — and would it be worth exploring a solution where virtual payment rebates turn AP into a net revenue generator?"</div>
+
+<div class="killer-quote"><span class="killer-quote-label">Landmine Question for Beanworks</span>"When we receive a complex vendor invoice with dozens of line items that needs to be split across different GL codes and departments, does Beanworks automatically extract and map each line item to its correct GL account — or does it force us to manually enter those splits?"</div>`,
+
+    gaps: `<div class="section-label">Where Ottimate Is Vulnerable</div>
+<div class="gap-item"><div class="gap-label">Club-Industry Credibility</div><div class="gap-text">Beanworks for Clubs is a dedicated sales and implementation organization for the private club industry in North America, with named CFO and GM references at Austin Country Club, Twin Eagles Club and Lost Tree Club. In club deals they arrive with peer proof Ottimate must match.</div></div>
+<div class="gap-item"><div class="gap-label">The Human Safety Net</div><div class="gap-text">Some risk-averse club controllers <em>want</em> a human reviewing invoices before they hit the inbox. The offshore keying model is a liability on speed and privacy, but it can be sold as reassurance. Address it directly rather than ignoring it.</div></div>
+<div class="gap-item"><div class="gap-label">Quadient Bundle Pricing</div><div class="gap-text">Now branded Quadient AP Automation, it can be bundled with Quadient mail, AR and communications. Unlimited users are included in all packages, which removes a common expansion objection.</div></div>
+
+<div class="section-label">Top Reasons Ottimate Loses to Beanworks</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>Private club where Beanworks' club-specific references and implementation team win on familiarity</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>Club already runs Quadient mail or AR and expands into AP on bundle pricing</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>Controller prefers human verification and is skeptical of pure-AI accuracy claims</div>
+<div class="loss-item"><span class="loss-icon">&#10007;</span>Ottimate never enters the evaluation because the cross-sell locks it first</div>
+
+<div class="section-label">How to Overcome</div>
+<div class="overcome-item"><strong>Counter the human safety net honestly:</strong> "I understand the appeal of a human check. But their staff key invoices offshore after they arrive, which is where the delay and the privacy question come from — and header-level duplicate checking still misses line-item price creep. Our AI flags issues instantly for <em>your</em> review rather than replacing your judgment."</div>
+<div class="overcome-item"><strong>Make it departmental:</strong> Clubs run F&amp;B, Golf, Agronomy and Facilities as distinct cost centers. Line-item tracking across departments is exactly what Beanworks cannot do — demo it against a real club invoice.</div>
+<div class="overcome-item"><strong>Price the check fees:</strong> Roughly $1.50 per check run adds up quickly on club volumes. Put that number next to shared vCard rebate revenue.</div>`,
+
+    intel: `<div class="section-label">Pricing &amp; Tier Packaging</div>
+<div class="price-item"><strong>Custom quotation, no published price list.</strong> Cost depends on AP workflows, invoice volume, number of entities and integration complexity. <strong>Unlimited users are included in all packages.</strong></div>
+<div class="price-item"><strong>Small Business:</strong> roughly $2,000&ndash;$10,000/year for single entity, under 500 invoices/month, standard ERP integration.</div>
+<div class="price-item"><strong>Mid-Market:</strong> $10,000&ndash;$30,000/year subscription <em>plus</em> $24,000&ndash;$60,000 in per-invoice processing fees (about $2&ndash;$5 per invoice).</div>
+<div class="price-item"><strong>Enterprise:</strong> $30,000&ndash;$50,000+/year subscription plus processing costs; with AI capabilities, $40,000&ndash;$100,000+ total annual cost.</div>
+<div class="price-item"><strong>Watch for:</strong> per-transaction check fees of roughly $1.50 per run, plus third-party payment processing charges.</div>
+
+<div class="section-label">Their Club References</div>
+<div class="case-item"><div class="case-name">Austin Country Club <span>&middot; David Manglos, CFO</span></div><div class="case-text">"It was very clear to me how easy Beanworks was to use for all my managers and that was key."</div></div>
+<div class="case-item"><div class="case-name">Twin Eagles Club <span>&middot; Karl Bublitz, GM/COO</span></div><div class="case-text">"Researching invoices is quick and easy and has been a big-time saver during the audit process and budget time."</div></div>
+<div class="case-item"><div class="case-name">Lost Tree Club <span>&middot; Jonathon Goodman, CFO</span></div><div class="case-text">"I can't believe more clubs don't have Beanworks. It just works the first time."</div></div>
+<div class="case-item"><div class="case-name">Coaching note</div><div class="case-text">All three references speak to ease of use and audit convenience — none to processing speed, line-item accuracy or payment economics. That is where to compete.</div></div>
+
+<div class="section-label">Feature Map</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Purchase Orders</strong> — automated invoice-PO match, blanket POs, purchase requisitions.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Invoices</strong> — unlimited users, unlimited storage, approval channel delegation.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Expenses</strong> — credit card reconciliation, mobile app, unlimited receipts.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Payments</strong> — payment aging report, automatic remittance notifications; check, ACH, EFT, VCC, wires and forex available.</div>
+<div class="feature-item"><span class="fi-icon">&#9679;</span><strong>Implementation</strong> — GL accounts, departments and vendors uploaded from the existing AP module; vendors contacted for electronic invoices; target go-live within one month.</div>`
   }
 };
 
@@ -1030,6 +1884,7 @@ function openModal(id) {
   document.getElementById('tab-weaknesses').innerHTML = c.weaknesses;
   document.getElementById('tab-winmoves').innerHTML = c.winmoves;
   document.getElementById('tab-gaps').innerHTML = c.gaps;
+  document.getElementById('tab-intel').innerHTML = c.intel || '<div class="section-label">No Intel Captured Yet</div><div class="gap-text">Pricing, benchmark stats, and case studies have not been sourced for this competitor.</div>';
 
   // Reset to first tab
   switchTab('pitch', document.querySelector('.tab-btn'));
@@ -1054,7 +1909,7 @@ function switchTab(tabId, btn) {
   if (btn) btn.classList.add('active');
   else {
     const allBtns = document.querySelectorAll('.tab-btn');
-    const map = { pitch: 0, weaknesses: 1, winmoves: 2, gaps: 3 };
+    const map = { pitch: 0, weaknesses: 1, winmoves: 2, gaps: 3, intel: 4 };
     if (map[tabId] !== undefined && allBtns[map[tabId]]) {
       allBtns[map[tabId]].classList.add('active');
     }
